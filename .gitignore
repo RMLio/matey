@@ -1,0 +1,5 @@
+.idea/
+node_modules/
+logs/*
+website/assets/video
+.DS_Store
