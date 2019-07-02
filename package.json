@@ -1,11 +1,9 @@
 {
   "name": "matey",
   "version": "0.0.1",
-  "description": "",
-  "main": "editor/editor.js",
   "scripts": {
-    "build:dev": "browserify editor/editor.js --standalone editor -t urify/transform > matey/assets/js/editor.min.js",
-    "build:browser": "browserify editor/editor.js --standalone editor | uglifyjs > matey/assets/js/editor.min.js",
+    "build:dev": "browserify matey/matey.js --standalone matey -t urify/transform > assets/js/matey.min.js",
+    "build:browser": "browserify matey/matey.js --standalone matey -t urify/transform | uglifyjs > assets/js/matey.min.js",
     "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\"",
     "browser": "gulp browser-sync"
   },
@@ -44,5 +42,7 @@
     "browserify": "^16.2.3",
     "gulp": "^4.0.0",
     "nodemon": "^1.18.10"
-  }
+  },
+  "main": "matey/matey.js",
+  "description": ""
 }
