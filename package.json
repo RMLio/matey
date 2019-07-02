@@ -9,7 +9,6 @@
     "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\"",
     "browser": "gulp browser-sync"
   },
-  "style": "matey/assets/style.css",
   "repository": {
     "type": "git",
     "url": "https://gitlab.ilabt.imec.be/yarrrml/matey"
