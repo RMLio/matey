@@ -4,6 +4,11 @@ let $ = require('jquery');
 let popper = require('popper.js');
 let bootstrap = require('bootstrap');
 let ace = require('brace');
+
+require('brace/theme/monokai');
+require('brace/mode/yaml');
+require('brace/mode/json');
+
 let yarrrml = require('@rmlio/yarrrml-parser/lib/yarrrml2rml');
 let N3 = require('n3');
 let $logger = require('beaver-logger');
@@ -411,22 +416,22 @@ mappings:
   });
 
   const editor = ace.edit("editor");
-  editor.setTheme("brace/theme/monokai");
-  editor.getSession().setMode("brace/mode/yaml");
+  editor.setTheme("ace/theme/monokai");
+  editor.getSession().setMode("ace/mode/yaml");
   editor.setShowPrintMargin(false);
   editor.setFontSize(14);
 
   const outputEditor = ace.edit("output");
-  outputEditor.setTheme("brace/theme/monokai");
-  outputEditor.getSession().setMode("brace/mode/text");
+  outputEditor.setTheme("ace/theme/monokai");
+  outputEditor.getSession().setMode("ace/mode/text");
   outputEditor.setShowPrintMargin(false);
   outputEditor.setReadOnly(true);
   outputEditor.setOption('selectionStyle', "line");
   outputEditor.setFontSize(14);
 
   const rmlEditor = ace.edit("rml");
-  rmlEditor.setTheme("brace/theme/monokai");
-  rmlEditor.getSession().setMode("brace/mode/text");
+  rmlEditor.setTheme("ace/theme/monokai");
+  rmlEditor.getSession().setMode("ace/mode/text");
   rmlEditor.setShowPrintMargin(false);
   rmlEditor.setReadOnly(true);
   rmlEditor.setOption('selectionStyle', "line");
@@ -467,7 +472,7 @@ mappings:
 
   const toYARRRML = function () {
     yaml = editor.setValue(yaml);
-    editor.getSession().setMode("brace/mode/yaml");
+    editor.getSession().setMode("ace/mode/yaml");
     editor.setReadOnly(false);
 
     document.getElementById("btn").onclick = toRML;
@@ -657,11 +662,11 @@ mappings:
 
   function createEditor(id, type = 'text', value = null, selectValue = null) {
     const dataEditor = ace.edit(id);
-    dataEditor.setTheme("brace/theme/monokai");
+    dataEditor.setTheme("ace/theme/monokai");
     dataEditor.setShowPrintMargin(false);
     dataEditor.setFontSize(14);
     dataEditor.setValue(value, selectValue);
-    dataEditor.getSession().setMode("brace/mode/" + type);
+    dataEditor.getSession().setMode("ace/mode/" + type);
     dataEditor.setReadOnly(false);
     return dataEditor;
   }
@@ -677,7 +682,7 @@ mappings:
     let selectValue = reset ? null : -1;
     yaml = example.yarrrml;
     editor.setValue(yaml, selectValue);
-    editor.getSession().setMode("brace/mode/yaml");
+    editor.getSession().setMode("ace/mode/yaml");
     editor.setReadOnly(false);
 
     let dataParts = example.data;
