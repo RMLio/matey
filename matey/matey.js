@@ -1,5 +1,7 @@
 /*global $ */
 
+// include all necessary dependencies for bundle
+
 let $ = require('jquery');
 let popper = require('popper.js');
 let bootstrap = require('bootstrap');
@@ -9,7 +11,6 @@ require('brace/theme/monokai');
 require('brace/mode/yaml');
 require('brace/mode/json');
 require('brace/mode/text');
-
 
 let yarrrml = require('@rmlio/yarrrml-parser/lib/yarrrml2rml');
 let N3 = require('n3');
@@ -289,7 +290,7 @@ editor.init = function (id) {
 
     let path = require('path');
     let urify = require('urify');
-    let style_uri = urify(path.join('matey/assets', 'style.css'));
+    let style_uri = urify(path.join('assets', 'style.css'));
 
     $('head').prepend(`
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -298,8 +299,8 @@ editor.init = function (id) {
 
     // add ace editors to <body>
 
-    let img_22_uri = urify(path.join('matey/assets/img', '22.png'));
-    let img_31_uri = urify(path.join('matey/assets/img', '31.png'));
+    let img_22_uri = urify(path.join('assets/img', '22.png'));
+    let img_31_uri = urify(path.join('assets/img', '31.png'));
 
     $("#" + id).html(`
       <div class="container">
