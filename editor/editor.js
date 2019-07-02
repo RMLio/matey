@@ -8,6 +8,8 @@ let ace = require('brace');
 require('brace/theme/monokai');
 require('brace/mode/yaml');
 require('brace/mode/json');
+require('brace/mode/text');
+
 
 let yarrrml = require('@rmlio/yarrrml-parser/lib/yarrrml2rml');
 let N3 = require('n3');
@@ -283,10 +285,21 @@ let editor = {};
 
 editor.init = function (id) {
 
-    $('head').prepend(
-        '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">\n' +
-        '<link rel="stylesheet" href="matey/assets/style.css">\n'
-    );
+    // add style sheets to <head>
+
+    let path = require('path');
+    let urify = require('urify');
+    let style_uri = urify(path.join('matey/assets', 'style.css'));
+
+    $('head').prepend(`
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="${style_uri}">
+    `);
+
+    // add ace editors to <body>
+
+    let img_22_uri = urify(path.join('matey/assets/img', '22.png'));
+    let img_31_uri = urify(path.join('matey/assets/img', '31.png'));
 
     $("#" + id).html(`
       <div class="container">
@@ -310,8 +323,8 @@ editor.init = function (id) {
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <span class="navbar-text">Layout:&nbsp;</span>
                 <div id="layout" style="opacity: 0.5">
-                    <button id="layout-22" type="button" class="btn"><img src="matey/assets/img/22.png" alt="Two by two layout"/></button>
-                    <button id="layout-31" style="display: none" type="button" class="btn"><img src="matey/assets/img/31.png"
+                    <button id="layout-22" type="button" class="btn"><img src="${img_22_uri}" alt="Two by two layout"/></button>
+                    <button id="layout-31" style="display: none" type="button" class="btn"><img src="${img_31_uri}"
                                                                                                 alt="Three by one layout"/></button>
                 </div>
             </div>
