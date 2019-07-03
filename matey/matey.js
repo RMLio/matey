@@ -1,10 +1,10 @@
 /*global $ */
 
-// include all necessary dependencies for bundle
+// include all necessary dependencies
 
 let $ = require('jquery');
-let popper = require('popper.js');
-let bootstrap = require('bootstrap');
+require('popper.js');
+require('bootstrap');
 let ace = require('brace');
 
 require('brace/theme/monokai');
@@ -286,92 +286,92 @@ let editor = {};
 
 editor.init = function (id) {
 
-    // add style sheets to <head>
+    // add style sheets to user's page
 
     let path = require('path');
     let urify = require('urify');
     let style_uri = urify(path.join('assets', 'style.css'));
 
-    $('head').prepend(`
+    $('head').append(`
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="${style_uri}">
     `);
 
-    // add ace editors to <body>
+    // insert HTML body content into user's page
 
     let img_22_uri = urify(path.join('assets/img', '22.png'));
     let img_31_uri = urify(path.join('assets/img', '31.png'));
 
     $("#" + id).html(`
-      <div class="container">
-        <a class="anchor" id="edit"></a>
-        <div class="navbar navbar-expand-sm navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <div class="container">
+    <a class="anchor" id="edit"></a>
+    <div class="navbar navbar-expand-sm navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse">
-                <div class="navbar-nav mr-auto">
-                    <span class="navbar-text">Reload example:&nbsp;</span>
-                    <div id="examples" class="btn-group" role="group"></div>
-                </div>
-                <span class="navbar-text">Actions:&nbsp;</span>
-                <div id="buttons" class="btn-group" role="group">
-                    <button id="btn" type="button" class="btn btn-primary">Generate RML</button>
-                    <button id="ld-btn" type="button" class="btn btn-success">Generate LD</button>
-                </div>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="navbar-text">Layout:&nbsp;</span>
-                <div id="layout" style="opacity: 0.5">
-                    <button id="layout-22" type="button" class="btn"><img src="${img_22_uri}" alt="Two by two layout"/></button>
-                    <button id="layout-31" style="display: none" type="button" class="btn"><img src="${img_31_uri}"
-                                                                                                alt="Three by one layout"/></button>
-                </div>
+        <div class="collapse navbar-collapse">
+            <div class="navbar-nav mr-auto">
+                <span class="navbar-text">Reload example:&nbsp;</span>
+                <div id="examples" class="btn-group" role="group"></div>
             </div>
-        </div>
-
-        <div id="alert-container">
-            <div style="padding: 5px">
-                <div id="alerts"></div>
+            <span class="navbar-text">Actions:&nbsp;</span>
+            <div id="buttons" class="btn-group" role="group">
+                <button id="btn" type="button" class="btn btn-primary">Generate RML</button>
+                <button id="ld-btn" type="button" class="btn btn-success">Generate LD</button>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="navbar-text">Layout:&nbsp;</span>
+            <div id="layout" style="opacity: 0.5">
+                <button id="layout-22" type="button" class="btn"><img src="${img_22_uri}" alt="Two by two layout"/></button>
+                <button id="layout-31" style="display: none" type="button" class="btn"><img src="${img_31_uri}"
+                                                                                            alt="Three by one layout"/></button>
             </div>
         </div>
     </div>
-    <div style="margin: 15px">
-        <div class="row mb-3">
-            <div class="col-md-4" id="div-input-data">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle rounded-0" id="input-button"
-                            style="background-color: #2F3129; border-width: 0" type="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Input: Data
-                    </button>
-                    <span id="data-source-delete">
+
+    <div id="alert-container">
+        <div style="padding: 5px">
+            <div id="alerts"></div>
+        </div>
+    </div>
+</div>
+<div style="margin: 15px">
+    <div class="row mb-3">
+        <div class="col-md-4" id="div-input-data">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle rounded-0" id="input-button"
+                        style="background-color: #2F3129; border-width: 0" type="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Input: Data
+                </button>
+                <span id="data-source-delete">
                         <button class="btn btn-danger btn-sm" data-remove_id="' + id + '">&times;</button>
                     </span>
-                    <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
-                        <div class="nav" id="dropdown-data-chooser">
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item rounded-0" href="#" id="data-create">Create new source</a>
-                        <a class="dropdown-item rounded-0" href="#" id="data-dl">Download</a>
+                <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
+                    <div class="nav" id="dropdown-data-chooser">
                     </div>
-                </div>
-                <div id="data" class="tab-content">
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item rounded-0" href="#" id="data-create">Create new source</a>
+                    <a class="dropdown-item rounded-0" href="#" id="data-dl">Download</a>
                 </div>
             </div>
-            <div class="col-md-4" id="div-yarrrml">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle rounded-0"
-                            style="background-color: #2F3129; border-width: 0" type="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Input: YARRRML
-                    </button>
-                    <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item rounded-0" href="#" id="yarrrml-dl">Download</a>
-                    </div>
+            <div id="data" class="tab-content">
+            </div>
+        </div>
+        <div class="col-md-4" id="div-yarrrml">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle rounded-0"
+                        style="background-color: #2F3129; border-width: 0" type="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Input: YARRRML
+                </button>
+                <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item rounded-0" href="#" id="yarrrml-dl">Download</a>
                 </div>
-                <div id="editor" class="ace-editor"><pre><code>prefixes:
+            </div>
+            <div id="editor" class="ace-editor"><pre><code>prefixes:
   ex: "http://example.com/"
 
 mappings:
@@ -382,41 +382,41 @@ mappings:
    po:
     - [a, foaf:Person]
     - [ex:name, $(firstname)]</code></pre>
-                </div>
-            </div>
-            <div class="col-md-4" id="div-output-data">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle rounded-0"
-                            style="background-color: #2F3129; border-width: 0" type="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Output: Turtle/TriG
-                    </button>
-                    <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item rounded-0" href="#" id="turtle-dl">Download</a>
-                    </div>
-                </div>
-                <div id="output" class="ace-editor">
-                    <pre><code></code></pre>
-                </div>
-            </div>
-            <div class="col-md-12" style="min-height: 120px;" id="div-rml">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle rounded-0"
-                            style="background-color: #2F3129; border-width: 0" type="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Output: RML
-                    </button>
-                    <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item rounded-0" href="#" id="rml-dl">Download</a>
-                    </div>
-                </div>
-                <div id="rml" class="ace-editor">
-                    <pre><code></code></pre>
-                </div>
             </div>
         </div>
-    </div>`
-  );
+        <div class="col-md-4" id="div-output-data">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle rounded-0"
+                        style="background-color: #2F3129; border-width: 0" type="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Output: Turtle/TriG
+                </button>
+                <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item rounded-0" href="#" id="turtle-dl">Download</a>
+                </div>
+            </div>
+            <div id="output" class="ace-editor">
+                <pre><code></code></pre>
+            </div>
+        </div>
+        <div class="col-md-12" style="min-height: 120px;" id="div-rml">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle rounded-0"
+                        style="background-color: #2F3129; border-width: 0" type="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Output: RML
+                </button>
+                <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item rounded-0" href="#" id="rml-dl">Download</a>
+                </div>
+            </div>
+            <div id="rml" class="ace-editor">
+                <pre><code></code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+    `);
 
   $logger.warn('page_visit');
 
