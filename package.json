@@ -4,6 +4,7 @@
   "scripts": {
     "build:dev": "browserify matey/matey.js --standalone matey -t urify/transform > assets/js/matey.min.js",
     "build:browser": "browserify matey/matey.js --standalone matey -t urify/transform | uglifyjs > assets/js/matey.min.js",
+    "test": "./node_modules/mocha/bin/mocha",
     "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\"",
     "browser": "gulp browser-sync"
   },
@@ -27,6 +28,7 @@
     "express": "^4.16.4",
     "extend": "^3.0.2",
     "jquery": "^3.2.1",
+    "mocha": "^6.1.4",
     "n3": "^0.11.3",
     "popper.js": "^1.15.0",
     "prefix-ns": "^0.1.2",
