@@ -1,0 +1,24 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix ma: <http://www.w3.org/ns/ma-ont#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix schema: <http://schema.org/>.
+@prefix ex: <http://example.com/>.
+
+<http://example.com/person/John> a foaf:Person;
+    ex:name "John";
+    ex:likes <http://example.com/movie/wam>.
+<http://example.com/person/Jane> a foaf:Person;
+    ex:name "Jane";
+    ex:likes <http://example.com/movie/wam>.
+<http://example.com/person/Sarah> a foaf:Person;
+    ex:name "Sarah";
+    ex:likes <http://example.com/movie/fotr>.
+<http://example.com/movie/sw> a schema:Movie;
+    schema:name "Star Wars";
+    ex:year "1977".
+<http://example.com/movie/fotr> a schema:Movie;
+    schema:name "The Fellowship of the Ring";
+    ex:year "2001".
+<http://example.com/movie/wam> a schema:Movie;
+    schema:name "We Are Marshall";
+    ex:year "2006".

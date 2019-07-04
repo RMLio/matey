@@ -1,0 +1,46 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix ma: <http://www.w3.org/ns/ma-ont#>.
+@prefix prov: <http://www.w3.org/ns/prov#>.
+@prefix sioc: <http://rdfs.org/sioc/ns#>.
+@prefix v: <http://rdf.data-vocabulary.org/#>.
+@prefix schema: <http://schema.org/>.
+@prefix cocacola-fb: <http://coca-cola.com/facebook/>.
+@prefix emit: <http://coca-cola.com/emit/>.
+@prefix prov-said: <http://semweb.datasciencelab.be/ns/prov-said/>.
+@prefix ov: <http://open.vocab.org/terms/>.
+@prefix tsioc: <http://rdfs.org/sioc/types#>.
+@prefix fabio: <http://purl.org/spar/fabio/>.
+
+<http://coca-cola.com/facebook/820882001277849_313056145953449> a prov:Entity, ov:MicroblogPost, schema:SocialMediaPosting, tsioc:MicroblogPost;
+    prov:label "What?s the one thing that never fails to make you smile? ? #RefreshTheFee";
+    schema:articleBody "What?s the one thing that never fails to make you smile? ? #RefreshTheFee";
+    schema:mainEntityOfPage "https://www.facebook.com/CocaColaUnitedStates/videos/313056145953449/"^^schema:URL;
+    prov:wasAttributedTo <http://coca-cola.com/#me>;
+    prov:wasGeneratedBy <http://coca-cola.com/emit/820882001277849_313056145953449>.
+<http://coca-cola.com/facebook/820882001277849_2242864155746286> a prov:Entity, ov:MicroblogPost, schema:SocialMediaPosting, tsioc:MicroblogPost;
+    prov:label "This #WorldKindnessDay, we?re spreading a little love and positivity. ?? to ?. #RefreshTheFeed";
+    schema:articleBody "This #WorldKindnessDay, we?re spreading a little love and positivity. ?? to ?. #RefreshTheFeed";
+    schema:mainEntityOfPage "https://www.facebook.com/CocaColaUnitedStates/posts/2242864155746286"^^schema:URL;
+    prov:wasAttributedTo <http://coca-cola.com/#me>;
+    prov:wasGeneratedBy <http://coca-cola.com/emit/820882001277849_2242864155746286>.
+<http://coca-cola.com/facebook/820882001277849_2169022539814557> a prov:Entity, ov:MicroblogPost, schema:SocialMediaPosting, tsioc:MicroblogPost;
+    prov:label "Spread kindness. Share the ???. #WorldKindnessDay #RefreshTheFeed";
+    schema:articleBody "Spread kindness. Share the ???. #WorldKindnessDay #RefreshTheFeed";
+    schema:mainEntityOfPage "https://www.facebook.com/CocaColaUnitedStates/videos/2169022539814557/"^^schema:URL;
+    prov:wasAttributedTo <http://coca-cola.com/#me>;
+    prov:wasGeneratedBy <http://coca-cola.com/emit/820882001277849_2169022539814557>.
+<http://coca-cola.com/emit/820882001277849_313056145953449> a prov:Activity;
+    prov:type prov-said:EmitMessage;
+    prov:wasStartedBy <http://coca-cola.com/#me>;
+    prov:startedAtTime "2018-11-21T01:12:24+0000";
+    prov:endedAtTime "2018-11-21T01:12:24+0000".
+<http://coca-cola.com/emit/820882001277849_2242864155746286> a prov:Activity;
+    prov:type prov-said:EmitMessage;
+    prov:wasStartedBy <http://coca-cola.com/#me>;
+    prov:startedAtTime "2018-11-13T01:03:11+0000";
+    prov:endedAtTime "2018-11-13T01:03:11+0000".
+<http://coca-cola.com/emit/820882001277849_2169022539814557> a prov:Activity;
+    prov:type prov-said:EmitMessage;
+    prov:wasStartedBy <http://coca-cola.com/#me>;
+    prov:startedAtTime "2018-11-13T01:02:00+0000";
+    prov:endedAtTime "2018-11-13T01:02:00+0000".
