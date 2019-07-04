@@ -40,14 +40,15 @@ function getAceEditorText(id) {
  */
 function testOutput(filename, isLD, done) {
     let buttonID = isLD ? "#ld-btn" : "#btn";
+    let editorID = isLD ? "output" : "rml";
         // click the button & wait 2 seconds for output to generate
     $(buttonID).trigger("click");
     setTimeout(function() {
-        let generated_output = getAceEditorText("output");
+        let generated_output = getAceEditorText(editorID);
         // read the correct output from the file and check if it fits the generated output
-        let filepath = 'correct_example_outputs/' + example + "_" + outputType;
-        readFileContent(filepath, function(expected_output) {
-            chai.assert.equal(generated_output, expected_output);
+        let path = "correct_example_outputs/" + filename;
+        readFileContent(path, function(expected_output) {
+            chai.assert.equal(generated_output.trim(), expected_output.trim());
             done();
         });
     }, 2000);
@@ -64,8 +65,8 @@ describe('Examples Output Test', function() {
             testOutput('people_turtle.txt', true, done);
         });
 
-        it('RML', function() {
-            testOutput('people_rml.txt', true, done);
+        it('RML', function(done) {
+            testOutput('people_rml.txt', false, done);
         });
     });
 
