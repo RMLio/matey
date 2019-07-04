@@ -282,6 +282,7 @@ mappings:
   }
 ];
 
+
 let editor = {};
 
 editor.init = function (id) {
@@ -560,7 +561,7 @@ mappings:
         });
       }).catch(err => {
         $logger.error('yarrml_invalid', {yarrrml: yaml});
-        console.log(e);
+        console.log(err);
         doAlert('Couldn\'t run the YARRRML, check the source.', 'danger');
       });
     });
