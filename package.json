@@ -2,9 +2,10 @@
   "name": "matey",
   "version": "0.0.1",
   "scripts": {
-    "build:dev": "browserify matey/matey_new.js --standalone matey -t urify/transform > assets/js/matey.min.js",
-    "build:browser": "browserify matey/matey_new.js --standalone matey -t urify/transform | uglifyjs > assets/js/matey.min.js",
-    "build:test": "npm run build:dev; cp assets/js/matey.min.js test",
+    "build:dev": "browserify matey/matey.js --standalone matey -t urify/transform > assets/js/matey.min.js",
+    "build:browser": "browserify matey/matey.js --standalone matey -t urify/transform | uglifyjs > assets/js/matey.min.js",
+    "build:browser-test": "npm run build:dev; cp assets/js/matey.min.js test",
+    "test": "jest",
     "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\"",
     "browser": "gulp browser-sync"
   },
