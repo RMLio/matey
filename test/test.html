@@ -2,33 +2,16 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Mocha Tests</title>
+        <title>Test</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" />
-    </head>
-    <body>
-        <div id="mocha"></div>
-        <div id="editor-test"></div>
-
-        <script src="https://unpkg.com/chai/chai.js"></script>
-        <script src="https://unpkg.com/mocha/mocha.js"></script>
-
-        <script class="mocha-init">
-            mocha.setup('bdd');
-        </script>
 
         <script src="matey.min.js"></script>
-        <script>
-            matey.init("editor-test");
-        </script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" type="text/javascript" charset="utf-8"></script>
-        <script src="test_examples_output.js"></script>
+    </head>
+    <body>
+        <div id="test"></div>
 
-        <script class="mocha-exec">
-            mocha.run();
+        <script>
+            matey.init("test");
         </script>
     </body>
 </html>
