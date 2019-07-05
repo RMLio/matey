@@ -448,16 +448,16 @@ mappings:
             return outputEditor.getValue();
         };
 
-        const rmlEditor = ace.edit("rml");
-        rmlEditor.setTheme("ace/theme/monokai");
-        rmlEditor.getSession().setMode("ace/mode/text");
-        rmlEditor.setShowPrintMargin(false);
-        rmlEditor.setReadOnly(true);
-        rmlEditor.setOption('selectionStyle', "line");
-        rmlEditor.setFontSize(14);
+        this.rmlEditor = ace.edit("rml");
+        this.rmlEditor.setTheme("ace/theme/monokai");
+        this.rmlEditor.getSession().setMode("ace/mode/text");
+        this.rmlEditor.setShowPrintMargin(false);
+        this.rmlEditor.setReadOnly(true);
+        this.rmlEditor.setOption('selectionStyle', "line");
+        this.rmlEditor.setFontSize(14);
 
         this.getRML = function() {
-            return rmlEditor.getValue();
+            return this.rmlEditor.getValue();
         };
 
         let yaml;
@@ -487,7 +487,7 @@ mappings:
 
             writer.addTriples(triples);
             writer.end((error, result) => {
-                rmlEditor.setValue(result);
+                this.rmlEditor.setValue(result);
                 $logger.warn('rml_generated', {yarrrml: yaml, rml: result});
                 doAlert('RML mapping file updated!', 'success');
             });
@@ -498,11 +498,11 @@ mappings:
             editor.getSession().setMode("ace/mode/yaml");
             editor.setReadOnly(false);
 
-            document.getElementById("btn").onclick = toRML;
+            document.getElementById("btn").onclick = toRML.bind(this);
             document.getElementById("btn").innerHTML = 'Show RML';
         };
 
-        document.getElementById("btn").onclick = toRML;
+        document.getElementById("btn").onclick = toRML.bind(this);
 
         const runMappingRemote = () => {
             yaml = editor.getValue();
@@ -575,7 +575,7 @@ mappings:
             });
         };
 
-        document.getElementById("ld-btn").onclick = runMappingRemote;
+        document.getElementById("ld-btn").onclick = runMappingRemote.bind(this);
 
         loadExamples('examples', _GLOBAL.examples);
         let stored = persister.get('latestExample');
@@ -638,7 +638,7 @@ mappings:
         });
 
         $('#rml-dl').on('click', () => {
-            downloadString(rmlEditor.getValue(), 'text/turtle', 'output.rml.ttl');
+            downloadString(this.rmlEditor.getValue(), 'text/turtle', 'output.rml.ttl');
         });
 
         function updateLayout(layout) {
@@ -870,6 +870,10 @@ ${message}
                 URL.revokeObjectURL(a.href);
             }, 1500);
         }
+    }
+
+    getRML() {
+        return this.rmlEditor.getValue();
     }
 }
 
