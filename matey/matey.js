@@ -17,7 +17,7 @@ let N3 = require('n3');
 let $logger = require('beaver-logger');
 let Persister = require('./persister');
 let persister = new Persister();
-let _GLOBAL = require('global.js');
+let _GLOBAL = require('./global');
 
 $logger.init({
 
