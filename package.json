@@ -2,9 +2,9 @@
   "name": "matey",
   "version": "0.0.1",
   "scripts": {
-    "build:dev": "browserify matey/matey.js --standalone matey -t urify/transform > assets/js/matey.min.js",
-    "build:browser": "browserify matey/matey.js --standalone matey -t urify/transform | uglifyjs > assets/js/matey.min.js",
-    "test": "./node_modules/mocha/bin/mocha",
+    "build:dev": "browserify matey/matey_new.js --standalone matey -t urify/transform > assets/js/matey.min.js",
+    "build:browser": "browserify matey/matey_new.js --standalone matey -t urify/transform | uglifyjs > assets/js/matey.min.js",
+    "build:test": "npm run build:dev; cp assets/js/matey.min.js test",
     "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\"",
     "browser": "gulp browser-sync"
   },
@@ -25,10 +25,10 @@
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
     "brace": "^0.11.1",
+    "core-js": "^3.1.4",
     "express": "^4.16.4",
     "extend": "^3.0.2",
     "jquery": "^3.2.1",
-    "mocha": "^6.1.4",
     "n3": "^0.11.3",
     "popper.js": "^1.15.0",
     "prefix-ns": "^0.1.2",
@@ -43,6 +43,7 @@
     "browser-sync": "^2.26.3",
     "browserify": "^16.2.3",
     "gulp": "^4.0.0",
+    "jest": "^24.8.0",
     "nodemon": "^1.18.10"
   },
   "main": "matey/matey.js",
