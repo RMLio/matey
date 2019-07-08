@@ -45,7 +45,10 @@
     "browserify": "^16.2.3",
     "gulp": "^4.0.0",
     "jest": "^24.8.0",
-    "nodemon": "^1.18.10"
+    "jsdom-worker": "^0.1.0",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^1.18.10",
+    "rdf-isomorphic": "^1.1.0"
   },
   "main": "matey/matey.js",
   "description": ""
