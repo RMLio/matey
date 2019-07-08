@@ -83,9 +83,9 @@ describe('Examples Output Test', function() {
 /**
  * Checks whether clicking the "Generate LD" or "Generate RML" button generates the correct output
  * in the corresponding editor
- * @param  {String} filename: path to file where correct output is located
- * @param {Boolean} checkLD: if true, the LD output is checked, otherwise the RML output will be checked
- * @param {Function} done: callback that indicates test is finished when called
+ * @param  {String} filename path to file where correct output is located
+ * @param {Boolean} checkLD if true, the LD output is checked, otherwise the RML output will be checked
+ * @param {Function} done callback that indicates test is finished when called
  */
 function testOutput(filename, checkLD, done) {
     let buttonID = checkLD ? "#ld-btn" : "#btn";
