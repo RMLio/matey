@@ -1,27 +1,37 @@
 'use strict';
 
-// import necessary modules
+// import jquery
 const $ = require('jquery');
 
+// import matey
 const matey = require('../');
 
+// import File System
 const fs = require('fs');
 
-let examples = require('../matey/global').examples;
+// load Matey examples for example output tests
+const examples = require('../matey/global').examples;
 
+// import RDF parser and isomorphic checker to compare generated outputs to expected ones
+// without the order of triples being important
 const N3 = require('n3');
 const parser = new N3.Parser();
 const isomorphic = require('rdf-isomorphic').isomorphic;
 
+// import jsdom-worker to mock Worker object which doesn't work by default in Jest/jsdom
 require('jsdom-worker');
+
+// createObjectURL isn't available in Jest by default, so has to be mocked too
+window.URL.createObjectURL = jest.fn();
 
 // set up document body
 $('body').html('<div id="test-editor"></div>');
 
-window.URL.createObjectURL = jest.fn();
 
 // initialise matey editors
 matey.init("test-editor");
+
+// tests
 
 describe('Examples Output Test', function() {
 
