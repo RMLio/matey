@@ -18,11 +18,18 @@ Put a div element with a certain id where you want your Matey editor to be:
 ```html
 <div id="matey-id"></div>
 ```
-Try to avoid declaring div elements with id's prefixed with `matey`, as most div elements that will be inserted into your page have such an id.
+Try to avoid declaring div elements with id's prefixed with "matey", as most div elements that will be inserted into your page have such an id.
 
 ### Setting up the Matey editor
 In your JavaScript code, import the package, and call the `init` function with the id of the div element for the editor.
 ```javascript
 let matey = require("yarrrml-matey");
 matey.init("matey-id");
+```
+
+## Run tests
+From inside the project directory, run the following commands:
+```
+npm install
+npm run test
 ```
