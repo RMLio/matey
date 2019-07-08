@@ -4,7 +4,7 @@ A browser-based editor meant for writing YARRRML rules. The corresponding RML ru
 ## Table of contents
 1. [Installation](#installation)
 2. [Usage](#usage)
-3. [Run tests](#Run tests)
+3. [Run tests](#run-tests)
 
 ## Installation
 ```
