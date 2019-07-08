@@ -19,7 +19,10 @@ let Persister = require('./persister');
 let persister = new Persister();
 let _GLOBAL = require('./global');
 
-let readFileSync = require('fs').readFileSync;
+const path  = require('path');
+const urify = require('urify');
+
+const fs = require('fs');
 
 $logger.init({
 
@@ -70,15 +73,19 @@ $logger.init({
     logPerformance: true
 });
 
-
+/**
+ * Class for adding/manipulating Matey content in web page
+ */
 class Matey {
 
+    /**
+     * Initializes all of the Matey content in <div> element with given id
+     * @param id of <div> element into which HTML code with Matey content should be inserted
+     */
     init(id) {
 
         // add style sheets to page
 
-        let path = require('path');
-        let urify = require('urify');
         let style_uri = urify(path.join('assets', 'style.css'));
 
         $('head').append(`
@@ -86,21 +93,23 @@ class Matey {
         <link rel="stylesheet" href="${style_uri}">`
         );
 
-        // read URIs for images needed in HTML body
+        // read URIs for images needed in HTML body which will be inserted into template string
 
         let img_22_uri = urify(path.join('assets/img', '22.png'));
         let img_31_uri = urify(path.join('assets/img', '31.png'));
 
         // read HTML content from assets/index.html and convert to template string
 
-        let content = readFileSync(__dirname + '/../assets/index.html', 'utf8');
-        let content_tmpl = eval("`" + content + "`");
+        let html = fs.readFileSync(__dirname + '/../assets/index.html', 'utf8');
+        let html_tmpl = eval("`" + content + "`");
 
         // insert HTML content into page
         $("#" + id).html(content_tmpl);
 
+        // warn logger that page has been visited
         $logger.warn('page_visit');
 
+        // initialize Ace Editors
         this.dataEditors = [];
         this.$inputButtonDiv = $('#input-button');
         this.$deleteButtonSpan = $('#data-source-delete');
@@ -109,8 +118,6 @@ class Matey {
             e.stopPropagation();
             this.deleteDataEditor(null, $(e.target).data('delete-editor-id'));
         });
-
-        // initialize Ace Editors
 
         this.editor = ace.edit("editor");
         this.editor.setTheme("ace/theme/monokai");
@@ -134,11 +141,11 @@ class Matey {
         this.rmlEditor.setOption('selectionStyle', "line");
         this.rmlEditor.setFontSize(14);
 
-        this.yaml = undefined;
-
+        // bind buttons for generating LD and RML to corresponding functions
         document.getElementById("btn").onclick = this.toRML.bind(this);
         document.getElementById("ld-btn").onclick = this.runMappingRemote.bind(this);
 
+        // load examples into YARRRML and Data editors
         this.loadExamples('examples', _GLOBAL.examples);
         let stored = persister.get('latestExample');
         if (stored) {
@@ -148,6 +155,7 @@ class Matey {
             this.loadExample(_GLOBAL.examples[0]);
         }
 
+        // update layout
         let layout = persister.get('layout');
         if (layout) {
             this.updateLayout(layout);
@@ -160,6 +168,7 @@ class Matey {
         $('#layout-31').click(() => {
             this.updateLayout('3x1');
         });
+
 
         $('#data-create').on('click', () => {
             let dataPath = prompt("Create a new data path", "source_" + this.dataEditors.length + '.csv');
@@ -192,7 +201,7 @@ class Matey {
         });
 
         $('#yarrrml-dl').on('click', () => {
-            this.downloadString(editor.getValue(), 'text', 'yarrrml.yaml');
+            this.downloadString(this.editor.getValue(), 'text', 'yarrrml.yaml');
         });
 
         $('#turtle-dl').on('click', () => {
@@ -202,12 +211,14 @@ class Matey {
         $('#rml-dl').on('click', () => {
             this.downloadString(this.rmlEditor.getValue(), 'text/turtle', 'output.rml.ttl');
         });
-
-
     }
 
+    /**
+     *  Converts inserted YARRRML rules to RML rules and inserts it into RML editor. Will be called upon clicking
+     *  "Generate RML" button.
+     */
     toRML() {
-        this.yaml = this.editor.getValue();
+        let yaml = this.editor.getValue();
         const y2r = new yarrrml();
         const triples = this.generateRML(y2r);
         if (!triples) {
@@ -232,22 +243,13 @@ class Matey {
         writer.addTriples(triples);
         writer.end((error, result) => {
             this.rmlEditor.setValue(result);
-            $logger.warn('rml_generated', {yarrrml: this.yaml, rml: result});
+            $logger.warn('rml_generated', {yarrrml: yaml, rml: result});
             this.doAlert('RML mapping file updated!', 'success');
         });
     }
 
-    toYARRRML() {
-        this.yaml = this.editor.setValue(this.yaml);
-        this.editor.getSession().setMode("ace/mode/yaml");
-        this.editor.setReadOnly(false);
-
-        document.getElementById("btn").onclick = this.toRML.bind(this);
-        document.getElementById("btn").innerHTML = 'Show RML';
-    };
-
     runMappingRemote() {
-        this.yaml = this.editor.getValue();
+        let yaml = this.editor.getValue();
         const triples = this.generateRML();
         if (!triples) {
             return;
@@ -289,7 +291,7 @@ class Matey {
                     } else {
                         outWriter.end((err, outTtl) => {
                             this.outputEditor.setValue(outTtl);
-                            $logger.warn('ttl_generated', {output, ttl: data, yarrrml: this.yaml});
+                            $logger.warn('ttl_generated', {output, ttl: data, yarrrml: yaml});
                             this.doAlert('Output updated!', 'success');
 
                             let persistData = [];
@@ -303,14 +305,14 @@ class Matey {
                             persister.set('latestExample', {
                                 label: 'latest',
                                 icon: 'user',
-                                yarrrml: this.yaml,
+                                yarrrml: yaml,
                                 data: persistData
                             });
                         });
                     }
                 });
             }).catch(err => {
-                $logger.error('yarrml_invalid', {yarrrml: this.yaml});
+                $logger.error('yarrml_invalid', {yarrrml: yaml});
                 console.log(err);
                 this.doAlert('Couldn\'t run the YARRRML, check the source.', 'danger');
             });
@@ -379,8 +381,8 @@ class Matey {
     loadExample(example, reset = false) {
         this.destroyEditors();
         let selectValue = reset ? null : -1;
-        this.yaml = example.yarrrml;
-        this.editor.setValue(this.yaml, selectValue);
+        let yaml = example.yarrrml;
+        this.editor.setValue(yaml, selectValue);
         this.editor.getSession().setMode("ace/mode/yaml");
         this.editor.setReadOnly(false);
 
@@ -468,19 +470,19 @@ class Matey {
     }
 
     getYamlPrefixes() {
-        this.yaml = this.editor.getValue();
+        let yaml = this.editor.getValue();
         let prefixes = {};
 
         prefixes.rdf = _GLOBAL.prefixes.rdf;
 
         Object.keys(_GLOBAL.prefixes).forEach(pre => {
-            if (this.yaml.indexOf(`${pre}:`) >= 0) {
+            if (yaml.indexOf(`${pre}:`) >= 0) {
                 prefixes[pre] = _GLOBAL.prefixes[pre];
             }
         });
 
         try {
-            let json = YAML.parse(this.yaml);
+            let json = YAML.parse(yaml);
             if (json.prefixes) {
                 prefixes = Object.assign({}, prefixes, json.prefixes);
             }
@@ -492,15 +494,15 @@ class Matey {
     }
 
     generateRML(y2r = null) {
-        this.yaml = this.editor.getValue();
+        let yaml = this.editor.getValue();
         if (!y2r) {
             y2r = new yarrrml();
         }
         let quads;
         try {
-            quads = y2r.convert(this.yaml);
+            quads = y2r.convert(yaml);
         } catch (e) {
-            $logger.error('yarrml_invalid', {yarrrml: this.yaml});
+            $logger.error('yarrml_invalid', {yarrrml: yaml});
             this.doAlert('Couldn\'t generate the RML mapping file, check the source.', 'danger');
             return null;
         }
