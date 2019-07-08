@@ -101,10 +101,10 @@ class Matey {
         // read HTML content from assets/index.html and convert to template string
 
         let html = fs.readFileSync(__dirname + '/../assets/index.html', 'utf8');
-        let html_tmpl = eval("`" + content + "`");
+        let html_tmpl = eval("`" + html + "`");
 
         // insert HTML content into page
-        $("#" + id).html(content_tmpl);
+        $("#" + id).html(html_tmpl);
 
         // warn logger that page has been visited
         $logger.warn('page_visit');
