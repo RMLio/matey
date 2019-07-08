@@ -174,6 +174,7 @@ class Matey {
         });
 
 
+        // bind button for creating new data source to corresponding function
         $('#data-create').on('click', () => {
             let dataPath = prompt("Create a new data path", "source_" + this.dataEditors.length + '.csv');
             if (dataPath === null) {
@@ -194,6 +195,7 @@ class Matey {
             dataEditor.dropdownA.click();
         });
 
+        // bind download buttons to their corresponding functions
         $('#data-dl').on('click', () => {
             let activeEditor = null;
             this.dataEditors.forEach(dataEditor => {
@@ -597,8 +599,8 @@ class Matey {
      * @param timeout delay time for displaying alert
      */
     doAlert(message, type = 'primary', timeout = 2000) {
-        let $alert = $(`
-            <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+        let $alert = $(
+            `<div class="alert alert-${type} alert-dismissible fade show" role="alert">
                 ${message}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -611,6 +613,12 @@ class Matey {
         }, timeout);
     }
 
+    /**
+     * Downloads the given text as a file with the given file name and type
+     * @param {String} text string that serves as content for file
+     * @param {String} fileType Specifies type of text for file. Can be 'json', 'text' or 'text/turtle'
+     * @param {String} fileName name of file to be downloaded
+     */
     downloadString(text, fileType, fileName) {
         let blob = new Blob([text], {type: fileType});
 
@@ -628,28 +636,28 @@ class Matey {
     }
 
     /**
-     @returns {String} containing the content of the Linked Data output editor
+     @returns {String} content of the Turtle/TriG editor
      */
     getLD() {
         return this.outputEditor.getValue();
     }
 
     /**
-     @returns {String} containing the content of the RML output editor
+     @returns {String} content of RML editor
      */
     getRML() {
         return this.rmlEditor.getValue();
     }
 
     /**
-     @returns {String} containing the content of the YARRRML input editor
+     @returns {String} content of YARRRML editor
      */
     getYARRRML() {
         return this.editor.getValue();
     }
 
     /**
-     @returns {String} containing the content of the Data input editor
+     @returns {String} content of input data editor
      */
     getData() {
         return this.editor.getValue();
