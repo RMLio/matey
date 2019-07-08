@@ -109,8 +109,7 @@ class Matey {
         // warn logger that page has been visited
         $logger.warn('page_visit');
 
-        // initialize Ace Editors
-        this.dataEditors = [];
+        // initialize Input and Delete button for data editor
         this.$inputButtonDiv = $('#input-button');
         this.$deleteButtonSpan = $('#data-source-delete');
 
@@ -118,6 +117,9 @@ class Matey {
             e.stopPropagation();
             this.deleteDataEditor(null, $(e.target).data('delete-editor-id'));
         });
+
+        // initialize Ace Editors
+        this.dataEditors = [];
 
         this.editor = ace.edit("editor");
         this.editor.setTheme("ace/theme/monokai");
@@ -162,6 +164,8 @@ class Matey {
         } else {
             this.updateLayout('3x1');
         }
+
+        // bind layout updating buttons to their corresponding functions
         $('#layout-22').click(() => {
             this.updateLayout('2x2');
         });
@@ -248,6 +252,10 @@ class Matey {
         });
     }
 
+    /**
+     *  Generates RDF triples based on input data and YARRRML rules and inserts them into 'Turtle/TriG' editor. Will be
+     *  called upon clicking "Generate LD" button.
+     */
     runMappingRemote() {
         let yaml = this.editor.getValue();
         const triples = this.generateRML();
@@ -319,6 +327,10 @@ class Matey {
         });
     };
 
+    /**
+     * Places the editors in a certain arrangement, specified by given layout
+     * @param {String} layout: specifies the layout in which editors should be arranged
+     */
     updateLayout(layout) {
         const inputDiv = $('#div-input-data');
         const yarrrmlDiv = $('#div-yarrrml');
@@ -349,17 +361,14 @@ class Matey {
         }
     }
 
-    loadExamples(id, examples) {
-        let $el = $('#' + id);
-        examples.forEach((example) => {
-            let $button = $('<button type="button" class="btn btn-secondary">' + (example.icon ? '<span class="icon-' + example.icon + '"></span>&nbsp;' : '') + example.label + '</button>');
-            $el.append($button);
-            $button.on('click', () => {
-                this.loadExample(example, true);
-            })
-        });
-    }
-
+    /**
+     * Creates and initializes a new Ace Editor session for the <div> element with the given id
+     * @param {String} id identifier of editor element
+     * @param {String} type which determines the mode of ace editor session
+     * @param {String} value to be inserted into editor
+     * @param {Number} selectValue: Determines cursor position after new value is set. `undefined` or 0 is selectAll, -1 is at the document start, and 1 is at the end
+     * @returns {AceAjax.Editor} object corresponding to initialized editor HTML Element
+     */
     createEditor(id, type = 'text', value = null, selectValue = null) {
         const dataEditor = ace.edit(id);
         dataEditor.setTheme("ace/theme/monokai");
@@ -372,12 +381,21 @@ class Matey {
         return dataEditor;
     }
 
+    /**
+     * Resets content of all editors
+     */
     destroyEditors() {
         $('#data').html('');
         $('#dropdown-data-chooser').html('');
         this.dataEditors = [];
     }
 
+    /**
+     * Loads in given example into input editors
+     * @param example to be loaded in
+     * @param reset determines the cursor position after example texts are inserted. If true, all text will
+     *        be selected in both input editors. If false, the cursor will move to the top in both input editors.
+     */
     loadExample(example, reset = false) {
         this.destroyEditors();
         let selectValue = reset ? null : -1;
@@ -404,6 +422,38 @@ class Matey {
         }
     }
 
+    /**
+     * Creates and initializes buttons that will load examples into input editors when pressed. All these buttons
+     * are placed into the HTML element with the given id.
+     * @param {String} id identifier to div element which will contain buttons to load examples
+     * @param {Array} examples for which buttons must be made
+     */
+    loadExamples(id, examples) {
+        let $el = $('#' + id);
+        examples.forEach((example) => {
+            let $button = $('<button type="button" class="btn btn-secondary">' + (example.icon ? '<span class="icon-' + example.icon + '"></span>&nbsp;' : '') + example.label + '</button>');
+            $el.append($button);
+            $button.on('click', () => {
+                this.loadExample(example, true);
+            })
+        });
+    }
+
+    /**
+     * Creates and initializes Ace Editor for input data
+     * @param {Object} dataPart Object that contains value, type and path of data in data editor
+     * @param {Integer} index Identifier for data editor element
+     * @param selectValue Determines cursor position after new value is set. `undefined` or null is selectAll, -1 is at the document start, and 1 is at the end
+     * @returns {{
+     *   editor:    (AceAjax.Editor) object corresponding to initialized data editor HTML Element,
+     *   path:      (String) file path of data source,
+     *   type:      (String) type of data source (json or text),
+     *   elem:      (jQuery|HTMLElement) element containing the ace editor,
+     *   input:     (jQuery|HTMLElement) element containing button for data editor,
+     *   dropdownA: (jQuery|HTMLElement) element containing dropdown for data editor,
+     *   index:     (Integer) index that identifies data editor element
+     * }}
+     */
     createDataEditor(dataPart, index, selectValue = null) {
         let value = dataPart.value;
         if (dataPart.type === 'json') {
@@ -437,6 +487,11 @@ class Matey {
         };
     }
 
+    /**
+     * Updates the delete button for data editors. If there are no data editors, the button will be hidden, else
+     * the button is shown and will store in it the id of the data editor that should be deleted when the button is pressed.
+     * @param id of the data editor corresponding to the delete button
+     */
     updateDeleteButton(id) {
         if (this.dataEditors.length === 0) {
             this.$deleteButtonSpan.hide();
@@ -446,18 +501,26 @@ class Matey {
         }
     }
 
-    createInputButton(dataPart, id) {
+    /**
+     * Creates and returns an input button for the data editor.
+     * @param dataPart: Object that contains value, type and path of data in data editor
+     * @returns {jQuery|HTMLElement} element containing the input button
+     */
+    createInputButton(dataPart) {
         return $(`<span>Input: ${dataPart.path}</span>`);
     }
 
-    deleteDataEditor(dataPart, index) {
+    /**
+     * Resets the data editor with the given index and removes it from the data editor array.
+     * @param index of data editor that must to be deleted
+     */
+    deleteDataEditor(index) {
         this.dataEditors.forEach((dataEditor, myIndex) => {
             if (dataEditor.index === index) {
                 dataEditor.elem.remove();
                 dataEditor.dropdownA.remove();
                 dataEditor.input.remove();
                 this.dataEditors.splice(myIndex, 1);
-                return;
             }
         });
 
@@ -469,6 +532,9 @@ class Matey {
         }
     }
 
+    /**
+     * @returns {Object} containing prefixes for YAML rules mapped on their full corresponding IRIs.
+     */
     getYamlPrefixes() {
         let yaml = this.editor.getValue();
         let prefixes = {};
@@ -493,6 +559,11 @@ class Matey {
         return prefixes;
     }
 
+    /**
+     * Converts the rules from the YARRRML editor into RML rules, and returns the generated triples.
+     * @param {yarrrml} y2r object that is used to convert YARRRML into RML
+     * @returns {Array} array containing generated RML triples
+     */
     generateRML(y2r = null) {
         let yaml = this.editor.getValue();
         if (!y2r) {
@@ -519,13 +590,20 @@ class Matey {
         return triples;
     }
 
+    /**
+     * Creates an HTML element for an alert message and displays is in the page with a certain delay.
+     * @param message the alert message to be displayed
+     * @param type of alert
+     * @param timeout delay time for displaying alert
+     */
     doAlert(message, type = 'primary', timeout = 2000) {
-        let $alert = $(`<div class="alert alert-${type} alert-dismissible fade show" role="alert">
-${message}
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>`
+        let $alert = $(`
+            <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                ${message}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>`
         );
         $('#alerts').append($alert);
         setTimeout(() => {
@@ -550,28 +628,28 @@ ${message}
     }
 
     /**
-     Returns the content of the Linked Data editor
+     @returns {String} containing the content of the Linked Data output editor
      */
     getLD() {
         return this.outputEditor.getValue();
     }
 
     /**
-     Returns the content of the RML editor
+     @returns {String} containing the content of the RML output editor
      */
     getRML() {
         return this.rmlEditor.getValue();
     }
 
     /**
-     Returns the content of the RML editor
+     @returns {String} containing the content of the YARRRML input editor
      */
     getYARRRML() {
         return this.editor.getValue();
     }
 
     /**
-     Returns the content of the Data editor
+     @returns {String} containing the content of the Data input editor
      */
     getData() {
         return this.editor.getValue();
