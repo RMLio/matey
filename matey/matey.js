@@ -395,7 +395,7 @@ class Matey {
     /**
      * Loads in given example into input editors
      * @param example to be loaded in
-     * @param reset determines the cursor position after example texts are inserted. If true, all text will
+     * @param reset Determines the cursor position after example texts are inserted. If true, all text will
      *        be selected in both input editors. If false, the cursor will move to the top in both input editors.
      */
     loadExample(example, reset = false) {
@@ -596,7 +596,7 @@ class Matey {
      * Creates an HTML element for an alert message and displays is in the page with a certain delay.
      * @param message the alert message to be displayed
      * @param type of alert
-     * @param timeout delay time for displaying alert
+     * @param timeout delay time for displaying alert in milliseconds
      */
     doAlert(message, type = 'primary', timeout = 2000) {
         let $alert = $(
@@ -614,7 +614,7 @@ class Matey {
     }
 
     /**
-     * Downloads the given text as a file with the given file name and type
+     * Downloads the given text as a file with the given type and name.
      * @param {String} text string that serves as content for file
      * @param {String} fileType Specifies type of text for file. Can be 'json', 'text' or 'text/turtle'
      * @param {String} fileName name of file to be downloaded
@@ -636,28 +636,28 @@ class Matey {
     }
 
     /**
-     @returns {String} content of the Turtle/TriG editor
+     @returns {String} text inside Turtle/TriG editor
      */
     getLD() {
         return this.outputEditor.getValue();
     }
 
     /**
-     @returns {String} content of RML editor
+     @returns {String} text inside RML editor
      */
     getRML() {
         return this.rmlEditor.getValue();
     }
 
     /**
-     @returns {String} content of YARRRML editor
+     @returns {String} text inside YARRRML editor
      */
     getYARRRML() {
         return this.editor.getValue();
     }
 
     /**
-     @returns {String} content of input data editor
+     @returns {String} text inside input data editor
      */
     getData() {
         return this.editor.getValue();
