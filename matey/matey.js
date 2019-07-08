@@ -19,6 +19,8 @@ let Persister = require('./persister');
 let persister = new Persister();
 let _GLOBAL = require('./global');
 
+let readFileSync = require('fs').readFileSync;
+
 $logger.init({
 
     // URI to post logs to
@@ -84,126 +86,18 @@ class Matey {
         <link rel="stylesheet" href="${style_uri}">`
         );
 
-        // insert HTML body content into page
+        // read URIs for images needed in HTML body
 
         let img_22_uri = urify(path.join('assets/img', '22.png'));
         let img_31_uri = urify(path.join('assets/img', '31.png'));
 
-        $("#" + id).html(`
-    <div class="container">
-    <a class="anchor" id="edit"></a>
-    <div class="navbar navbar-expand-sm navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        // read HTML content from assets/index.html and convert to template string
 
-        <div class="collapse navbar-collapse">
-            <div class="navbar-nav mr-auto">
-                <span class="navbar-text">Reload example:&nbsp;</span>
-                <div id="examples" class="btn-group" role="group"></div>
-            </div>
-            <span class="navbar-text">Actions:&nbsp;</span>
-            <div id="buttons" class="btn-group" role="group">
-                <button id="btn" type="button" class="btn btn-primary">Generate RML</button>
-                <button id="ld-btn" type="button" class="btn btn-success">Generate LD</button>
-            </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="navbar-text">Layout:&nbsp;</span>
-            <div id="layout" style="opacity: 0.5">
-                <button id="layout-22" type="button" class="btn"><img src="${img_22_uri}" alt="Two by two layout"/></button>
-                <button id="layout-31" style="display: none" type="button" class="btn"><img src="${img_31_uri}"
-                                                                                            alt="Three by one layout"/></button>
-            </div>
-        </div>
-    </div>
+        let content = readFileSync(__dirname + '/../assets/index.html', 'utf8');
+        let content_tmpl = eval("`" + content + "`");
 
-    <div id="alert-container">
-        <div style="padding: 5px">
-            <div id="alerts"></div>
-        </div>
-    </div>
-</div>
-<div style="margin: 15px">
-    <div class="row mb-3">
-        <div class="col-md-4" id="div-input-data">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle rounded-0" id="input-button"
-                        style="background-color: #2F3129; border-width: 0" type="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Input: Data
-                </button>
-                <span id="data-source-delete">
-                        <button class="btn btn-danger btn-sm" data-remove_id="' + id + '">&times;</button>
-                    </span>
-                <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
-                    <div class="nav" id="dropdown-data-chooser">
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item rounded-0" href="#" id="data-create">Create new source</a>
-                    <a class="dropdown-item rounded-0" href="#" id="data-dl">Download</a>
-                </div>
-            </div>
-            <div id="data" class="tab-content">
-            </div>
-        </div>
-        <div class="col-md-4" id="div-yarrrml">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle rounded-0"
-                        style="background-color: #2F3129; border-width: 0" type="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Input: YARRRML
-                </button>
-                <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item rounded-0" href="#" id="yarrrml-dl">Download</a>
-                </div>
-            </div>
-            <div id="editor" class="ace-editor"><pre><code>prefixes:
-  ex: "http://example.com/"
-
-mappings:
-  person:
-   sources:
-    - ['data.json~jsonpath', '$.persons[*]']
-   s: http://example.com/$(firstname)
-   po:
-    - [a, foaf:Person]
-    - [ex:name, $(firstname)]</code></pre>
-            </div>
-        </div>
-        <div class="col-md-4" id="div-output-data">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle rounded-0"
-                        style="background-color: #2F3129; border-width: 0" type="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Output: Turtle/TriG
-                </button>
-                <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item rounded-0" href="#" id="turtle-dl">Download</a>
-                </div>
-            </div>
-            <div id="output" class="ace-editor">
-                <pre><code></code></pre>
-            </div>
-        </div>
-        <div class="col-md-12" style="min-height: 120px;" id="div-rml">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle rounded-0"
-                        style="background-color: #2F3129; border-width: 0" type="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Output: RML
-                </button>
-                <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item rounded-0" href="#" id="rml-dl">Download</a>
-                </div>
-            </div>
-            <div id="rml" class="ace-editor">
-                <pre><code></code></pre>
-            </div>
-        </div>
-    </div>
-</div> 
-       `);
+        // insert HTML content into page
+        $("#" + id).html(content_tmpl);
 
         $logger.warn('page_visit');
 
