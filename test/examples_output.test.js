@@ -12,6 +12,8 @@ const fs = require('fs');
 // import Matey examples for example output tests
 const examples = JSON.parse(fs.readFileSync(__dirname + '/../lib/examples.json'));
 
+// import sorting function for RDF quads
+const quads_sorter = require('../lib/quads_sorter');
 
 // import RDF parser
 const N3 = require('n3');
@@ -84,19 +86,6 @@ describe('Examples Output Test', function() {
     });
 
 });
-
-
-/**
- * Sorting function for array of RDF quads. The quads are sorted by subject, object, predicate and graph respectively.
- * @param a first quad
- * @param b second quad
- * @returns {number} 1, -1 or 0 depending on how a is sorted to b alphabetically
- */
-function quads_sorter(a, b) {
-    return ['subject', 'object', 'predicate', 'graph'].map(o => {
-        return a[o] > b[o] ? 1 : a[o] < b[o] ? (-1) : 0;
-    }).reduce((p, n) => p ? p : n, 0);
-}
 
 /**
  * Asserts whether clicking the "Generate LD" or "Generate RML" button generates the correct output
