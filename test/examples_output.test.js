@@ -90,7 +90,10 @@ describe('Examples Output Test', function() {
 function testOutput(filename, checkLD, done) {
     let buttonID = checkLD ? "#ld-btn" : "#btn";
 
-    // click the button & wait 2 seconds for output to generate
+    // the RML output generates a lot faster than the LD output, so for the LD tests we'll wait a bit longer
+    let timeout = checkLD ? 2000 : 500;
+
+    // click the button & wait timeout seconds for output to generate
     $(buttonID).trigger("click");
 
     setTimeout(function() {
@@ -110,5 +113,5 @@ function testOutput(filename, checkLD, done) {
 
         // say that test is done
         done();
-    }, 2000);
+    }, timeout);
 }
