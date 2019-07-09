@@ -9,8 +9,9 @@ const matey = require('../');
 // import File System
 const fs = require('fs');
 
-// load Matey examples for example output tests
-const examples = require('../lib/global').examples;
+// import Matey examples for example output tests
+const examples = JSON.parse(fs.readFileSync(__dirname + '/../lib/examples.json'));
+
 
 // import RDF parser
 const N3 = require('n3');
