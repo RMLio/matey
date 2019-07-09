@@ -10,7 +10,7 @@ const matey = require('../');
 const fs = require('fs');
 
 // load Matey examples for example output tests
-const examples = require('../matey/global').examples;
+const examples = require('../lib/global').examples;
 
 // import RDF parser and isomorphic checker to compare generated outputs to expected ones
 // without the order of triples being important
