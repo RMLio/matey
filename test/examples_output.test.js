@@ -51,7 +51,7 @@ describe('Examples Output Test', function() {
 
     describe('Advanced', function() {
 
-        // load the 'People (JSON)' example
+        // load the 'Advanced' example
         beforeAll(function() {
             matey.loadExample(examples[1]);
         });
@@ -68,7 +68,7 @@ describe('Examples Output Test', function() {
 
     describe('Facebook', function() {
 
-        // load the 'People (JSON)' example
+        // load the 'Facebook' example
         beforeAll(function() {
             matey.loadExample(examples[2]);
         });
