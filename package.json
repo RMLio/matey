@@ -2,8 +2,8 @@
   "name": "matey",
   "version": "0.0.1",
   "scripts": {
-    "build:dev": "browserify matey/matey.js --standalone matey -t urify/transform -t brfs > assets/js/matey.min.js",
-    "build:browser": "browserify matey/matey.js --standalone matey -t urify/transform -t brfs | uglifyjs > assets/js/matey.min.js",
+    "build:dev": "browserify matey/matey.js --standalone matey -t urify/transform -t brfs > matey.min.js",
+    "build:browser": "browserify matey/matey.js --standalone matey -t urify/transform -t brfs | uglifyjs > matey.min.js",
     "build:browser-test": "npm run build:dev; cp assets/js/matey.min.js test",
     "test": "jest",
     "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\"",
