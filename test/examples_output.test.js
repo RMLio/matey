@@ -12,11 +12,9 @@ const fs = require('fs');
 // load Matey examples for example output tests
 const examples = require('../lib/global').examples;
 
-// import RDF parser and isomorphic checker to compare generated outputs to expected ones
-// without the order of triples being important
+// import RDF parser
 const N3 = require('n3');
-const parser = new N3.Parser();
-const isomorphic = require('rdf-isomorphic').isomorphic;
+const parser = new N3.Parser({ format: 'Turtle' });
 
 // import jsdom-worker to mock Worker object which doesn't work by default in Jest/jsdom
 require('jsdom-worker');
@@ -38,7 +36,9 @@ describe('Examples Output Test', function() {
     describe('People (JSON)', function() {
 
         // load the 'People (JSON)' example
-        matey.loadExample(examples[0]);
+        beforeAll(function() {
+            matey.loadExample(examples[0]);
+        });
 
         it('Turtle/TriG has correct output', function(done) {
             testOutput('people_turtle.txt', true, done);
@@ -51,8 +51,10 @@ describe('Examples Output Test', function() {
 
     describe('Advanced', function() {
 
-        // load the 'Advanced' example
-        matey.loadExample(examples[1]);
+        // load the 'People (JSON)' example
+        beforeAll(function() {
+            matey.loadExample(examples[1]);
+        });
 
         it('Turtle/TriG has correct output', function(done) {
             testOutput('advanced_turtle.txt', true, done);
@@ -66,8 +68,10 @@ describe('Examples Output Test', function() {
 
     describe('Facebook', function() {
 
-        // load the 'Facebook' example
-        matey.loadExample(examples[2]);
+        // load the 'People (JSON)' example
+        beforeAll(function() {
+            matey.loadExample(examples[2]);
+        });
 
         it('Turtle/TriG has correct output', function(done) {
             testOutput('facebook_turtle.txt', true, done);
@@ -80,14 +84,28 @@ describe('Examples Output Test', function() {
 
 });
 
+
 /**
- * Checks whether clicking the "Generate LD" or "Generate RML" button generates the correct output
+ * Sorting function for array of RDF quads. The quads are sorted by subject, object, predicate and graph respectively.
+ * @param a first quad
+ * @param b second quad
+ * @returns {number} 1, -1 or 0 depending on how a is sorted to b alphabetically
+ */
+function quads_sorter(a, b) {
+    return ['subject', 'object', 'predicate', 'graph'].map(o => {
+        return a[o] > b[o] ? 1 : a[o] < b[o] ? (-1) : 0;
+    }).reduce((p, n) => p ? p : n, 0);
+}
+
+/**
+ * Asserts whether clicking the "Generate LD" or "Generate RML" button generates the correct output
  * in the corresponding editor
  * @param  {String} filename path to file where correct output is located
  * @param {Boolean} checkLD if true, the LD output is checked, otherwise the RML output will be checked
  * @param {Function} done callback that indicates test is finished when called
  */
 function testOutput(filename, checkLD, done) {
+
     let buttonID = checkLD ? "#ld-btn" : "#btn";
 
     // the RML output generates a lot faster than the LD output, so for the LD tests we'll wait a bit longer
@@ -108,8 +126,12 @@ function testOutput(filename, checkLD, done) {
         let generated_quads = parser.parse(generated_output);
         let expected_quads = parser.parse(expected_output);
 
-        // check if the expected quads are isomorphic to the generated quads
-        expect(isomorphic(generated_quads, expected_quads)).toBe(true);
+        // sort the quads arrays so they can be compared on equality without considering array order
+        generated_quads.sort(quads_sorter);
+        expected_quads.sort(quads_sorter);
+
+        // check if the generated quads equal the expected quads
+        expect(generated_quads).toEqual(expected_quads);
 
         // say that test is done
         done();
