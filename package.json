@@ -55,7 +55,7 @@
   "description": "",
   "jest": {
     "moduleNameMapper": {
-      "\\.(css)$": "<rootDir>/test/styleMock.js"
+      "\\.css": "<rootDir>/test/styleMock.js"
     }
   }
 }
