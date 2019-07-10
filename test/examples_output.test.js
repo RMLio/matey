@@ -14,7 +14,7 @@ const fs = require('fs');
 const examples = JSON.parse(fs.readFileSync(__dirname + '/../lib/examples.json'));
 
 // import sorting function for RDF quads
-const quads_sorter = require('../lib/quads_sorter');
+const quads_sorter = require('../lib/quadssorter');
 
 // import RDF parser
 const N3 = require('n3');
