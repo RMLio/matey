@@ -44,12 +44,12 @@ describe('Examples Output Test', function() {
             matey.loadExample(examples[0]);
         });
 
-        it('Turtle/TriG has correct output', function(done) {
-            testOutput('people_turtle.txt', true, done);
+        it('Linked Data has correct output', function(done) {
+            testOutput('people_ld.ttl', true, done);
         });
 
         it('RML has correct output', function(done) {
-            testOutput('people_rml.txt', false, done);
+            testOutput('people_rml.ttl', false, done);
         });
     });
 
@@ -60,12 +60,12 @@ describe('Examples Output Test', function() {
             matey.loadExample(examples[1]);
         });
 
-        it('Turtle/TriG has correct output', function(done) {
-            testOutput('advanced_turtle.txt', true, done);
+        it('Linked Data has correct output', function(done) {
+            testOutput('advanced_ld.ttl', true, done);
         });
 
         it('RML has correct output', function(done) {
-            testOutput('advanced_rml.txt', false, done);
+            testOutput('advanced_rml.ttl', false, done);
         });
     });
 
@@ -77,12 +77,12 @@ describe('Examples Output Test', function() {
             matey.loadExample(examples[2]);
         });
 
-        it('Turtle/TriG has correct output', function(done) {
-            testOutput('facebook_turtle.txt', true, done);
+        it('Linked Data has correct output', function(done) {
+            testOutput('facebook_ld.ttl', true, done);
         });
 
         it('RML has correct output', function(done) {
-            testOutput('facebook_rml.txt', false, done);
+            testOutput('facebook_ld.ttl', false, done);
         });
     });
 
