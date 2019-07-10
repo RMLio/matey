@@ -1,0 +1,43 @@
+[
+  {
+    "label":"People (JSON)",
+    "icon":"user",
+    "yarrrml":"prefixes:\n ex: \"http://example.com/\"\n\nmappings:\n  person:\n    sources:\n      - ['data.json~jsonpath', '$.persons[*]']\n    s: http://example.com/$(firstname)\n    po:\n      - [a, foaf:Person]\n      - [ex:name, $(firstname)]",
+    "data": [
+      {
+        "path": "data.json",
+        "type": "json",
+        "value": "{\n      \"persons\": [\n        {\"firstname\": \"John\", \"lastname\": \"Doe\"},\n        {\"firstname\": \"Jane\", \"lastname\": \"Smith\"},\n        {\"firstname\": \"Sarah\", \"lastname\": \"Bladinck\"}\n      ]\n      }"
+      }
+    ]
+  },
+  {
+    "label":"Advanced",
+    "icon":"cogs",
+    "yarrrml":"prefixes:\n  ex: \"http://example.com/\"\n\nmappings:\n  person:\n    sources:\n      - ['persons.json~jsonpath', '$.persons[*]']\n    s: http://example.com/person/$(firstname)\n    po:\n      - [a, foaf:Person]\n      - [ex:name, $(firstname)]\n      - p: ex:likes\n        o:\n         - mapping: movie\n           condition:\n            function: equal\n            parameters:\n              - [str1, $(movie)]\n              - [str2, $(slug)]\n  movie:\n    sources:\n      - ['movies.csv~csv']\n    s: http://example.com/movie/$(slug)\n    po:\n      - [a, schema:Movie]\n      - [schema:name, $(title)]\n      - [ex:year, $(year)]\n",
+    "data": [
+      {
+        "path":"persons.json",
+        "type":"json",
+        "value":"{\n        \"persons\": [\n          {\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"movie\":\"wam\"\n          },\n          {\n            \"firstname\": \"Jane\",\n            \"lastname\": \"Smith\",\n            \"movie\":\"wam\"\n          },\n          {\n            \"firstname\": \"Sarah\",\n            \"lastname\": \"Bladinck\",\n            \"movie\":\"fotr\"\n          }\n        ]\n      }"
+      },
+      {
+        "path":"movies.csv",
+        "type":"text",
+        "value":"slug,title,year\nsw,Star Wars,1977\nfotr,The Fellowship of the Ring,2001\nwam,We Are Marshall,2006"
+      }
+    ]
+  },
+  {
+    "label":"Facebook",
+    "icon":"facebook",
+    "yarrrml": "prefixes:\n  cocacola-fb: http://coca-cola.com/facebook/\n  emit: http://coca-cola.com/emit/\n  prov-said: http://semweb.datasciencelab.be/ns/prov-said/\n  ov: http://open.vocab.org/terms/\n  tsioc: http://rdfs.org/sioc/types#\n  fabio: http://purl.org/spar/fabio/\n\nbase: http://example.com/base#\n\nsources:\n  api:\n    access: data.json\n    referenceFormulation: jsonpath\n    iterator: \"$.data[*]\"\n\nmappings:\n  facebook_post:\n    source:\n      - api\n    subject: cocacola-fb:$(id)\n    predicateobjects:\n      - [a, [prov:Entity, ov:MicroblogPost, schema:SocialMediaPosting, tsioc:MicroblogPost]]\n      - [[prov:label, schema:articleBody], $(message)]\n      - [schema:mainEntityOfPage, $(permalink_url), schema:URL]\n      - [prov:wasAttributedTo, http://coca-cola.com/#me~iri]\n      - predicate: prov:wasGeneratedBy\n        object:\n          mapping: emit\n          condition:\n            function: equal\n            parameters:\n              - [str1, $(id)]\n              - [str2, $(id)]\n  emit:\n    source:\n      - api\n    subject: emit:$(id)\n    predicateobjects:\n      - [a, prov:Activity]\n      - [prov:type, prov-said:EmitMessage~iri]\n      - [prov:wasStartedBy, http://coca-cola.com/#me~iri]\n      - [[prov:startedAtTime, prov:endedAtTime], $(created_time)]",
+    "data": [
+      {
+        "path":"data.json",
+        "type":"json",
+        "value":"{\n  \"data\": [\n    {\n      \"created_time\": \"2018-11-21T01:12:24+0000\",\n      \"message\": \"What’s the one thing that never fails to make you smile? 😀 #RefreshTheFee\",\n      \"id\": \"820882001277849_313056145953449\",\n      \"permalink_url\": \"https://www.facebook.com/CocaColaUnitedStates/videos/313056145953449/\"\n    },\n    {\n      \"created_time\": \"2018-11-13T01:03:11+0000\",\n      \"message\": \"This #WorldKindnessDay, we’re spreading a little love and positivity. ➡️ to 😃. #RefreshTheFeed\",\n      \"id\": \"820882001277849_2242864155746286\",\n      \"permalink_url\": \"https://www.facebook.com/CocaColaUnitedStates/posts/2242864155746286\"\n    },\n    {\n      \"created_time\": \"2018-11-13T01:02:00+0000\",\n      \"message\": \"Spread kindness. Share the ❤️️. #WorldKindnessDay #RefreshTheFeed\",\n      \"id\": \"820882001277849_2169022539814557\",\n      \"permalink_url\": \"https://www.facebook.com/CocaColaUnitedStates/videos/2169022539814557/\"\n    }\n  ]\n}"
+      }
+    ]
+  }
+]

@@ -2,8 +2,8 @@
   "name": "matey",
   "version": "0.0.1",
   "scripts": {
-    "build:dev": "browserify lib/index.js --standalone matey -t urify/transform -t brfs > matey.min.js",
-    "build:browser": "browserify lib/index.js --standalone matey -t urify/transform -t brfs | uglifyjs > matey.min.js",
+    "build:dev": "browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css > matey.min.js",
+    "build:browser": "browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css --minify=true | uglifyjs > matey.min.js",
     "test": "jest",
     "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\"",
     "browser": "gulp browser-sync"
@@ -26,9 +26,11 @@
     "bootstrap": "^4.3.1",
     "brace": "^0.11.1",
     "brfs": "^2.0.2",
+    "browserify-css": "^0.15.0",
     "core-js": "^3.1.4",
     "express": "^4.16.4",
     "extend": "^3.0.2",
+    "handlebars": "^4.1.2",
     "jquery": "^3.2.1",
     "n3": "^0.11.3",
     "popper.js": "^1.15.0",
@@ -50,5 +52,10 @@
     "nodemon": "^1.18.10"
   },
   "main": "lib/index.js",
-  "description": ""
+  "description": "",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.css": "<rootDir>/test/styleMock.js"
+    }
+  }
 }
