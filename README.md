@@ -47,6 +47,10 @@ To set up Matey in your page, include the script in your HTML code, and call Mat
 </script>
 ```
 
+### Configuring Matey
+To add extra configuration, you can pass a JSON object as an argument to Matey's `ìnit()` method. Configuration options include:
+* **rml\_mapper\_uri**: URI of RMLMapper Web API endpoint used for generating Linked Data triples.
+
 ## Examples
 Examples of usage can be found in the `examples` directory of the project. Both examples illustrate the use of Matey through a single web page which only contains Matey's editors.
 
