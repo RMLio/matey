@@ -48,10 +48,12 @@ To set up Matey in your page, include the script in your HTML code, and call Mat
 ```
 
 ### Configuring Matey
-To add extra, optional configuration, you can pass a JSON object as an argument to Matey's `ìnit` method. Configuration options include:
+To add extra, optional configuration, you can pass a JSON object as an argument to Matey's `init` method. Configuration options include:
 * **rml\_mapper\_uri**: URI of RMLMapper Web API endpoint used for generating Linked Data triples. Defaults to "http://tw06v069.ugent.be/rmlmapper/process".
+
+
 An example of calling `init` with a configuration object would be:
-````javascript
+```javascript
 let config = {
     rml_mapper_uri: "http://tw06v069.ugent.be/rmlmapper/process"
 };
