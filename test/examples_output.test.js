@@ -4,7 +4,8 @@
 const $ = require('jquery');
 
 // import matey
-const matey = require('../');
+const Matey = require('../');
+const matey = new Matey();
 
 // import File System
 const fs = require('fs');
