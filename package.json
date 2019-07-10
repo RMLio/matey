@@ -48,8 +48,7 @@
     "jest": "^24.8.0",
     "jsdom-worker": "^0.1.0",
     "node-fetch": "^2.6.0",
-    "nodemon": "^1.18.10",
-    "rdf-isomorphic": "^1.1.0"
+    "nodemon": "^1.18.10"
   },
   "main": "lib/index.js",
   "description": ""
