@@ -82,7 +82,7 @@ describe('Examples Output Test', function() {
         });
 
         it('RML has correct output', function(done) {
-            testOutput('facebook_ld.ttl', false, done);
+            testOutput('facebook_rml.ttl', false, done);
         });
     });
 
