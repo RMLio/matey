@@ -36,7 +36,7 @@ matey.init("matey-id");
 To build the minified script, you first need to install all of the Matey's
 dependencies by running `npm install` from inside the project directory.
 Then you can create a minified version of Matey by running `npm run build:browser`, which puts the script in the current directory.
-You can also choose your own file destination by running `browserify lib/index.js --standalone matey -t urify/transform -t brfs | uglifyjs > my/file/destination.min.js`.
+You can also choose your own file destination by running `browserify lib/index.js --standalone Matey -t urify/transform -t brfs | uglifyjs > my/file/destination.min.js`.
 
 To set up Matey in your page, include the script in your HTML code, and call Matey's `init` function on an instance.
 ```html
