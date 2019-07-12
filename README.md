@@ -23,7 +23,7 @@ Put a div element with a certain id where you want your Matey editor to be:
 ```html
 <div id="matey-id"></div>
 ```
-Try to avoid declaring div elements with id's prefixed with "matey", as most div elements that will be inserted into your page have such an id.
+Try to avoid declaring div elements with id's suffixed with "-matey", as most div elements that will be inserted into your page have such an id. For example: elements with id's such as "btn-matey" or "editor-matey" are reserved by Matey.
 
 ### Setting up Matey using `require`
 In your JavaScript code, import the Matey class from the package, and on an instance call the `init` function with the id of the div element for the editor.
