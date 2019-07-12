@@ -38,7 +38,7 @@ browserify examples/with_require/init.js -t urify/transform -t brfs -t browserif
 ```
 ### Setting up Matey by including minified script in page
 To build the minified script, you first need to install all of the Matey's
-dependencies by running `npm install` from inside the project directory.
+dependencies by running `npm install` from within the project's root directory.
 Then you can create a minified version of Matey by running `npm run build:browser`, which puts the script in the current directory.
 You can also choose your own file destination by running `browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css | uglifyjs > my/file/destination.min.js`.
 
