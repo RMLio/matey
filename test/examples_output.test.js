@@ -97,7 +97,7 @@ describe('Examples Output Test', function() {
  */
 function testOutput(filename, checkLD, done) {
 
-    let buttonID = checkLD ? "#ld-btn" : "#btn";
+    let buttonID = checkLD ? "#ld-btn-matey" : "#rml-btn-matey";
 
     // the RML output generates a lot faster than the LD output, so for the LD tests we'll wait a bit longer
     let timeout = checkLD ? 2000 : 500;

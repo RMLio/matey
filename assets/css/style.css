@@ -100,7 +100,7 @@ img.inline-logo {
   height: 1rem;
 }
 
-#alert-container {
+#alert-container-matey {
   position: fixed;
   top: 60px;
   left: 0;
@@ -108,7 +108,7 @@ img.inline-logo {
   z-index: 999;
 }
 
-#alerts div {
+#alerts-matey div {
   margin: 4px auto;
 }
 

@@ -1,5 +1,5 @@
 <div class="container">
-    <a class="anchor" id="edit"></a>
+    <a class="anchor" id="edit-matey"></a>
     <div class="navbar navbar-expand-sm navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,53 +9,53 @@
         <div class="collapse navbar-collapse">
             <div class="navbar-nav mr-auto">
                 <span class="navbar-text">Reload example:&nbsp;</span>
-                <div id="examples" class="btn-group" role="group"></div>
+                <div id="examples-matey" class="btn-group" role="group"></div>
             </div>
             <span class="navbar-text">Actions:&nbsp;</span>
-            <div id="buttons" class="btn-group" role="group">
-                <button id="btn" type="button" class="btn btn-primary">Generate RML</button>
-                <button id="ld-btn" type="button" class="btn btn-success">Generate LD</button>
+            <div id="buttons-matey" class="btn-group" role="group">
+                <button id="rml-btn-matey" type="button" class="btn btn-primary">Generate RML</button>
+                <button id="ld-btn-matey" type="button" class="btn btn-success">Generate LD</button>
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <span class="navbar-text">Layout:&nbsp;</span>
-            <div id="layout" style="opacity: 0.5">
-                <button id="layout-22" type="button" class="btn"><img src="{{img_22_uri}}" alt="Two by two layout"/></button>
-                <button id="layout-31" style="display: none" type="button" class="btn"><img src="{{img_31_uri}}"
+            <div id="layout-matey" style="opacity: 0.5">
+                <button id="layout-22-matey" type="button" class="btn"><img src="{{img_22_uri}}" alt="Two by two layout"/></button>
+                <button id="layout-31-matey" style="display: none" type="button" class="btn"><img src="{{img_31_uri}}"
                                                                                             alt="Three by one layout"/></button>
             </div>
         </div>
     </div>
 
-    <div id="alert-container">
+    <div id="alert-container-matey">
         <div style="padding: 5px">
-            <div id="alerts"></div>
+            <div id="alerts-matey"></div>
         </div>
     </div>
 </div>
 <div style="margin: 15px">
     <div class="row mb-3">
-        <div class="col-md-4" id="div-input-data">
+        <div class="col-md-4" id="div-input-data-matey">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle rounded-0" id="input-button"
+                <button class="btn btn-secondary dropdown-toggle rounded-0" id="input-button-matey"
                         style="background-color: #2F3129; border-width: 0" type="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Input: Data
                 </button>
-                <span id="data-source-delete">
+                <span id="data-source-delete-matey">
                         <button class="btn btn-danger btn-sm" data-remove_id="' + id + '">&times;</button>
                     </span>
                 <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
-                    <div class="nav" id="dropdown-data-chooser">
+                    <div class="nav" id="dropdown-data-chooser-matey">
                     </div>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item rounded-0" href="#" id="data-create">Create new source</a>
-                    <a class="dropdown-item rounded-0" href="#" id="data-dl">Download</a>
+                    <a class="dropdown-item rounded-0" href="#" id="data-create-matey">Create new source</a>
+                    <a class="dropdown-item rounded-0" href="#" id="data-dl-matey">Download</a>
                 </div>
             </div>
-            <div id="data" class="tab-content">
+            <div id="data-matey" class="tab-content">
             </div>
         </div>
-        <div class="col-md-4" id="div-yarrrml">
+        <div class="col-md-4" id="div-yarrrml-matey">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle rounded-0"
                         style="background-color: #2F3129; border-width: 0" type="button"
@@ -63,10 +63,10 @@
                     Input: YARRRML
                 </button>
                 <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item rounded-0" href="#" id="yarrrml-dl">Download</a>
+                    <a class="dropdown-item rounded-0" href="#" id="yarrrml-dl-matey">Download</a>
                 </div>
             </div>
-            <div id="editor" class="ace-editor"><pre><code>prefixes:
+            <div id="editor-matey" class="ace-editor"><pre><code>prefixes:
   ex: "http://example.com/"
 
 mappings:
@@ -79,7 +79,7 @@ mappings:
     - [ex:name, $(firstname)]</code></pre>
             </div>
         </div>
-        <div class="col-md-4" id="div-output-data">
+        <div class="col-md-4" id="div-output-data-matey">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle rounded-0"
                         style="background-color: #2F3129; border-width: 0" type="button"
@@ -87,14 +87,14 @@ mappings:
                     Output: Turtle/TriG
                 </button>
                 <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item rounded-0" href="#" id="turtle-dl">Download</a>
+                    <a class="dropdown-item rounded-0" href="#" id="turtle-dl-matey">Download</a>
                 </div>
             </div>
-            <div id="output" class="ace-editor">
+            <div id="output-matey" class="ace-editor">
                 <pre><code></code></pre>
             </div>
         </div>
-        <div class="col-md-12" style="min-height: 120px;" id="div-rml">
+        <div class="col-md-12" style="min-height: 120px;" id="div-rml-matey">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle rounded-0"
                         style="background-color: #2F3129; border-width: 0" type="button"
@@ -102,10 +102,10 @@ mappings:
                     Output: RML
                 </button>
                 <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item rounded-0" href="#" id="rml-dl">Download</a>
+                    <a class="dropdown-item rounded-0" href="#" id="rml-dl-matey">Download</a>
                 </div>
             </div>
-            <div id="rml" class="ace-editor">
+            <div id="rml-matey" class="ace-editor">
                 <pre><code></code></pre>
             </div>
         </div>
