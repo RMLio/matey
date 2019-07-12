@@ -32,7 +32,7 @@ let Matey = require("matey");
 let matey = new Matey();
 matey.init("matey-id");
 ```
-You can use `browserify` from within the project's root directory to bundle up the code and its dependencies, so you can include it into your HTML code. The example in `examples/with\_require` used the following command to bundle the code up into `examples/with\_require/bundle.js`:
+You can use `browserify` from within the project's root directory to bundle up the code and its dependencies, so you can include it into your HTML code. The example in the folder `examples/with_require` used the following command to bundle the code up into `examples/with_require/bundle.js`:
 ```
 browserify examples/with_require/init.js -t urify/transform -t brfs -t browserify-css | uglifyjs > examples/with_require/bundle.js
 ```
