@@ -19,7 +19,7 @@ npm install matey
 ## Usage
 
 ### Setting up the RMLMapper Web API endpoint
-If you don't plan on using a self-chosen RMLMapper endpoint, follow the instructions [here](https://github.com/RMLio/rmlmapper-webapi-js) to set up a local server. Make sure the server is configured to use port 4000.
+If you don't plan on using a self-chosen RMLMapper endpoint, follow the instructions [here](https://github.com/RMLio/rmlmapper-webapi-js) to set up a local server whose URI is used by default.  Make sure the server is configured to use port 4000.
 
 ### Preparing your page
 Put a div element with a certain id where you want your Matey editor to be:
