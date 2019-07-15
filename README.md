@@ -18,6 +18,9 @@ npm install matey
 
 ## Usage
 
+### Setting up the RMLMapper Web API endpoint
+If you don't plan on using a self-chosen RMLMapper endpoint, follow the instructions [here](https://github.com/RMLio/rmlmapper-webapi-js) to set up a local server. Make sure the server is configured to use port 4000.
+
 ### Preparing your page
 Put a div element with a certain id where you want your Matey editor to be:
 ```html
@@ -53,7 +56,7 @@ browserify examples/with_require/init.js -t urify/transform -t brfs -t browserif
 
 ### Configuring Matey
 To add extra, optional configuration, you can pass a JSON object as an argument to Matey's `init` method. Configuration options include:
-* **rml\_mapper\_uri**: URI of RMLMapper Web API endpoint used for generating Linked Data triples. Defaults to "http://tw06v069.ugent.be/rmlmapper/process".
+* **rml\_mapper\_uri**: URI of RMLMapper Web API endpoint used for generating Linked Data triples. Defaults to "http://localhost:4000/execute".
 
 
 An example of calling `init` with a configuration object would be:
