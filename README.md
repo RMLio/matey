@@ -29,19 +29,16 @@ Put a div element with a certain id where you want your Matey editor to be:
 Try to avoid declaring div elements with id's suffixed with "-matey", as most div elements that will be inserted into your page have such an id. For example: elements with id's such as "btn-matey" or "editor-matey" are reserved by Matey.
 
 ### Setting up Matey by including minified script in page
-To build the minified script, you first need to install all of the Matey's
-dependencies by running `npm install` from within the project directory.
-Then you can create a minified version of Matey by running `npm run build:browser`, which puts the script in the current directory.
-You can also choose your own file destination by running `browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css | uglifyjs > my/file/destination.min.js`.
-
-To set up Matey in your page, include the script in your HTML code, and call Matey's `init` function on an instance of the `Matey` class.
-```html
-<script src="matey.min.js" type="text/javascript"></script>
-<script>
-    let matey = new Matey();
-    matey.init("matey-id");
-</script>
-```
+- Install dependencies by running `npm install`.
+- Create minified version by running `npm run build:browser`, which puts the scripts in the current working directory. You can also choose your own file destination by running `browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css | uglifyjs > my/file/destination.min.js`.
+- Include the script in your HTML code, and call Matey's `init` function on an instance of the `Matey` class:
+    ```html
+    <script src="matey.min.js" type="text/javascript"></script>
+    <script>
+        let matey = new Matey();
+        matey.init("matey-id");
+    </script>
+    ```
 ### Setting up Matey using `require`
 In your JavaScript code, import the Matey class from the package, and on an instance call the `init` function with the id of the div element for the editor.
 ```javascript
@@ -73,5 +70,5 @@ Examples of usage can be found in the `examples` directory of the project. Both 
 From inside the project directory, run the following commands:
 ```
 npm install
-npm run test
+npm test
 ```
