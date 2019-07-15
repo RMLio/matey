@@ -4,6 +4,7 @@
   "scripts": {
     "build:dev": "browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css > matey.min.js",
     "build:browser": "browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css --minify=true | uglifyjs > matey.min.js",
+    "build:example_with_require": "browserify examples/with_require/init.js -t urify/transform -t brfs -t browserify-css --minify=true | uglifyjs > examples/with_require/bundle.js",
     "test": "jest --silent",
     "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\"",
     "browser": "gulp browser-sync"
@@ -40,7 +41,10 @@
     "urify": "^2.1.1",
     "winston": "^2.4.4",
     "winston-daily-rotate-file": "^1.7.2",
-    "yamljs": "^0.3.0"
+    "yamljs": "^0.3.0",
+    "@graphy/content.ttl.read": "latest",
+    "@graphy/content.ttl.write": "latest",
+    "@graphy/util.dataset.tree": "latest"
   },
   "devDependencies": {
     "browser-sync": "^2.26.3",
