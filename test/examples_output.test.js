@@ -11,10 +11,10 @@ const matey = new Matey();
 const fs = require('fs');
 
 // import Matey examples for example output tests
-const examples = JSON.parse(fs.readFileSync(__dirname + '/../lib/examples.json'));
+const examples = JSON.parse(fs.readFileSync(__dirname + '/../lib/examples.json', 'utf8'));
 
 // import sorting function for RDF quads
-const quads_sorter = require('../lib/quadssorter');
+const quadsSorter = require('../lib/quadssorter');
 
 // import RDF parser
 const N3 = require('n3');
@@ -107,22 +107,22 @@ function testOutput(filename, checkLD, done) {
 
     setTimeout(function() {
         // retrieve generated output from editor
-        let generated_output = checkLD ? matey.getLD() : matey.getRML();
+        let generatedOutput = checkLD ? matey.getLD() : matey.getRML();
 
         // read the correct output from the file
         let path = __dirname + "/correct_example_outputs/" + filename;
-        let expected_output = fs.readFileSync(path, 'utf8');
+        let expectedOutput = fs.readFileSync(path, 'utf8');
 
         // convert the outputs to RDF quads
-        let generated_quads = parser.parse(generated_output);
-        let expected_quads = parser.parse(expected_output);
+        let generatedQuads = parser.parse(generatedOutput);
+        let expectedQuads = parser.parse(expectedOutput);
 
         // sort the quads arrays so they can be compared on equality without considering array order
-        generated_quads.sort(quads_sorter);
-        expected_quads.sort(quads_sorter);
+        generatedQuads.sort(quadsSorter);
+        expectedQuads.sort(quadsSorter);
 
         // check if the generated quads equal the expected quads
-        expect(generated_quads).toEqual(expected_quads);
+        expect(generatedQuads).toEqual(expectedQuads);
 
         // say that test is done
         done();
