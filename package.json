@@ -1,6 +1,6 @@
 {
   "name": "matey",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "build:dev": "browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css > matey.min.js",
     "build:browser": "browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css --minify=true | uglifyjs > matey.min.js",
