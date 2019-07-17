@@ -1,40 +1,22 @@
 'use strict';
 
-// import jquery
-const $ = require('jquery');
-
-// import matey
-const Matey = require('../');
-const matey = new Matey();
+// get matey instance from global variable
+const matey = global.matey;
 
 // import File System
 const fs = require('fs');
 
 // import Matey examples for example output tests
-const examples = JSON.parse(fs.readFileSync(__dirname + '/../lib/examples.json', 'utf8'));
+const examples = JSON.parse(fs.readFileSync(__dirname + '/../../lib/examples.json', 'utf8'));
 
 // import sorting function for RDF quads
-const quadsSorter = require('../lib/quadssorter');
+const quadsSorter = require('../../lib/quadssorter');
 
 // import RDF parser
 const N3 = require('n3');
 const parser = new N3.Parser({ format: 'Turtle' });
 
-// import jsdom-worker to mock Worker object which doesn't work by default in Jest/jsdom
-require('jsdom-worker');
-
-// createObjectURL isn't available in Jest by default, so has to be mocked too
-window.URL.createObjectURL = jest.fn();
-
-// set up document body
-$('body').html('<div id="test-editor"></div>');
-
-
-// initialise matey editors
-matey.init("test-editor");
-
 // tests
-
 describe('Examples Output Test', function() {
 
     describe('People (JSON)', function() {
@@ -97,13 +79,13 @@ describe('Examples Output Test', function() {
  */
 function testOutput(filename, checkLD, done) {
 
-    let buttonID = checkLD ? "#ld-btn-matey" : "#rml-btn-matey";
+    let buttonID = checkLD ? "ld-btn-matey" : "rml-btn-matey";
 
     // the RML output generates a lot faster than the LD output, so for the LD tests we'll wait a bit longer
     let timeout = checkLD ? 2000 : 500;
 
     // click the button & wait timeout seconds for output to generate
-    $(buttonID).trigger("click");
+    document.getElementById(buttonID).click();
 
     setTimeout(function() {
         // retrieve generated output from editor
