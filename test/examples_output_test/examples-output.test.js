@@ -1,8 +1,5 @@
 'use strict';
 
-// get matey instance from global variable
-const matey = global.matey;
-
 // import File System
 const fs = require('fs');
 
