@@ -55,7 +55,7 @@ browserify examples/with_require/init.js -t urify/transform -t brfs -t browserif
 
 ### Configuring Matey
 To configure Matey, you can pass a JSON object as an argument to Matey's `init` method. Configuration options include:
-* `rmlMapperUrl`: URL of RMLMapper Web API endpoint. (defaults to  `"http://tw06v069.ugent.be/rmlmapper/process"`)
+* `rmlMapperUrl`: URL of RMLMapper Web API endpoint (defaults to  `"http://tw06v069.ugent.be/rmlmapper/process"`)
 
 
 An example of calling `init` with a configuration object would be:
