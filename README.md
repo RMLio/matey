@@ -66,7 +66,10 @@ let config = {
 matey.init("matey-id", config);
 ```
 ## Examples
-Examples of usage can be found in the `examples` directory of the project. Both examples illustrate the use of Matey through a single web page which only contains Matey's editors.
+Examples of usage can be found in the `examples` directory of the project. 
+Both examples illustrate the use of Matey through a single web page which only contains Matey's editors.
+In these examples, Matey is configured to use an RMLMapper endpoint with URL "http://localhost:4000/execute", so if you
+want these examples to run, make sure you have such an endpoint set up.
 
 ## Run tests
 From inside the project directory, run the following commands:
