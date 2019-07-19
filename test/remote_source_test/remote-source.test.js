@@ -11,18 +11,18 @@ const expectedJsonResponse = readFileSync(__dirname + '/correct_responses/test.j
 const expectedYamlResponse = readFileSync(__dirname + '/correct_responses/test.yaml', 'utf8');
 
 // tests
-describe('Loading of remote sources test', function () {
+describe('Loading of remote data with HTTP GET', function () {
 
   let server;
 
-  describe('for Data Editor', function () {
+  describe('into Data Editor', function () {
 
     // close server after each test
     afterEach(function () {
       server.remove();
     });
 
-    it('loads data with correct url', async function () {
+    it('displays data in data editor when status=200', async function () {
 
       // initialise mock server with expected JSON response for HTTP GET
       let correctUrl = '/get/json';
@@ -44,19 +44,24 @@ describe('Loading of remote sources test', function () {
       expect(parsedGeneratedValue).toEqual(parsedExpectedValue);
     });
 
-    it('fails with incorrect url', async function () {
+    it('shows exactly one danger alert when status=404', async function () {
 
       // initialise mock server with expected YAML response for HTTP GET
       let incorrectUrl = '/get/nonexistent_resource';
       server = MockXMLHttpRequest.newServer({
         get: [incorrectUrl, {
           status: 404,
-          body: 'error'
         }]
       }).install();
 
-      // try to fetch remote data source and check if it fails
-      await expect(matey.loadRemoteDataSource(incorrectUrl, 'test.json')).rejects.toMatch('error');
+      // try to fetch remote data source
+      await matey.loadRemoteDataSource(incorrectUrl, 'test.json');
+
+      // check if alert indeed appears, and if it is the only alert
+      let alerts = document.getElementsByClassName('alert');
+
+      expect(alerts.length).toBe(1);
+      expect(alerts[0].classList).toContain('alert-danger');
     });
   });
 
