@@ -71,7 +71,7 @@ describe('Loading of remote data with HTTP GET', function () {
     });
   });
 
-  describe('with loadRemoteYARRRML()', function() {
+  describe('with loadRemoteYarrrml()', function() {
 
     it('displays fetched rules when status=200', async function() {
 
@@ -86,10 +86,10 @@ describe('Loading of remote data with HTTP GET', function () {
       });
 
       // let matey fetch remote YARRRML rules and wait for them to be displayed in YARRRML editor
-      await matey.loadRemoteYARRRML(correctUrl);
+      await matey.loadRemoteYarrrml(correctUrl);
 
       // retrieve value from YARRRML editor
-      let yarrrmlEditorValue = matey.getYARRRML();
+      let yarrrmlEditorValue = matey.getYarrrml();
 
       // check if parsed value equals parsed expected value
       let parsedReceivedValue = YAML.parse(yarrrmlEditorValue);
@@ -108,7 +108,7 @@ describe('Loading of remote data with HTTP GET', function () {
       });
 
       // try to fetch remote YARRRML rules
-      await matey.loadRemoteYARRRML(incorrectUrl);
+      await matey.loadRemoteYarrrml(incorrectUrl);
 
       // check if danger alert appears, and if it is the only alert
       checkDangerAlert();
