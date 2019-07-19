@@ -61,6 +61,7 @@ describe('loadRemoteDataSource()', function () {
 
     // initialise mocked server's response for incorrect URL
     let incorrectUrl = '/get/nonexistent_json';
+    
     xhrMock.get(incorrectUrl, {
       status: 404
     });
