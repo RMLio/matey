@@ -46,7 +46,7 @@ describe('HTTP GET of remote data', function () {
       await matey.loadRemoteDataSource(correctUrl, 'json-response.json.json');
 
       // retrieve value from active data editor
-      let activeEditorValue = matey.getActiveDataEditor().editor.getValue();
+      let activeEditorValue = matey.getData();
 
       // check if parsed value equals parsed expected value
       let parsedReceivedValue = JSON.parse(activeEditorValue);
