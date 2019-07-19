@@ -7,24 +7,25 @@ const xhrMock = require('xhr-mock').default;
 const readFileSync = require('fs').readFileSync;
 
 // read expected JSON and YAML responses from files
-const expectedJsonResponse = readFileSync(__dirname + '/correct_responses/test.json', 'utf8');
-const expectedYarrrmlResponse = readFileSync(__dirname + '/correct_responses/test.yaml', 'utf8');
+const expectedJsonResponse = readFileSync(__dirname + '/correct_responses/json-response.json', 'utf8');
+const expectedYarrrmlResponse = readFileSync(__dirname + '/correct_responses/yarrrml-response.yaml', 'utf8');
 
 // tests
-describe('Loading of remote data with HTTP GET', function () {
+describe('HTTP GET of remote data', function () {
 
-  // replace the real XHR object with the mock XHR object before each test
-  beforeEach(() => xhrMock.setup());
-
-  // put the real XHR object back and clear the mocks, and remove all alert box elements after each test
-  afterEach(() => {
-    xhrMock.teardown();
+  // replace the real XHR object with the mock XHR object, and clear all alert boxes before each test
+  beforeEach(() => {
+    xhrMock.setup();
 
     let alerts = document.getElementsByClassName('alert');
-
     while (alerts[0]) {
       alerts[0].parentNode.removeChild(alerts[0]);
     }
+  });
+
+  // put the real XHR object back and clear the mocks
+  afterEach(() => {
+    xhrMock.teardown();
   });
 
   describe('with loadRemoteDataSource()', function () {
@@ -42,7 +43,7 @@ describe('Loading of remote data with HTTP GET', function () {
       });
 
       // let matey fetch remote data source and wait for it to be displayed in data editor
-      await matey.loadRemoteDataSource(correctUrl, 'test.json');
+      await matey.loadRemoteDataSource(correctUrl, 'json-response.json.json');
 
       // retrieve value from active data editor
       let activeEditorValue = matey.getActiveDataEditor().editor.getValue();
@@ -64,9 +65,9 @@ describe('Loading of remote data with HTTP GET', function () {
       });
 
       // try to fetch remote data source
-      await matey.loadRemoteDataSource(incorrectUrl, 'test.json');
+      await matey.loadRemoteDataSource(incorrectUrl, 'json-response.json.json');
 
-      // check if danger alert appears, and if it is the only alert
+      // check if danger alert appears
       checkDangerAlert();
     });
   });
@@ -97,7 +98,7 @@ describe('Loading of remote data with HTTP GET', function () {
       expect(parsedReceivedValue).toEqual(parsedExpectedValue);
     });
 
-    it ('causes exactly one (danger) alert when status=404', async function() {
+    it ('causes danger alert when status=404', async function() {
 
       expect.assertions(2);
 
@@ -110,7 +111,7 @@ describe('Loading of remote data with HTTP GET', function () {
       // try to fetch remote YARRRML rules
       await matey.loadRemoteYarrrml(incorrectUrl);
 
-      // check if danger alert appears, and if it is the only alert
+      // check if danger alert appears
       checkDangerAlert();
     });
 
@@ -118,13 +119,13 @@ describe('Loading of remote data with HTTP GET', function () {
 });
 
 /**
- * Asserts whether there is exactly one bootstrap danger alert present in the page.
+ * Asserts whether there is exactly 1 danger alert element present in the page.
  */
 function checkDangerAlert() {
   // get array of alert elements from page
-  let alerts = document.getElementsByClassName('alert');
+  let alerts = document.getElementsByClassName('alert-danger');
 
-  // do assertions
+  // do assertion
   expect(alerts.length).toBe(1);
   expect(alerts[0].classList).toContain('alert-danger');
 }
