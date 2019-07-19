@@ -13,56 +13,42 @@ const quadsSorter = require('../../lib/quadssorter');
 const N3 = require('n3');
 const parser = new N3.Parser({ format: 'Turtle' });
 
-// tests
-describe('Examples Output Test', function() {
+// "Generate LD" button tests
+describe('Clicking "Generate LD" button', function() {
 
-    describe('People (JSON)', function() {
-
-        // load the 'People (JSON)' example
-        beforeAll(function() {
-            matey.loadExample(examples[0]);
-        });
-
-        it('Linked Data has correct output', function(done) {
-            testOutput('people_ld.ttl', true, done);
-        });
-
-        it('RML has correct output', function(done) {
-            testOutput('people_rml.ttl', false, done);
-        });
+    it('should have correct LD output for "People (JSON)" example', function(done) {
+        matey.loadExample(examples[0]);
+        testOutput('people_ld.ttl', true, done);
     });
 
-    describe('Advanced', function() {
-
-        // load the 'Advanced' example
-        beforeAll(function() {
-            matey.loadExample(examples[1]);
-        });
-
-        it('Linked Data has correct output', function(done) {
-            testOutput('advanced_ld.ttl', true, done);
-        });
-
-        it('RML has correct output', function(done) {
-            testOutput('advanced_rml.ttl', false, done);
-        });
+    it('should have correct LD output for "Advanced" example', function(done) {
+        matey.loadExample(examples[1]);
+        testOutput('advanced_ld.ttl', true, done);
     });
 
+    it('should have correct LD output for "Facebook" example', function(done) {
+        matey.loadExample(examples[2]);
+        testOutput('facebook_ld.ttl', true, done);
+    });
 
-    describe('Facebook', function() {
+});
 
-        // load the 'Facebook' example
-        beforeAll(function() {
-            matey.loadExample(examples[2]);
-        });
+// "Generate RML" button tests
+describe('Clicking "Generate RML" button', function() {
 
-        it('Linked Data has correct output', function(done) {
-            testOutput('facebook_ld.ttl', true, done);
-        });
+    it('should have correct RML output for "People (JSON)" example', function(done) {
+        matey.loadExample(examples[0]);
+        testOutput('people_rml.ttl', false, done);
+    });
 
-        it('RML has correct output', function(done) {
-            testOutput('facebook_rml.ttl', false, done);
-        });
+    it('should have correct RML output for "Advanced" example', function(done) {
+        matey.loadExample(examples[1]);
+        testOutput('advanced_rml.ttl', false, done);
+    });
+
+    it('should have correct RML output for "Facebook" example', function(done) {
+        matey.loadExample(examples[2]);
+        testOutput('facebook_rml.ttl', false, done);
     });
 
 });
@@ -79,7 +65,7 @@ function testOutput(filename, checkLD, done) {
     let buttonID = checkLD ? "ld-btn-matey" : "rml-btn-matey";
 
     // the RML output generates a lot faster than the LD output, so for the LD tests we'll wait a bit longer
-    let timeout = checkLD ? 2000 : 500;
+    let timeout = checkLD ? 1500 : 500;
 
     // click the button & wait timeout seconds for output to generate
     document.getElementById(buttonID).click();
