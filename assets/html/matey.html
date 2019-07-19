@@ -53,8 +53,7 @@
                     <a class="dropdown-item rounded-0" href="#" id="data-dl-matey">Download</a>
                 </div>
             </div>
-            <div id="data-matey" class="tab-content">
-            </div>
+            <div id="data-matey" class="tab-content"></div>
         </div>
         <div class="col-md-4" id="div-yarrrml-matey">
             <div class="dropdown">
@@ -68,18 +67,7 @@
                     <a class="dropdown-item rounded-0" href="#" id="yarrrml-load-matey">Load remote rules</a>
                 </div>
             </div>
-            <div id="editor-matey" class="ace-editor"><pre><code>prefixes:
-  ex: "http://example.com/"
-
-mappings:
-  person:
-   sources:
-    - ['data.json~jsonpath', '$.persons[*]']
-   s: http://example.com/$(firstname)
-   po:
-    - [a, foaf:Person]
-    - [ex:name, $(firstname)]</code></pre>
-            </div>
+            <div id="editor-matey" class="ace-editor"></div>
         </div>
         <div class="col-md-4" id="div-output-data-matey">
             <div class="dropdown">
