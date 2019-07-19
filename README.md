@@ -72,7 +72,8 @@ In these examples, Matey is configured to use an RMLMapper endpoint with URL "ht
 want these examples to run, make sure you have such an endpoint set up.
 
 ## Run tests
-From inside the project directory, run the following commands:
+The tests also assume that an RMLMapper endpoint with URL "http://localhost:4000/execute" is up and running. Once you
+have it set up, run the following commands from inside the project directory:
 ```
 npm install
 npm test
