@@ -1,7 +1,7 @@
 'use strict';
 
-// import mocked xhr
-const MockXMLHttpRequest = require('mock-xmlhttprequest');
+// import mocked XMLHttpRequest
+const xhrMock = require('xhr-mock').default;
 
 // import readFileSync from File System
 const readFileSync = require('fs').readFileSync;
@@ -13,24 +13,23 @@ const expectedYamlResponse = readFileSync(__dirname + '/correct_responses/test.y
 // tests
 describe('Loading of remote data with HTTP GET', function () {
 
-  let server;
+  // replace the real XHR object with the mock XHR object before each test
+  beforeEach(() => xhrMock.setup());
+
+  // put the real XHR object back and clear the mocks after each test
+  afterEach(() => xhrMock.teardown());
 
   describe('into Data Editor', function () {
 
-    // close server after each test
-    afterEach(function () {
-      server.remove();
-    });
-
     it('displays data in data editor when status=200', async function () {
 
-      // initialise mock server with expected JSON response for HTTP GET
+      // initialise mocked server's response for correct URL
       let correctUrl = '/get/json';
-      server = MockXMLHttpRequest.newServer({
-        get: [correctUrl, {
-          body: expectedJsonResponse
-        }]
-      }).install();
+
+      xhrMock.get(correctUrl, {
+        status: 200,
+        body: expectedJsonResponse
+      });
 
       // let matey fetch remote data source and wait for it to be displayed in data editor
       await matey.loadRemoteDataSource(correctUrl, 'test.json');
@@ -46,13 +45,11 @@ describe('Loading of remote data with HTTP GET', function () {
 
     it('shows exactly one danger alert when status=404', async function () {
 
-      // initialise mock server with expected YAML response for HTTP GET
+      // initialise mocked server's response for incorrect URL
       let incorrectUrl = '/get/nonexistent_resource';
-      server = MockXMLHttpRequest.newServer({
-        get: [incorrectUrl, {
-          status: 404,
-        }]
-      }).install();
+      xhrMock.get(incorrectUrl, {
+        status: 404
+      });
 
       // try to fetch remote data source
       await matey.loadRemoteDataSource(incorrectUrl, 'test.json');
