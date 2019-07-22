@@ -60,6 +60,9 @@ describe('toRML()', function() {
  */
 async function testOutput(filename, checkLD) {
 
+    // make sure the test knows how many assertions are expected
+    expect.assertions(1);
+
     // perform generate LD/RML action on matey according to checkLD
     if (checkLD) {
         await matey.runMappingRemote();
