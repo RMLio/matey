@@ -1,10 +1,11 @@
 {
   "name": "matey",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "build:dev": "browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css > matey.min.js",
     "build:browser": "browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css --minify=true | uglifyjs > matey.min.js",
-    "test": "jest --silent",
+    "build:example_with_bundler": "browserify examples/with_bundler/init.js -t urify/transform -t brfs -t browserify-css --minify=true | uglifyjs > examples/with_bundler/bundle.js",
+    "test": "jest --silent --verbose",
     "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\"",
     "browser": "gulp browser-sync"
   },
@@ -20,6 +21,9 @@
   "author": "Ben De Meester",
   "license": "MIT",
   "dependencies": {
+    "@graphy/content.ttl.read": "latest",
+    "@graphy/content.ttl.write": "latest",
+    "@graphy/util.dataset.tree": "latest",
     "@rmlio/yarrrml-parser": "^0.3.1",
     "beaver-logger": "^3.0.17",
     "body-parser": "^1.18.3",
@@ -32,7 +36,7 @@
     "extend": "^3.0.2",
     "handlebars": "^4.1.2",
     "jquery": "^3.2.1",
-    "n3": "^0.11.3",
+    "n3": "^1.1.1",
     "popper.js": "^1.15.0",
     "prefix-ns": "^0.1.2",
     "q": "^1.5.1",
@@ -49,13 +53,17 @@
     "jest": "^24.8.0",
     "jsdom-worker": "^0.1.0",
     "node-fetch": "^2.6.0",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "xhr-mock": "latest"
   },
   "main": "lib/index.js",
   "description": "",
   "jest": {
     "moduleNameMapper": {
       "\\.css": "<rootDir>/test/styleMock.js"
-    }
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/setUpTests.js"
+    ]
   }
 }

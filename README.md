@@ -19,7 +19,9 @@ npm install matey
 ## Usage
 
 ### Setting up the RMLMapper Web API endpoint
-If you don't plan on using a self-chosen RMLMapper endpoint, follow the instructions [here](https://github.com/RMLio/rmlmapper-webapi-js) to set up a local server. Make sure the server is configured to use port 4000.
+To generate Linked Data triples, Matey does its RML mapping through a remote server. For this, Matey requires you to provide
+an RMLMapper endpoint. You can either provide the URL of an existing server, or set one up yourself by following the instructions
+[here](https://github.com/RMLio/rmlmapper-webapi-js). Make sure that you provide the correct URL for the endpoint during [configuration](#configuring-matey).
 
 ### Preparing your page
 Put a div element with a certain id where you want your Matey editor to be:
@@ -39,7 +41,7 @@ Try to avoid declaring div elements with id's suffixed with "-matey", as most di
         matey.init("matey-id");
     </script>
     ```
-### Setting up Matey using `require`
+### Setting up Matey using a bundler
 In your JavaScript code, import the Matey class from the package, and on an instance call the `init` function with the id of the div element for the editor.
 ```javascript
 let Matey = require("matey");
@@ -50,24 +52,29 @@ You can use `browserify` from within the project's root directory to bundle up t
 ```
 browserify examples/with_require/init.js -t urify/transform -t brfs -t browserify-css | uglifyjs > examples/with_require/bundle.js
 ```
+The browserify transformations used in the example are necessary for Matey to work.
 
 ### Configuring Matey
-To add extra, optional configuration, you can pass a JSON object as an argument to Matey's `init` method. Configuration options include:
-* **rml\_mapper\_uri**: URI of RMLMapper Web API endpoint used for generating Linked Data triples. Defaults to "http://localhost:4000/execute".
+To configure Matey, you can pass a JSON object as an argument to Matey's `init` method. The configuration options are:
+* `rmlMapperUrl`: URL of RMLMapper Web API endpoint
 
 
 An example of calling `init` with a configuration object would be:
 ```javascript
 let config = {
-    rml_mapper_uri: "http://tw06v069.ugent.be/rmlmapper/process"
+    rmlMapperUrl: "http://tw06v069.ugent.be/rmlmapper/process"
 };
 matey.init("matey-id", config);
 ```
 ## Examples
-Examples of usage can be found in the `examples` directory of the project. Both examples illustrate the use of Matey through a single web page which only contains Matey's editors.
+Examples of usage can be found in the `examples` directory of the project. 
+Both examples illustrate the use of Matey through a single web page which only contains Matey's editors.
+In these examples, Matey is configured to use an RMLMapper endpoint with URL "http://localhost:4000/execute", so if you
+want these examples to run, make sure you have such an endpoint set up.
 
 ## Run tests
-From inside the project directory, run the following commands:
+The tests also assume that an RMLMapper endpoint with URL "http://localhost:4000/execute" is up and running. Once you
+have it set up, run the following commands from inside the project directory:
 ```
 npm install
 npm test
