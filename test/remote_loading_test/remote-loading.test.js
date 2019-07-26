@@ -70,7 +70,8 @@ describe('loadRemoteDataSource()', function () {
     await matey.loadRemoteDataSource(incorrectUrl, 'json-response.json.json');
 
     // check if danger alert appears
-    checkDangerAlert();
+    let alerts = document.getElementsByClassName('alert-danger');
+    expect(alerts.length).toBe(1);
   });
 });
 
@@ -115,14 +116,7 @@ describe('loadRemoteYarrrml()', function() {
     await matey.loadRemoteYarrrml(incorrectUrl);
 
     // check if danger alert appears
-    checkDangerAlert();
+    let alerts = document.getElementsByClassName('alert-danger');
+    expect(alerts.length).toBe(1);
   });
 });
-
-/**
- * Asserts whether there is exactly 1 danger alert element visible in the page.
- */
-function checkDangerAlert() {
-  let alerts = document.getElementsByClassName('alert-danger');
-  expect(alerts.length).toBe(1);
-}
