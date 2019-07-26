@@ -4,7 +4,7 @@
   "scripts": {
     "build:dev": "browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css > matey.min.js",
     "build:browser": "browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css --minify=true | uglifyjs > matey.min.js",
-    "build:example_with_require": "browserify examples/with_require/init.js -t urify/transform -t brfs -t browserify-css --minify=true > examples/with_require/bundle.js",
+    "build:example_with_require": "browserify examples/with_require/init.js -t urify/transform -t brfs -t browserify-css --minify=true | uglifyjs > examples/with_require/bundle.js",
     "test": "jest --silent --verbose",
     "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\"",
     "browser": "gulp browser-sync"
