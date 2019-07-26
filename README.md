@@ -52,6 +52,7 @@ You can use `browserify` from within the project's root directory to bundle up t
 ```
 browserify examples/with_require/init.js -t urify/transform -t brfs -t browserify-css | uglifyjs > examples/with_require/bundle.js
 ```
+The browserify transformations used in the example are necessary for Matey to work.
 
 ### Configuring Matey
 To configure Matey, you can pass a JSON object as an argument to Matey's `init` method. The configuration options are:
