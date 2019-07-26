@@ -41,7 +41,7 @@ Try to avoid declaring div elements with id's suffixed with "-matey", as most di
         matey.init("matey-id");
     </script>
     ```
-### Setting up Matey using `require`
+### Setting up Matey using a bundler
 In your JavaScript code, import the Matey class from the package, and on an instance call the `init` function with the id of the div element for the editor.
 ```javascript
 let Matey = require("matey");
