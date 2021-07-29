@@ -2,8 +2,9 @@
   "name": "matey",
   "version": "0.0.2",
   "scripts": {
-    "build:dev": "browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css > matey.min.js",
-    "build:browser": "browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css --minify=true | uglifyjs > matey.min.js",
+    "prepare-dist": "rm -rf dist; mkdir dist",
+    "build:dev": "npm run prepare-dist; browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css > dist/matey.min.js",
+    "build:browser": "npm run prepare-dist; browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css --minify=true | uglifyjs > dist/matey.min.js",
     "build:example_with_bundler": "browserify examples/with_bundler/init.js -t urify/transform -t brfs -t browserify-css --minify=true | uglifyjs > examples/with_bundler/bundle.js",
     "test": "jest --silent --verbose",
     "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\"",
