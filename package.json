@@ -47,13 +47,13 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "browser-sync": "^2.26.3",
-    "browserify": "^16.2.3",
+    "browser-sync": "^2.27.5",
+    "browserify": "^17.0.0",
     "gulp": "^4.0.0",
     "jest": "^24.8.0",
     "jsdom-worker": "^0.1.0",
     "node-fetch": "^2.6.0",
-    "nodemon": "^1.18.10",
+    "nodemon": "^2.0.12",
     "xhr-mock": "latest"
   },
   "main": "lib/index.js",
