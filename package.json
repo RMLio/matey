@@ -25,6 +25,7 @@
     "@graphy/content.ttl.read": "latest",
     "@graphy/content.ttl.write": "latest",
     "@graphy/util.dataset.tree": "latest",
+    "@graphy/memory.dataset.fast": "latest",
     "@rmlio/yarrrml-parser": "^0.3.1",
     "beaver-logger": "^3.0.17",
     "body-parser": "^1.18.3",
