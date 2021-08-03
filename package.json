@@ -50,7 +50,7 @@
     "browser-sync": "^2.27.5",
     "browserify": "^17.0.0",
     "gulp": "^4.0.0",
-    "jest": "^24.8.0",
+    "jest": "^27.0.6",
     "jsdom-worker": "^0.1.0",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.12",
@@ -64,6 +64,7 @@
     },
     "setupFilesAfterEnv": [
       "<rootDir>/test/setUpTests.js"
-    ]
+    ],
+    "testEnvironment": "jsdom"
   }
 }
