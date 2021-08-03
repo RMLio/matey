@@ -4,10 +4,10 @@
 const fs = require('fs');
 
 // import Matey examples for example output tests
-const examples = JSON.parse(fs.readFileSync(__dirname + '/../../lib/examples.json', 'utf8'));
+const examples = JSON.parse(fs.readFileSync(__dirname + '/../../lib/resources/examples.json', 'utf8'));
 
 // import sorting function for RDF quads
-const quadsSorter = require('../../lib/quadssorter');
+const quadsSorter = require('../../lib/sorters/quadssorter');
 
 // import RDF parser
 const N3 = require('n3');
