@@ -5,7 +5,7 @@ let Matey = require('../lib');
 global.matey = new Matey();
 
 // import jsdom-worker to mock Worker object which doesn't work by default in Jest/jsdom
-require('jsdom-worker');
+require('jsdom-worker-fix');
 
 // createObjectURL isn't available in Jest by default, so has to be mocked too
 global.URL.createObjectURL = jest.fn();

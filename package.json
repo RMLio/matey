@@ -24,7 +24,6 @@
   "dependencies": {
     "@graphy/content.ttl.read": "latest",
     "@graphy/content.ttl.write": "latest",
-    "@graphy/util.dataset.tree": "latest",
     "@graphy/memory.dataset.fast": "latest",
     "@rmlio/yarrrml-parser": "^0.3.1",
     "beaver-logger": "^4.0.28",
@@ -51,7 +50,7 @@
     "browserify": "^17.0.0",
     "gulp": "^4.0.0",
     "jest": "^27.0.6",
-    "jsdom-worker": "^0.1.0",
+    "jsdom-worker-fix": "^0.1.8",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.12",
     "xhr-mock": "latest"
@@ -65,6 +64,7 @@
     "setupFilesAfterEnv": [
       "<rootDir>/test/setUpTests.js"
     ],
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "testTimeout": 60000
   }
 }
