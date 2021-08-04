@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Updated all dependencies and necessary compatibility changes
+- index.js splitted into several files
 
 ### Fixed
 
