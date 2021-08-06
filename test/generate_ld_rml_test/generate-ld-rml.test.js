@@ -70,8 +70,10 @@ async function testOutput(filename, checkLD) {
         await matey.toRML();
     }
 
+    console.log(matey.getLD())
+
     // retrieve generated output from editor
-    let generatedOutput = checkLD ? matey.getLD() : matey.getRML();
+    let generatedOutput = checkLD ? matey.getLD()[0] : matey.getRML();
 
     // read the correct output from the file
     let path = __dirname + "/correct_example_outputs/" + filename;

@@ -39,5 +39,17 @@
         "value":"{\n  \"data\": [\n    {\n      \"created_time\": \"2018-11-21T01:12:24+0000\",\n      \"message\": \"What’s the one thing that never fails to make you smile? 😀 #RefreshTheFee\",\n      \"id\": \"820882001277849_313056145953449\",\n      \"permalink_url\": \"https://www.facebook.com/CocaColaUnitedStates/videos/313056145953449/\"\n    },\n    {\n      \"created_time\": \"2018-11-13T01:03:11+0000\",\n      \"message\": \"This #WorldKindnessDay, we’re spreading a little love and positivity. ➡️ to 😃. #RefreshTheFeed\",\n      \"id\": \"820882001277849_2242864155746286\",\n      \"permalink_url\": \"https://www.facebook.com/CocaColaUnitedStates/posts/2242864155746286\"\n    },\n    {\n      \"created_time\": \"2018-11-13T01:02:00+0000\",\n      \"message\": \"Spread kindness. Share the ❤️️. #WorldKindnessDay #RefreshTheFeed\",\n      \"id\": \"820882001277849_2169022539814557\",\n      \"permalink_url\": \"https://www.facebook.com/CocaColaUnitedStates/videos/2169022539814557/\"\n    }\n  ]\n}"
       }
     ]
+  },
+  {
+    "label":"Targets",
+    "icon":"target",
+    "yarrrml":"sources:\n  supergirl-source:\n    access: \"Supergirl.xml\"\n    referenceFormulation: xpath\n    iterator: \"/Supergirl/Character\"\ntargets:\n  target1: [\"/data/dump1.nt~dcat\", \"ntriples\"]\n  target2: [\"/data/dump2.ttl~void\", \"turtle\"]\nmappings:\n  person:\n    sources: supergirl-source\n    subjects:\n      - value: \"http://example.org/$(./@id)\"\n        targets: target1\n    predicateobjects:\n      - predicates:\n        - value: foaf:name\n          targets: target2\n        objects: \"$(./name)\"\n      - predicates: foaf:nickname\n        objects: \"$(./nickname)\"\n    ",
+    "data":[
+      {
+        "path":"Supergirl.xml",
+        "type":"xml",
+        "value":"<Supergirl>\n  <Character id=\"0\">\n    <name>Kara Danvers</name>\n    <nickname>Supergirl</nickname>\n  </Character>\n  <Character id=\"1\">\n    <name>Alex Danvers</name>\n    <nickname>Sentinel</nickname>\n  </Character>\n  <Character id=\"2\">\n    <name>J'onn J'onzz</name>\n    <nickname>Martian Manhunter</nickname>\n  </Character>\n  <Character id=\"3\">\n    <name>Nia Nal</name>\n    <nickname>Dreamer</nickname>\n  </Character> \n</Supergirl>"
+      }
+    ]
   }
 ]
