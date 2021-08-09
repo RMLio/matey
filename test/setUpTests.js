@@ -15,7 +15,6 @@ document.body.innerHTML = '<div id="test-editor"></div>';
 
 // initialise matey editors
 const config = {
-  rmlMapperUrl: 'http://172.23.43.193:4000/execute'
-  //rmlMapperUrl: "http://localhost:4000/execute" // make sure the endpoint is running before you execute the tests!
+  rmlMapperUrl: "http://localhost:4000/execute" // make sure the endpoint is running before you execute the tests!
 };
 matey.init("test-editor", config);
