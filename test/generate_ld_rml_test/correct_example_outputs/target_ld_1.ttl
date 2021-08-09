@@ -1,0 +1,8 @@
+
+<http://example.org/0> <http://xmlns.com/foaf/0.1/name> "Kara Danvers" .
+
+<http://example.org/1> <http://xmlns.com/foaf/0.1/name> "Alex Danvers" .
+
+<http://example.org/2> <http://xmlns.com/foaf/0.1/name> "J'onn J'onzz" .
+
+<http://example.org/3> <http://xmlns.com/foaf/0.1/name> "Nia Nal" .

@@ -17,7 +17,7 @@ const expectedYarrrmlResponse = readFileSync(__dirname + '/correct_responses/yar
 beforeEach(() => {
   xhrMock.setup();
 
-  let alerts = document.getElementsByClassName('alert');
+  const alerts = document.getElementsByClassName('alert');
   while (alerts[0]) {
     alerts[0].parentNode.removeChild(alerts[0]);
   }
@@ -36,7 +36,7 @@ describe('loadRemoteDataSource()', function () {
     expect.assertions(1);
 
     // initialise mocked server's response for correct URL
-    let correctUrl = '/get/existent_json';
+    const correctUrl = '/get/existent_json';
 
     xhrMock.get(correctUrl, {
       status: 200,
@@ -47,11 +47,11 @@ describe('loadRemoteDataSource()', function () {
     await matey.loadRemoteDataSource(correctUrl, 'json-response.json.json');
 
     // retrieve value from active data editor
-    let activeEditorValue = matey.getData();
+    const activeEditorValue = matey.getData();
 
     // check if parsed value equals parsed expected value
-    let parsedReceivedValue = JSON.parse(activeEditorValue);
-    let parsedExpectedValue = JSON.parse(expectedJsonResponse);
+    const parsedReceivedValue = JSON.parse(activeEditorValue);
+    const parsedExpectedValue = JSON.parse(expectedJsonResponse);
     expect(parsedReceivedValue).toEqual(parsedExpectedValue);
   });
 
@@ -60,8 +60,8 @@ describe('loadRemoteDataSource()', function () {
     expect.assertions(1);
 
     // initialise mocked server's response for incorrect URL
-    let incorrectUrl = '/get/nonexistent_json';
-    
+    const incorrectUrl = '/get/nonexistent_json';
+
     xhrMock.get(incorrectUrl, {
       status: 404
     });
@@ -70,7 +70,7 @@ describe('loadRemoteDataSource()', function () {
     await matey.loadRemoteDataSource(incorrectUrl, 'json-response.json.json');
 
     // check if danger alert appears
-    let alerts = document.getElementsByClassName('alert-danger');
+    const alerts = document.getElementsByClassName('alert-danger');
     expect(alerts.length).toBe(1);
   });
 });
@@ -83,7 +83,7 @@ describe('loadRemoteYarrrml()', function() {
     expect.assertions(1);
 
     // initialise mocked server's response for correct URL
-    let correctUrl = '/get/existent_yarrrml';
+    const correctUrl = '/get/existent_yarrrml';
 
     xhrMock.get(correctUrl, {
       status: 200,
@@ -94,11 +94,11 @@ describe('loadRemoteYarrrml()', function() {
     await matey.loadRemoteYarrrml(correctUrl);
 
     // retrieve value from YARRRML editor
-    let yarrrmlEditorValue = matey.getYarrrml();
+    const yarrrmlEditorValue = matey.getYarrrml();
 
     // check if parsed value equals parsed expected value
-    let parsedReceivedValue = YAML.parse(yarrrmlEditorValue);
-    let parsedExpectedValue = YAML.parse(expectedYarrrmlResponse);
+    const parsedReceivedValue = YAML.parse(yarrrmlEditorValue);
+    const parsedExpectedValue = YAML.parse(expectedYarrrmlResponse);
     expect(parsedReceivedValue).toEqual(parsedExpectedValue);
   });
 
@@ -107,7 +107,7 @@ describe('loadRemoteYarrrml()', function() {
     expect.assertions(1);
 
     // initialise mocked server's response for incorrect URL
-    let incorrectUrl = '/get/nonexistent_yarrrml';
+    const incorrectUrl = '/get/nonexistent_yarrrml';
     xhrMock.get(incorrectUrl, {
       status: 404
     });
@@ -116,7 +116,7 @@ describe('loadRemoteYarrrml()', function() {
     await matey.loadRemoteYarrrml(incorrectUrl);
 
     // check if danger alert appears
-    let alerts = document.getElementsByClassName('alert-danger');
+    const alerts = document.getElementsByClassName('alert-danger');
     expect(alerts.length).toBe(1);
   });
 });

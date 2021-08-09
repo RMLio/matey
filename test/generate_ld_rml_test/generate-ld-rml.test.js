@@ -31,6 +31,15 @@ describe('runMappingRemote()', function() {
         await testOutput('facebook_ld.ttl', true);
     });
 
+    it('should generate correct LD output for "Target" example', async function() {
+        matey.loadExample(examples[3]);
+        await testOutput('target_ld_0.ttl', true, 0);
+    });
+
+    it('should generate correct LD output for "Target" example', async function() {
+        matey.loadExample(examples[3]);
+        await testOutput('target_ld_1.ttl', true, 1);
+    });
 });
 
 // toRML() tests
@@ -51,14 +60,20 @@ describe('toRML()', function() {
         await testOutput('facebook_rml.ttl', false);
     });
 
+    it('should generate correct RML output for "Target" example', async function() {
+        matey.loadExample(examples[3]);
+        await testOutput('target_rml.ttl', false);
+    });
+
 });
 
 /**
  * Asserts whether runMappingRemote() or toRML() generates the correct output in the corresponding editor
- * @param  {String} filename path to file where correct output is located
- * @param {Boolean} checkLD if true, the LD output is checked, otherwise the RML output will be checked
+ * @param  {String} filename - path to file where correct output is located
+ * @param {Boolean} checkLD - if true, the LD output is checked, otherwise the RML output will be checked
+ * @param {Integer} index - index of the outputEditor
  */
-async function testOutput(filename, checkLD) {
+async function testOutput(filename, checkLD, index=0) {
 
     // make sure the test knows how many assertions are expected
     expect.assertions(1);
@@ -70,18 +85,16 @@ async function testOutput(filename, checkLD) {
         await matey.toRML();
     }
 
-    console.log(matey.getLD())
-
     // retrieve generated output from editor
-    let generatedOutput = checkLD ? matey.getLD()[0] : matey.getRML();
+    const generatedOutput = checkLD ? matey.getLD()[index] : matey.getRML();
 
     // read the correct output from the file
-    let path = __dirname + "/correct_example_outputs/" + filename;
-    let expectedOutput = fs.readFileSync(path, 'utf8');
+    const path = __dirname + "/correct_example_outputs/" + filename;
+    const expectedOutput = fs.readFileSync(path, 'utf8');
 
     // convert the outputs to RDF quads
-    let generatedQuads = parser.parse(generatedOutput);
-    let expectedQuads = parser.parse(expectedOutput);
+    const generatedQuads = parser.parse(generatedOutput);
+    const expectedQuads = parser.parse(expectedOutput);
 
     // sort the quads arrays so they can be compared on equality without considering array order
     generatedQuads.sort(quadsSorter);

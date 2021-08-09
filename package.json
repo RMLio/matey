@@ -66,6 +66,6 @@
       "<rootDir>/test/setUpTests.js"
     ],
     "testEnvironment": "jsdom",
-    "testTimeout": 60000
+    "testTimeout": 5000
   }
 }

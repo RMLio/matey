@@ -11,8 +11,13 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Updated all dependencies and necessary compatibility changes
 - index.js splitted into several files
+- support for target  and multiple outputs
 
 ### Fixed
 
 - Jest test for example outputs cannot load Worker object (see [issue 13](https://gitlab.ilabt.imec.be/yarrrml/matey/-/issues/13))
+
+### Added
+
+- Test and example for targets in RML
 

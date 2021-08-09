@@ -1,7 +1,7 @@
 'use strict';
 
 // import matey
-let Matey = require('../lib');
+const Matey = require('../lib');
 global.matey = new Matey();
 
 // import jsdom-worker to mock Worker object which doesn't work by default in Jest/jsdom
@@ -14,7 +14,8 @@ global.URL.createObjectURL = jest.fn();
 document.body.innerHTML = '<div id="test-editor"></div>';
 
 // initialise matey editors
-let config = {
-  rmlMapperUrl: "http://localhost:4000/execute" // make sure the endpoint is running before you execute the tests!
+const config = {
+  rmlMapperUrl: 'http://172.23.43.193:4000/execute'
+  //rmlMapperUrl: "http://localhost:4000/execute" // make sure the endpoint is running before you execute the tests!
 };
 matey.init("test-editor", config);

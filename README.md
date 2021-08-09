@@ -57,8 +57,8 @@ In your JavaScript code, import the Matey class from the package, and
 on an instance call the `init` function with the id of the div element for the editor.
 
 ```javascript
-let Matey = require("matey");
-let matey = new Matey();
+const Matey = require("matey");
+const matey = new Matey();
 matey.init("matey-id");
 ```
 
