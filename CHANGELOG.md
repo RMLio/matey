@@ -11,7 +11,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Updated all dependencies and necessary compatibility changes
 - index.js splitted into several files
-- support for target  and multiple outputs
+- support for target  and multiple outputs (see [issue 34](https://gitlab.ilabt.imec.be/yarrrml/matey/-/issues/34))
 
 ### Fixed
 
@@ -19,5 +19,5 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- Test and example for targets in RML
+- Test and example for targets in RML 
 
