@@ -7,7 +7,7 @@ const matey = new Matey();
 document.body.innerHTML = '<div id="test"></div>';
 
 const config = {
-  rmlMapperUrl: "http://172.23.43.193:4000/execute" // make sure an endpoint with this URL is active!
+  rmlMapperUrl: "http://localhost:4000/execute" // make sure an endpoint with this URL is active!
 };
 
 //for debug
@@ -519,7 +519,7 @@ class Matey {
         const y2r = new yarrrml();
         const quads = this.generateRMLQuads(y2r);
         if (!quads) {
-          return;
+          resolve();
         }
 
         quads.sort(quadsSorter);
@@ -562,7 +562,8 @@ class Matey {
   }
 
   /**
-   *  Generates RDF triples based on input data and YARRRML rules and inserts them into 'Turtle/TriG' editor.
+   *  Generates RDF quads based on input data and YARRRML rules and inserts them into 'Turtle/TriG' editor.
+   *  @returns {Promise<void>} promise that resolves if LD was successfully generated, and rejects otherwise
    */
   runMappingRemote() {
     return new Promise((resolve, reject) => {
@@ -580,9 +581,9 @@ class Matey {
         const writer = new N3.Writer();
         writer.addQuads(quads);
 
-        writer.end((err, rmlDoc) => {
-          if(err){
-            this.logger.error("Something went wrong when converting with N3 writer.",err);
+        writer.end(async (err, rmlDoc) => {
+          if (err) {
+            this.logger.error("Something went wrong when converting with N3 writer.", err);
           }
 
           const sources = {};
@@ -600,7 +601,7 @@ class Matey {
           this.destroyOutputEditors();
 
           // Execute mapping
-          fetch(this.rmlMapperUrl, {
+          const response = await fetch(this.rmlMapperUrl, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -609,12 +610,14 @@ class Matey {
               rml: rmlDoc,
               sources
             })
-          }).then(response => {
-            return response.json();
-          }).then(async data => {
+          })
+
+          // retrieve JSON from response
+          const data = await response.json();
+
+          try {
             // One output (no targets)
             if (typeof data.output === 'string' || data.output instanceof String) {
-
               // parse the generated RDF and convert it to text
               const parser = new N3.Parser();
               const prefixes = this.getYamlPrefixes();
@@ -706,11 +709,11 @@ class Matey {
               // Resolve promise
               resolve();
             }
-          }).catch(err => {
+          } catch (err) {
             this.logger.error('yarrrml_invalid', {yarrrml: yaml});
             this.logger.error(err);
             this.front.doAlert('Couldn\'t run the YARRRML, check the source.', 'danger');
-          });
+          }
         });
       } catch (err) {
         this.logger.error('ld_generation_error', err);
