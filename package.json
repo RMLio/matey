@@ -4,9 +4,8 @@
   "scripts": {
     "prepare-dist": "rm -rf dist; mkdir dist",
     "build:dev": "npm run prepare-dist; browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css > dist/matey.min.js",
-    "build:browser": "npm run prepare-dist; browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css --minify=true | uglifyjs > dist/matey.min.js",
-    "build:example_with_bundler": "browserify examples/with_bundler/init.js -t urify/transform -t brfs -t browserify-css --minify=true | uglifyjs > examples/with_bundler/bundle.js",
-    "build:example_with_bundler_no_uglify": "browserify examples/with_bundler/init.js -t urify/transform -t brfs -t browserify-css --minify=true  > examples/with_bundler/bundle.js",
+    "build:browser": "npm run prepare-dist; browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css --minify=true | terser > dist/matey.min.js",
+    "build:example_with_bundler": "browserify examples/with_bundler/init.js -t urify/transform -t brfs -t browserify-css --minify=true | terser > examples/with_bundler/bundle.js",
     "test": "jest --silent --verbose",
     "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\"",
     "browser": "gulp browser-sync"
@@ -41,8 +40,6 @@
     "popper.js": "^1.16.1",
     "prefix-ns": "^0.1.2",
     "q": "^1.5.1",
-    "uglify-es": "^3.3.9",
-    "urify": "^2.1.1",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
@@ -54,7 +51,9 @@
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.12",
     "xhr-mock": "latest",
-    "browserify-css": "^0.15.0"
+    "browserify-css": "^0.15.0",
+    "terser": "^5.7.1",
+    "urify": "^2.1.1"
   },
   "main": "lib/index.js",
   "description": "",
