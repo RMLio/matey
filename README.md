@@ -44,14 +44,19 @@ as most div elements that will be inserted into your page have such an id. For e
 which puts the scripts in the current working directory. 
 You can also choose your own file destination by running 
 `browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css | terser > my/file/destination.min.js`.
+- Start an RMLMapper Web API endpoint (sugggested: [rmlmapper-webapi-js](https://github.com/RMLio/rmlmapper-webapi-js))
 - Include the script in your HTML code, and call Matey's `init` function on an instance of the `Matey` class:
-    ```html
-    <script src="matey.min.js" type="text/javascript"></script>
-    <script>
-        let matey = new Matey();
-        matey.init("matey-id");
-    </script>
-    ```
+```html
+<script src="matey.min.js" type="text/javascript"></script>
+<script>
+    let matey = new Matey();
+    const config = {
+       rmlMapperUrl: "http://localhost:4000/execute" // make sure an RMLMapper endpoint with this URL is active!
+    };
+    matey.init("matey-id", config);
+</script>
+```
+
 ### Setting up Matey using a bundler
 In your JavaScript code, import the Matey class from the package, and 
 on an instance call the `init` function with the id of the div element for the editor.
@@ -59,7 +64,10 @@ on an instance call the `init` function with the id of the div element for the e
 ```javascript
 const Matey = require("matey");
 const matey = new Matey();
-matey.init("matey-id");
+const config = {
+  rmlMapperUrl: "https://rml.io/api/rmlmapper/execute" // make sure an RMLMapper endpoint with this URL is active!
+};
+matey.init("matey-id", config);
 ```
 
 You can use `browserify` from within the project's root directory to bundle up the code and its dependencies, 
