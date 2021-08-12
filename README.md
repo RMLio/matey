@@ -43,7 +43,7 @@ as most div elements that will be inserted into your page have such an id. For e
 - Create minified version by running `npm run build:browser`, 
 which puts the scripts in the current working directory. 
 You can also choose your own file destination by running 
-`browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css | uglifyjs > my/file/destination.min.js`.
+`browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css | terser > my/file/destination.min.js`.
 - Include the script in your HTML code, and call Matey's `init` function on an instance of the `Matey` class:
     ```html
     <script src="matey.min.js" type="text/javascript"></script>
@@ -64,10 +64,10 @@ matey.init("matey-id");
 
 You can use `browserify` from within the project's root directory to bundle up the code and its dependencies, 
 so you can include it into your HTML code. 
-The example in the folder `examples/with_require` used the following command to bundle the code up into `examples/with_require/bundle.js`:
+The example in the folder `examples/with_bundler` used the following command to bundle the code up into `examples/with_with_bundler/bundle.js`:
 
 ```
-browserify examples/with_require/init.js -t urify/transform -t brfs -t browserify-css | uglifyjs > examples/with_require/bundle.js
+browserify examples/with_bundler/init.js -t urify/transform -t brfs -t browserify-css --minify=true | terser > examples/with_bundler/bundle.js
 ```
 
 The browserify transformations used in the example are necessary for Matey to work.
