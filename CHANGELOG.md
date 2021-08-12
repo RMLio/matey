@@ -12,7 +12,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Updated all dependencies and necessary compatibility changes
 - Index.js splitted into several files
 - Support for target  and multiple outputs (see [issue 34](https://gitlab.ilabt.imec.be/yarrrml/matey/-/issues/34))
-- Replaced browserify with terser
+- Replaced uglify with terser
 
 ### Fixed
 
