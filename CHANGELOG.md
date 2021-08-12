@@ -10,8 +10,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Updated all dependencies and necessary compatibility changes
-- index.js splitted into several files
-- support for target  and multiple outputs (see [issue 34](https://gitlab.ilabt.imec.be/yarrrml/matey/-/issues/34))
+- Index.js splitted into several files
+- Support for target  and multiple outputs (see [issue 34](https://gitlab.ilabt.imec.be/yarrrml/matey/-/issues/34))
+- Replaced browserify with terser
 
 ### Fixed
 
