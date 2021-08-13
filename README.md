@@ -15,8 +15,9 @@ which allows users to inspect the generated Linked Data.
 [Node.js](https://nodejs.org/en/download/)
 
 ## Installation
+npm not yet available use:
 ```
-npm install matey
+git clone https://gitlab.ilabt.imec.be/yarrrml/matey
 ```
 
 ## Usage
@@ -47,6 +48,11 @@ You can also choose your own file destination by running
 - Start an RMLMapper Web API endpoint (sugggested: [rmlmapper-webapi-js](https://github.com/RMLio/rmlmapper-webapi-js))
 - Include the script in your HTML code, and call Matey's `init` function on an instance of the `Matey` class:
 ```html
+<head>
+    <!-- otherwise browsers won't be able to parse the minified script -->
+    <meta charset="UTF-8">
+</head>
+
 <script src="matey.min.js" type="text/javascript"></script>
 <script>
     let matey = new Matey();
