@@ -17,6 +17,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 - Jest test for example outputs cannot load Worker object (see [issue 13](https://gitlab.ilabt.imec.be/yarrrml/matey/-/issues/13))
+- Missing require for brace XML mode
+- Outdated guides in README
 
 ### Added
 
