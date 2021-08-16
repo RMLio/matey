@@ -8,19 +8,17 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Unreleased
 
 ### Changed
-
 - Updated all dependencies and necessary compatibility changes
-- Index.js splitted into several files
+- Index.js split into several files
 - Support for target  and multiple outputs (see [issue 34](https://gitlab.ilabt.imec.be/yarrrml/matey/-/issues/34))
 - Replaced uglify with terser
 
 ### Fixed
-
 - Jest test for example outputs cannot load Worker object (see [issue 13](https://gitlab.ilabt.imec.be/yarrrml/matey/-/issues/13))
 - Missing require for brace XML mode
 - Outdated guides in README
 
 ### Added
-
 - Test and example for targets in RML 
+- Add license info (see [issue 37](https://gitlab.ilabt.imec.be/yarrrml/matey/-/issues/37))
 

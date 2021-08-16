@@ -114,3 +114,7 @@ run the following commands from inside the project directory:
 npm install
 npm test
 ```
+
+## License
+This code is copyrighted by [Ghent University – imec](http://knows.idlab.ugent.be/) and 
+released under the [MIT license](http://opensource.org/licenses/MIT).
