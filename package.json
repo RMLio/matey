@@ -60,7 +60,7 @@
     "urify": "^2.1.1"
   },
   "main": "lib/index.js",
-  "description": "",
+  "description": "Web-based editor for YARRRML rules.",
   "jest": {
     "moduleNameMapper": {
       "\\.css": "<rootDir>/test/styleMock.js"

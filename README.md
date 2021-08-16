@@ -10,6 +10,7 @@ which allows users to inspect the generated Linked Data.
 3. [Usage](#usage)
 4. [Examples](#examples)
 5. [Run tests](#run-tests)
+6. [License](#license)
 
 ## Requirements
 [Node.js](https://nodejs.org/en/download/)
