@@ -17,7 +17,7 @@ which allows users to inspect the generated Linked Data.
 ## Installation
 npm not yet available use:
 ```
-git clone https://gitlab.ilabt.imec.be/yarrrml/matey
+git clone https://github.com/RMLio/matey.git
 ```
 
 ## Usage

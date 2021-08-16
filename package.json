@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.ilabt.imec.be/yarrrml/matey"
+    "url": "https://github.com/RMLio/matey"
   },
   "keywords": [
     "RML",
@@ -20,6 +20,10 @@
     "Parser"
   ],
   "author": "Ben De Meester",
+  "contributors": [
+    "René Van Der Schueren",
+    "Pieter Heyvaert (https://pieterheyvaert.com)"
+  ],
   "license": "MIT",
   "dependencies": {
     "@graphy/content.ttl.read": "latest",
