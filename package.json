@@ -1,5 +1,5 @@
 {
-  "name": "matey",
+  "name": "@rmlio/matey",
   "version": "0.0.2",
   "scripts": {
     "prepare-dist": "rm -rf dist; mkdir dist",
