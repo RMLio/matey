@@ -16,9 +16,9 @@ which allows users to inspect the generated Linked Data.
 [Node.js](https://nodejs.org/en/download/)
 
 ## Installation
-npm not yet available use:
+
 ```
-git clone https://github.com/RMLio/matey.git
+npm i @rmlio/matey
 ```
 
 ## Usage
