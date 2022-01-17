@@ -7,6 +7,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Added
+- CI jobs to automate releases, tests & deployment
+
 ## 1.0.0
 
 ### Changed
