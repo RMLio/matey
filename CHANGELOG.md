@@ -9,8 +9,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 - CI jobs to automate releases, tests & deployment
+- Fix CHANGELOG formatting
 
-## 1.0.0
+## [1.0.0] - 2021-08-17
 
 ### Changed
 - Updated all dependencies and necessary compatibility changes
@@ -27,3 +28,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Test and example for targets in RML 
 - Add license info (see [issue 37](https://gitlab.ilabt.imec.be/yarrrml/matey/-/issues/37))
 
+## 0.0.2 - 2019-07-26
+
+### Added
+- Initial public release
+
+[1.0.0]: https://github.com/RMLio/matey/compare/v0.0.2...v1.0.0
+0.0.2: https://github.com/RMLio/matey/compare/v0.0.1...v0.0.2
