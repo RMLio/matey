@@ -66,6 +66,10 @@ Create Release:
   stage: release
   # Initiate git repository
   before_script:
+    # Install dependencies
+    - apk add git nodejs npm
+    - npm install -g changefrog
+
     # Clone the repository via HTTPS inside a new directory
     - git clone "https://${GITLAB_USERNAME}:${GITLAB_TOKEN_RMLMAPPER}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" "${CI_COMMIT_SHA}"
 
@@ -78,10 +82,6 @@ Create Release:
     # Using before_script would override .git:push template
     # User has to set the RELEASE_TAG_NAME variable
     - if [ -z "$RELEASE_TAG_NAME" ]; then exit 1; else echo "Creating release v$RELEASE_TAG_NAME"; fi
-
-    # Install dependencies
-    - apk add git nodejs npm
-    - npm install -g changefrog
 
     # Update package.json and package-lock.json
     - npm version "$RELEASE_TAG_NAME"
