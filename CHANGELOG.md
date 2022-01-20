@@ -34,4 +34,3 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial public release
 
 [1.0.0]: https://github.com/RMLio/matey/compare/v0.0.2...v1.0.0
-0.0.2: https://github.com/RMLio/matey/compare/v0.0.1...v0.0.2
