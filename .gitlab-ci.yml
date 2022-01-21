@@ -28,10 +28,6 @@ stages:
   - deploy
 
 include:
-  # Mirror branches with Github
-  - project: 'rml/util/ci-templates'
-    ref: main
-    file: 'Mirror.gitlab-ci.yml'
   # Create Github Releases on tags
   - project: 'rml/util/ci-templates'
     ref: main
