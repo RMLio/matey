@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - CI jobs to automate releases, tests & deployment
 - Fix CHANGELOG formatting
+- Enforce CHANGELOG updates for merge requests
 
 ## [1.0.0] - 2021-08-17
 
