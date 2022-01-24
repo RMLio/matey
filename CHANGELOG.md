@@ -7,6 +7,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+## [1.0.1] - 2022-01-24
+
 ### Added
 - CI jobs to automate releases, tests & deployment
 - Fix CHANGELOG formatting
@@ -34,4 +36,5 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - Initial public release
 
+[1.0.1]: https://github.com/RMLio/matey/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/RMLio/matey/compare/v0.0.2...v1.0.0
