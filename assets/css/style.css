@@ -1,4 +1,4 @@
-@import url("../../node_modules/bootstrap/dist/css/bootstrap.css");
+@import "node_modules/bootstrap/dist/css/bootstrap.css";
 @import url("../fonts/icomoon.css");
 
 [class^="icon-"], [class*=" icon-"] {

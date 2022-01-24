@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Fixed
+- Fix Bootstrap CSS import path when embedding Matey in other projects with a common node_modules folder.
+- Regenerate package-lock.json with integrity checks and new name.
+
 ## [1.0.1] - 2022-01-24
 
 ### Added
