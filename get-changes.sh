@@ -14,7 +14,7 @@ cat CHANGELOG.md | while read line; do
     fi
 
     # Detect start of new changes
-    if [[ "$line" == "## $TAG"* ]]; then
+    if [[ "$line" == "## [$TAG]"* ]]; then
         FOUND_CHANGES=true
     fi
 done

@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Fixed
+
+- CI: fix changelog retrieval
+
 ## [1.0.3] - 2022-02-02
 
 ### Fixed
