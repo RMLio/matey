@@ -7,6 +7,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+## [1.0.3] - 2022-02-02
+
 ### Fixed
 - Typo: getAmountOfDateEditors renamed to getNumberOfDataEditors (see [issue 3](https://github.com/RMLio/matey/issues/2)).
 - Make download buttons work again (see [issue 2](https://github.com/RMLio/matey/issues/2))
@@ -46,6 +48,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - Initial public release
 
+[1.0.3]: https://github.com/RMLio/matey/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/RMLio/matey/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/RMLio/matey/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/RMLio/matey/compare/v0.0.2...v1.0.0
