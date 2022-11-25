@@ -7,6 +7,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+## [1.0.5] - 2022-11-25
+
 ### Added
 - Add Tutorial example for KG4DI
 
@@ -57,6 +59,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - Initial public release
 
+[1.0.5]: https://github.com/RMLio/matey/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/RMLio/matey/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/RMLio/matey/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/RMLio/matey/compare/v1.0.1...v1.0.2
