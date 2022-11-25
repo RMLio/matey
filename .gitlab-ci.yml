@@ -22,8 +22,8 @@
 # Always use protected & masked mode if possible for CI variables!
 # See https://gitlab.ilabt.imec.be/rml/util/ci-templates for a detailed explanation
 stages:
+  - lint
   - unittests
-  - mirror
   - release
   - deploy
 
