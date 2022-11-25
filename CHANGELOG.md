@@ -7,6 +7,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Added
+- Add Tutorial example for KG4DI
+
 ## [1.0.4] - 2022-02-02
 
 ### Fixed
