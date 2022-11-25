@@ -51,5 +51,22 @@
         "value":"<Supergirl>\n  <Character id=\"0\">\n    <name>Kara Danvers</name>\n    <nickname>Supergirl</nickname>\n  </Character>\n  <Character id=\"1\">\n    <name>Alex Danvers</name>\n    <nickname>Sentinel</nickname>\n  </Character>\n  <Character id=\"2\">\n    <name>J'onn J'onzz</name>\n    <nickname>Martian Manhunter</nickname>\n  </Character>\n  <Character id=\"3\">\n    <name>Nia Nal</name>\n    <nickname>Dreamer</nickname>\n  </Character> \n</Supergirl>"
       }
     ]
+  },
+  {
+    "label":"Tutorial",
+    "icon":"",
+    "yarrrml":"prefixes:\n  rr: http://www.w3.org/ns/r2rml#\n  foaf: http://xmlns.com/foaf/0.1/\n  xsd: http://www.w3.org/2001/XMLSchema#\n  rdfs: http://www.w3.org/2000/01/rdf-schema#\n  dc: http://purl.org/dc/elements/1.1/\n  rev: http://purl.org/stuff/rev#\n  gtfs: http://vocab.gtfs.org/terms#\n  geo: http://www.w3.org/2003/01/geo/wgs84_pos#\n  schema: http://schema.org/\n  dct: http://purl.org/dc/terms/\n  rml: http://semweb.mmlab.be/ns/rml#\n  ql: http://semweb.mmlab.be/ns/ql#\n  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#\n\nmappings:\n  agency:\n    sources:\n      - [AGENCY.csv~csv]\n    s: http://transport.linkeddata.es/madrid/agency/$(agency_id)\n    po:\n      - [a, gtfs:Agency]\n      - [foaf:page, $(agency_url)~iri]\n      - [foaf:name,$(agency_name)]\n      - [gtfs:timeZone,$(agency_timezone)]\n      - [dct:language,$(agency_lang)]\n      - [foaf:phone,$(agency_phone)]\n      - [gtfs:fareUrl,$(agency_fare_url)~iri]\n  routes:\n    sources:\n      - [ROUTES.csv~csv]\n    s: http://transport.linkeddata.es/madrid/metro/routes/$(route_id)\n    po:\n      - [a, gtfs:Route]\n      - [gtfs:shortName, $(route_short_name)]\n      - [gtfs:longName, $(route_long_name)]\n      - [dct:description, $(route_desc)]\n      - [gtfs:routeType, http://transport.linkeddata.es/resource/RouteType/$(route_type)~iri]\n      - [gtfs:routeUrl, $(route_url)~iri]\n      - [gtfs:color, $(route_color)]\n      - [gtfs:textColor, $(route_text_color)]\n      - p: gtfs:agency\n        o:\n          - mapping: agency\n            condition:\n              function: equal\n              parameters:\n                - [str1, $(agency_id)]\n                - [str2, $(agency_id)]",
+    "data":[
+      {
+        "path":"AGENCY.csv",
+        "type":"csv",
+        "value":"agency_id,agency_name,agency_url,agency_timezone,agency_lang,agency_phone,agency_fare_url\nCRTM,Consorcio Regional de Transportes de Madrid,http://www.crtm.es,Europe/Madrid,es,012,https://www.crtm.es/billetes-y-tarifas\n"
+      },
+      {
+        "path":"ROUTES.csv",
+        "type":"csv",
+        "value":"route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color\n4__1___,CRTM,1,Pinar de Chamartín-Valdecarros,,1,http://www.crtm.es/tu-transporte-publico/metro/lineas/4__1___.aspx,2DBEF0,FFFFFF\n4__10___,CRTM,10,Hospital del Norte-Puerta del Sur,,1,http://www.crtm.es/tu-transporte-publico/metro/lineas/4__10___.aspx,005AA9,FFFFFF\n4__11___,CRTM,11,Plaza Elíptica-La Fortuna,,1,http://www.crtm.es/tu-transporte-publico/metro/lineas/4__11___.aspx,009B3A,FFFFFF\n4__12___,CRTM,12,MetroSur,,1,http://www.crtm.es/tu-transporte-publico/metro/lineas/4__12___.aspx,A49800,FFFFFF\n4__2___,CRTM,2,Las Rosas-Cuatro Caminos,,1,http://www.crtm.es/tu-transporte-publico/metro/lineas/4__2___.aspx,ED1C24,FFFFFF\n4__3___,CRTM,3,Villaverde Alto-Moncloa,,1,http://www.crtm.es/tu-transporte-publico/metro/lineas/4__3___.aspx,FFD000,000000\n4__4___,CRTM,4,Pinar de Chamartín-Argüelles,,1,http://www.crtm.es/tu-transporte-publico/metro/lineas/4__4___.aspx,B65518,FFFFFF\n4__5___,CRTM,5,Alameda de Osuna-Casa de Campo,,1,http://www.crtm.es/tu-transporte-publico/metro/lineas/4__5___.aspx,8FD400,FFFFFF\n4__6___,CRTM,6,Circular,,1,http://www.crtm.es/tu-transporte-publico/metro/lineas/4__6___.aspx,98989B,FFFFFF\n4__7___,CRTM,7,Hospital del Henares-Pitis,,1,http://www.crtm.es/tu-transporte-publico/metro/lineas/4__7___.aspx,EE7518,FFFFFF\n4__8___,CRTM,8,Nuevos Ministerios - Aeropuerto T4,,1,http://www.crtm.es/tu-transporte-publico/metro/lineas/4__8___.aspx,EC82B1,FFFFFF\n4__9___,CRTM,9,Paco de Lucía-Arganda del Rey,,1,http://www.crtm.es/tu-transporte-publico/metro/lineas/4__9___.aspx,A60084,FFFFFF\n4__R___,CRTM,R,Opera-Príncipe Pío,,1,http://www.crtm.es/tu-transporte-publico/metro/lineas/4__R___.aspx,FFFFFF,005AA9"
+      }
+    ]
   }
 ]
