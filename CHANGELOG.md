@@ -7,6 +7,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+## [1.1.0] - 2023-09-13
+
 ### Changed
 - Updated dependency on yarrrml-parser to v1.5.4
 - Pass new function state ID to the RML Web API when a user refreshes the browser.
@@ -67,6 +69,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - Initial public release
 
+[1.1.0]: https://github.com/RMLio/matey/compare/v1.0.5...v1.1.0
 [1.0.5]: https://github.com/RMLio/matey/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/RMLio/matey/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/RMLio/matey/compare/v1.0.2...v1.0.3
