@@ -7,6 +7,14 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Changed
+- Updated dependency on yarrrml-parser to v1.5.4
+- Pass new function state ID to the RML Web API when a user refreshes the browser.
+
+### Added
+- A minimal LDES example in the web GUI.
+- A button `Reset state` in the web GUI, so next call to RMLMapper web API uses a clean state.
+
 ## [1.0.5] - 2022-11-25
 
 ### Added

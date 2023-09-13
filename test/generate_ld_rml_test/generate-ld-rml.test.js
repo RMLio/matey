@@ -65,6 +65,11 @@ describe('toRML()', function() {
         await testOutput('target_rml.ttl', false);
     });
 
+    it('should generate correct RML output for "Basic LDES" example', async function() {
+        matey.loadExample(examples[5]);
+        await testOutput('basic_ldes_rml.ttl', false);
+    });
+
 });
 
 /**
