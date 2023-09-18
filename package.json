@@ -7,8 +7,7 @@
     "build:browser": "npm run prepare-dist; browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css --minify=true | terser > dist/matey.min.js",
     "build:example_with_bundler": "browserify examples/with_bundler/init.js -t urify/transform -t brfs -t browserify-css --minify=true | terser > examples/with_bundler/bundle.js",
     "test": "jest --silent --verbose",
-    "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\"",
-    "browser": "gulp browser-sync"
+    "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\""
   },
   "repository": {
     "type": "git",
@@ -22,7 +21,9 @@
   "author": "Ben De Meester",
   "contributors": [
     "René Van Der Schueren",
-    "Pieter Heyvaert (https://pieterheyvaert.com)"
+    "Pieter Heyvaert (https://pieterheyvaert.com)",
+    "Dylan Van Assche",
+    "Gerald Haesendonck"
   ],
   "license": "MIT",
   "dependencies": {
@@ -50,7 +51,6 @@
     "browser-sync": "^2.27.5",
     "browserify": "^17.0.0",
     "browserify-css": "^0.15.0",
-    "gulp": "^3.9.1",
     "jest": "^27.0.6",
     "jsdom-worker-fix": "^0.1.8",
     "node-fetch": "^2.6.7",
