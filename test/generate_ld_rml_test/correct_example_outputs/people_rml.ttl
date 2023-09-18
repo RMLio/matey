@@ -11,7 +11,7 @@ map:map_person_000 rml:logicalSource map:source_000;
                    rr:subjectMap map:s_000;
                    rr:predicateObjectMap map:pom_000, map:pom_001.
 map:om_000 a rr:ObjectMap;
-           rr:constant "http://xmlns.com/foaf/0.1/Person";
+           rr:constant <http://xmlns.com/foaf/0.1/Person>;
            rr:termType rr:IRI.
 map:om_001 a rr:ObjectMap;
            rml:reference "firstname";
