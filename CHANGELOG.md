@@ -7,6 +7,12 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Changed
+- Updated dependency on yarrrml-parser to v1.6.1
+- Downgraded dev dependency on gulp to 3.9.1 due to security issue
+- Updated dev dependency on node-fetch to 2.6.7
+
+
 ## [1.1.0] - 2023-09-13
 
 ### Changed
