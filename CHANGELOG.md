@@ -7,6 +7,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+## [1.1.1] - 2023-09-19
+
 ### Changed
 - Updated dependency on yarrrml-parser to v1.6.1
 - Downgraded dev dependency on gulp to 3.9.1 due to security issue
@@ -76,6 +78,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - Initial public release
 
+[1.1.1]: https://github.com/RMLio/matey/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/RMLio/matey/compare/v1.0.5...v1.1.0
 [1.0.5]: https://github.com/RMLio/matey/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/RMLio/matey/compare/v1.0.3...v1.0.4
