@@ -2,17 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Added
+- IncRML + LDES generation examples, the new way of generating basic LDES.
+
 ### Changed
-- Updated dependency on yarrrml-parser to v1.6.1
+- Updated dependency on yarrrml-parser to v1.7.2
 - Downgraded dev dependency on gulp to 3.9.1 due to security issue
 - Updated dev dependency on node-fetch to 2.6.7
+- Updated dev dependency on jest to 29.7.0
+- Added dev dependency to jest-dom version 6.5.0
+- Added dev dependency to jest-environment-jsdom version 29.7.0
 - Removed dependency on Gulp
 - Updated contributor list
+
+### Removed
+- Old LDES generation example, since not supported by yarrrml-parser anymore.
 
 ## [1.1.0] - 2023-09-13
 

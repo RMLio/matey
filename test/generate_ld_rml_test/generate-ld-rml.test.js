@@ -13,6 +13,10 @@ const quadsSorter = require('../../lib/sorters/quadssorter');
 const N3 = require('n3');
 const parser = new N3.Parser({ format: 'Turtle' });
 
+// This is a hack to get jsdom execute the (new) function `structuredClone`
+// https://github.com/jsdom/jsdom/issues/3363#issuecomment-1221060809
+global.structuredClone = (val) => JSON.parse(JSON.stringify(val))
+
 // runMappingRemote() tests
 describe('runMappingRemote()', function() {
 
@@ -65,9 +69,14 @@ describe('toRML()', function() {
         await testOutput('target_rml.ttl', false);
     });
 
-    it('should generate correct RML output for "Basic LDES" example', async function() {
+    it('should generate correct RML output for "IncRML + LDES 1" example', async function() {
         matey.loadExample(examples[5]);
-        await testOutput('basic_ldes_rml.ttl', false);
+        await testOutput('basic_ldes_1_rml.ttl', false);
+    });
+
+    it('should generate correct RML output for "IncRML + LDES 2" example', async function() {
+        matey.loadExample(examples[6]);
+        await testOutput('basic_ldes_2_rml.ttl', false);
     });
 
 });

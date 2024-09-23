@@ -70,14 +70,26 @@
     ]
   },
   {
-    "label":"Basic LDES",
+    "label":"IncRML + LDES 1",
     "icon":"",
-    "yarrrml":"# Generate basic LDES and members.\n# Members are only generated when temperature changes for a sensor.\n\nprefixes:\n  ex: http://example.org/\n\nsources:\n  data-source: [readings.csv~csv]\n\nmappings:\n  temperature-reading:\n    sources: data-source\n    subjects:\n      - value: ex:$(SensorID)\n        targets:\n          - [ out.ttl~void, turtle ]\n        ldes:\n          watchedProperties: [$(Temperature)]\n          timestampPath: [ex:ts]\n\n    po:\n      - [a, ex:Thermometer]\n      - [ex:temp, $(Temperature)]\n      - [ex:ts, $(Timestamp), xsd:dateTime]\n",
+    "yarrrml":"# Generate an initial basic LDES and members.\n\nprefixes:\n  ex: http://example.org/\n  dcterms: http://purl.org/dc/terms/\n\nsources:\n  data-source: [readings-1.csv~csv]\n\ntargets:\n  ldes-target:\n    access: out-ldes.nq\n    type: void\n    serialization: nquads\n    ldes:\n      id: https://example.org/ldes\n      timestampPath: ex:ts\n      versionOfPath: dcterms:isVersionOf\n\nmappings:\n  temperature-reading:\n    sources: data-source\n    subjects:\n      - value: ex:$(SensorID)\n        targets: ldes-target\n\n    po:\n      - [a, ex:Thermometer]\n      - [ex:temp, $(Temperature)]\n      - [ex:ts, $(Timestamp), xsd:dateTime]\n      - [dcterms:isVersionOf, ex:$(SensorID)]\n\n    changeDetection:\n      create:\n        explicit: false\n      update:\n        explicit: false\n        watchedProperties: [$(Temperature)]",
     "data":[
       {
-        "path":"readings.csv",
+        "path":"readings-1.csv",
         "type":"csv",
-        "value":"SensorID,Timestamp,Temperature\n1,2023-01-01T08:00:00,8\n2,2023-01-01T08:00:00,9\n1,2023-01-01T09:00:00,9\n2,2023-01-01T09:00:00,9\n"
+        "value":"SensorID,Timestamp,Temperature\n1,2023-01-01T08:00:00,8\n2,2023-01-01T08:00:00,9\n"
+      }
+    ]
+  },
+  {
+    "label":"IncRML + LDES 2",
+    "icon":"",
+    "yarrrml":"# Only generate members if temperature changes.\n\nprefixes:\n  ex: http://example.org/\n  dcterms: http://purl.org/dc/terms/\n\nsources:\n  data-source: [readings-2.csv~csv]\n\ntargets:\n  ldes-target:\n    access: out-ldes.nq\n    type: void\n    serialization: nquads\n    ldes:\n      id: https://example.org/ldes\n      timestampPath: ex:ts\n      versionOfPath: dcterms:isVersionOf\n\nmappings:\n  temperature-reading:\n    sources: data-source\n    subjects:\n      - value: ex:$(SensorID)\n        targets: ldes-target\n\n    po:\n      - [a, ex:Thermometer]\n      - [ex:temp, $(Temperature)]\n      - [ex:ts, $(Timestamp), xsd:dateTime]\n      - [dcterms:isVersionOf, ex:$(SensorID)]\n\n    changeDetection:\n      create:\n        explicit: false\n      update:\n        explicit: false\n        watchedProperties: [$(Temperature)]",
+    "data":[
+      {
+        "path":"readings-2.csv",
+        "type":"csv",
+        "value":"SensorID,Timestamp,Temperature\n1,2023-01-01T09:00:00,9\n2,2023-01-01T09:00:00,9\n"
       }
     ]
   }

@@ -1,0 +1,13 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://example.org/1>
+    <http://example.org/temp> "9" ;
+    <http://example.org/ts> "2023-01-01T09:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    <http://purl.org/dc/terms/isVersionOf> "http://example.org/1" ;
+    a <http://example.org/Thermometer> .
+
+<https://example.org/ldes>
+    a <https://w3id.org/ldes#EventStream> ;
+    <https://w3id.org/ldes#timestampPath> <http://example.org/ts> ;
+    <https://w3id.org/ldes#versionOfPath> <http://purl.org/dc/terms/isVersionOf> ;
+    <https://w3id.org/tree#member> <http://example.org/1> .

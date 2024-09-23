@@ -30,7 +30,7 @@
     "@graphy/content.ttl.read": "latest",
     "@graphy/content.ttl.write": "latest",
     "@graphy/memory.dataset.fast": "latest",
-    "@rmlio/yarrrml-parser": "^1.6.1",
+    "@rmlio/yarrrml-parser": "^1.7.2",
     "beaver-logger": "^4.0.28",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.6.1",
@@ -48,10 +48,12 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "6.5.0",
     "browser-sync": "^2.27.5",
     "browserify": "^17.0.0",
     "browserify-css": "^0.15.0",
-    "jest": "^27.0.6",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "jsdom-worker-fix": "^0.1.8",
     "node-fetch": "^2.6.7",
     "nodemon": "^2.0.12",
