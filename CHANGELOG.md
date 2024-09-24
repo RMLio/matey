@@ -12,16 +12,21 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 - Updated dependency on yarrrml-parser to v1.7.2
-- Downgraded dev dependency on gulp to 3.9.1 due to security issue
-- Updated dev dependency on node-fetch to 2.6.7
 - Updated dev dependency on jest to 29.7.0
 - Added dev dependency to jest-dom version 6.5.0
 - Added dev dependency to jest-environment-jsdom version 29.7.0
-- Removed dependency on Gulp
-- Updated contributor list
 
 ### Removed
 - Old LDES generation example, since not supported by yarrrml-parser anymore.
+
+## [1.1.1] - 2023-09-19
+
+### Changed
+- Updated dependency on yarrrml-parser to v1.6.1
+- Downgraded dev dependency on gulp to 3.9.1 due to security issue
+- Updated dev dependency on node-fetch to 2.6.7
+- Removed dependency on Gulp
+- Updated contributor list
 
 ## [1.1.0] - 2023-09-13
 
@@ -85,6 +90,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - Initial public release
 
+[1.1.1]: https://github.com/RMLio/matey/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/RMLio/matey/compare/v1.0.5...v1.1.0
 [1.0.5]: https://github.com/RMLio/matey/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/RMLio/matey/compare/v1.0.3...v1.0.4
