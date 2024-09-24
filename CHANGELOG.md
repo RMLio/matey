@@ -9,6 +9,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 - IncRML + LDES generation examples, the new way of generating basic LDES.
+- Release script
 
 ### Changed
 - Updated dependency on yarrrml-parser to v1.7.2
