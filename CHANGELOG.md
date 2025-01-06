@@ -7,6 +7,18 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Changed
+- Added box colors
+- Use dropdown for examples
+- Expanded example descriptions
+- Added description of Matey
+- Added user study link
+- Gray out output data box
+- Single layout
+- Use single generate RDF button
+- Remove RML output
+- Add clear all button
+
 ### Fixed
 - Upgraded dependencies for security.
 
