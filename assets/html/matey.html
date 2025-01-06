@@ -1,4 +1,12 @@
 <div class="container">
+    <p>
+       Matey is a YARRRML editor that allows you to try out your YARRRML rules.
+       Behind the scenes, the YARRRML rules are converted to RML rules and executed by
+       the RMLMapper. Matey is made for people who want to try out YARRRML without 
+       installing anything, in your browser. You can add your input data on the left,
+       write your YARRRML rules on the right and get the generated RDF.
+       Some examples are available as well to see how Matey works and get you started quickly.
+    </p>
     <a class="anchor" id="edit-matey"></a>
     <div class="navbar navbar-expand-sm navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -8,7 +16,7 @@
 
         <div class="collapse navbar-collapse">
             <div class="navbar-nav mr-auto">
-                <span class="navbar-text">Reload example:&nbsp;</span>
+                <span class="navbar-text">Examples:&nbsp;</span>
                 <div id="examples-matey" class="btn-group" role="group"></div>
             </div>
             <span class="navbar-text">Actions:&nbsp;</span>
@@ -17,13 +25,6 @@
                         title="Generate RDF based upon input data and YARRRML rules.">Generate RDF</button>
                 <button id="clear-btn-matey" type="button" class="btn btn-secondary"
                         title="Clear all input and state.">Clear ALL</button>
-            </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="navbar-text">Layout:&nbsp;</span>
-            <div id="layout-matey" style="opacity: 0.5">
-                <button id="layout-22-matey" type="button" class="btn"><img src="{{img22url}}" alt="Two by two layout"/></button>
-                <button id="layout-31-matey" style="display: none" type="button" class="btn"><img src="{{img31url}}"
-                                                                                            alt="Three by one layout"/></button>
             </div>
         </div>
     </div>
@@ -36,7 +37,7 @@
 </div>
 <div style="margin: 15px">
     <div class="row mb-3">
-        <div class="col-md-4" id="div-input-data-matey">
+        <div class="col-md-6" id="div-input-data-matey">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle rounded-0" id="input-button-matey"
                         style="background-color: #2F3129; border-width: 0" type="button"
@@ -58,7 +59,7 @@
             </div>
             <div id="data-matey" class="tab-content"></div>
         </div>
-        <div class="col-md-4" id="div-yarrrml-matey">
+        <div class="col-md-6" id="div-yarrrml-matey">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle rounded-0"
                         style="background-color: #2F3129; border-width: 0" type="button"
@@ -73,7 +74,7 @@
             </div>
             <div id="editor-matey" class="ace-editor"></div>
         </div>
-        <div class="col-md-4" id="div-output-data-matey">
+        <div class="col-md-12" id="div-output-data-matey">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle rounded-0" id="output-button-matey"
                         style="background-color: #2F3129; border-width: 0" type="button"

@@ -1,7 +1,7 @@
 [
   {
-    "label":"People (JSON)",
-    "icon":"user",
+    "label":"JSON",
+    "icon":"",
     "yarrrml":"prefixes:\n ex: \"http://example.com/\"\n\nmappings:\n  person:\n    sources:\n      - ['data.json~jsonpath', '$.persons[*]']\n    s: http://example.com/$(firstname)\n    po:\n      - [a, foaf:Person]\n      - [ex:name, $(firstname)]",
     "data": [
       {
@@ -12,8 +12,8 @@
     ]
   },
   {
-    "label":"Advanced",
-    "icon":"cogs",
+    "label":"JSON+CSV",
+    "icon":"",
     "yarrrml":"prefixes:\n  ex: \"http://example.com/\"\n\nmappings:\n  person:\n    sources:\n      - ['persons.json~jsonpath', '$.persons[*]']\n    s: http://example.com/person/$(firstname)\n    po:\n      - [a, foaf:Person]\n      - [ex:name, $(firstname)]\n      - p: ex:likes\n        o:\n         - mapping: movie\n           condition:\n            function: equal\n            parameters:\n              - [str1, $(movie)]\n              - [str2, $(slug)]\n  movie:\n    sources:\n      - ['movies.csv~csv']\n    s: http://example.com/movie/$(slug)\n    po:\n      - [a, schema:Movie]\n      - [schema:name, $(title)]\n      - [ex:year, $(year)]\n",
     "data": [
       {
@@ -70,7 +70,7 @@
     ]
   },
   {
-    "label":"IncRML + LDES 1",
+    "label":"LDES 1",
     "icon":"",
     "yarrrml":"# Generate an initial basic LDES and members.\n\nprefixes:\n  ex: http://example.org/\n  dcterms: http://purl.org/dc/terms/\n\nsources:\n  data-source: [readings-1.csv~csv]\n\ntargets:\n  ldes-target:\n    access: out-ldes.nq\n    type: void\n    serialization: nquads\n    ldes:\n      id: https://example.org/ldes\n      timestampPath: ex:ts\n      versionOfPath: dcterms:isVersionOf\n\nmappings:\n  temperature-reading:\n    sources: data-source\n    subjects:\n      - value: ex:$(SensorID)\n        targets: ldes-target\n\n    po:\n      - [a, ex:Thermometer]\n      - [ex:temp, $(Temperature)]\n      - [ex:ts, $(Timestamp), xsd:dateTime]\n      - [dcterms:isVersionOf, ex:$(SensorID)]\n\n    changeDetection:\n      create:\n        explicit: false\n      update:\n        explicit: false\n        watchedProperties: [$(Temperature)]",
     "data":[
@@ -82,7 +82,7 @@
     ]
   },
   {
-    "label":"IncRML + LDES 2",
+    "label":"LDES 2",
     "icon":"",
     "yarrrml":"# Only generate members if temperature changes.\n\nprefixes:\n  ex: http://example.org/\n  dcterms: http://purl.org/dc/terms/\n\nsources:\n  data-source: [readings-2.csv~csv]\n\ntargets:\n  ldes-target:\n    access: out-ldes.nq\n    type: void\n    serialization: nquads\n    ldes:\n      id: https://example.org/ldes\n      timestampPath: ex:ts\n      versionOfPath: dcterms:isVersionOf\n\nmappings:\n  temperature-reading:\n    sources: data-source\n    subjects:\n      - value: ex:$(SensorID)\n        targets: ldes-target\n\n    po:\n      - [a, ex:Thermometer]\n      - [ex:temp, $(Temperature)]\n      - [ex:ts, $(Timestamp), xsd:dateTime]\n      - [dcterms:isVersionOf, ex:$(SensorID)]\n\n    changeDetection:\n      create:\n        explicit: false\n      update:\n        explicit: false\n        watchedProperties: [$(Temperature)]",
     "data":[
