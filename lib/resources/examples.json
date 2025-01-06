@@ -1,6 +1,6 @@
 [
   {
-    "label":"JSON",
+    "label":"Simple JSON source",
     "icon":"",
     "yarrrml":"prefixes:\n ex: \"http://example.com/\"\n\nmappings:\n  person:\n    sources:\n      - ['data.json~jsonpath', '$.persons[*]']\n    s: http://example.com/$(firstname)\n    po:\n      - [a, foaf:Person]\n      - [ex:name, $(firstname)]",
     "data": [
@@ -12,7 +12,7 @@
     ]
   },
   {
-    "label":"JSON+CSV",
+    "label":"Combination of a JSON and a CSV source",
     "icon":"",
     "yarrrml":"prefixes:\n  ex: \"http://example.com/\"\n\nmappings:\n  person:\n    sources:\n      - ['persons.json~jsonpath', '$.persons[*]']\n    s: http://example.com/person/$(firstname)\n    po:\n      - [a, foaf:Person]\n      - [ex:name, $(firstname)]\n      - p: ex:likes\n        o:\n         - mapping: movie\n           condition:\n            function: equal\n            parameters:\n              - [str1, $(movie)]\n              - [str2, $(slug)]\n  movie:\n    sources:\n      - ['movies.csv~csv']\n    s: http://example.com/movie/$(slug)\n    po:\n      - [a, schema:Movie]\n      - [schema:name, $(title)]\n      - [ex:year, $(year)]\n",
     "data": [
@@ -29,7 +29,7 @@
     ]
   },
   {
-    "label":"Facebook",
+    "label":"Facebook JSON data",
     "icon":"facebook",
     "yarrrml": "prefixes:\n  cocacola-fb: http://coca-cola.com/facebook/\n  emit: http://coca-cola.com/emit/\n  prov-said: http://semweb.datasciencelab.be/ns/prov-said/\n  ov: http://open.vocab.org/terms/\n  tsioc: http://rdfs.org/sioc/types#\n  fabio: http://purl.org/spar/fabio/\n\nbase: http://example.com/base#\n\nsources:\n  api:\n    access: data.json\n    referenceFormulation: jsonpath\n    iterator: \"$.data[*]\"\n\nmappings:\n  facebook_post:\n    source:\n      - api\n    subject: cocacola-fb:$(id)\n    predicateobjects:\n      - [a, [prov:Entity, ov:MicroblogPost, schema:SocialMediaPosting, tsioc:MicroblogPost]]\n      - [[prov:label, schema:articleBody], $(message)]\n      - [schema:mainEntityOfPage, $(permalink_url), schema:URL]\n      - [prov:wasAttributedTo, http://coca-cola.com/#me~iri]\n      - predicate: prov:wasGeneratedBy\n        object:\n          mapping: emit\n          condition:\n            function: equal\n            parameters:\n              - [str1, $(id)]\n              - [str2, $(id)]\n  emit:\n    source:\n      - api\n    subject: emit:$(id)\n    predicateobjects:\n      - [a, prov:Activity]\n      - [prov:type, prov-said:EmitMessage~iri]\n      - [prov:wasStartedBy, http://coca-cola.com/#me~iri]\n      - [[prov:startedAtTime, prov:endedAtTime], $(created_time)]",
     "data": [
@@ -41,7 +41,7 @@
     ]
   },
   {
-    "label":"Targets",
+    "label":"YARRRML Targets for specifying output",
     "icon":"target",
     "yarrrml":"sources:\n  supergirl-source:\n    access: \"Supergirl.xml\"\n    referenceFormulation: xpath\n    iterator: \"/Supergirl/Character\"\ntargets:\n  target1: [\"/data/dump1.nt~dcat\", \"ntriples\"]\n  target2: [\"/data/dump2.ttl~void\", \"turtle\"]\nmappings:\n  person:\n    sources: supergirl-source\n    subjects:\n      - value: \"http://example.org/$(./@id)\"\n        targets: target1\n    predicateobjects:\n      - predicates:\n        - value: foaf:name\n          targets: target2\n        objects: \"$(./name)\"\n      - predicates: foaf:nickname\n        objects: \"$(./nickname)\"\n    ",
     "data":[
@@ -53,7 +53,7 @@
     ]
   },
   {
-    "label":"Tutorial",
+    "label":"GTFS CSV data",
     "icon":"",
     "yarrrml":"prefixes:\n  rr: http://www.w3.org/ns/r2rml#\n  foaf: http://xmlns.com/foaf/0.1/\n  xsd: http://www.w3.org/2001/XMLSchema#\n  rdfs: http://www.w3.org/2000/01/rdf-schema#\n  dc: http://purl.org/dc/elements/1.1/\n  rev: http://purl.org/stuff/rev#\n  gtfs: http://vocab.gtfs.org/terms#\n  geo: http://www.w3.org/2003/01/geo/wgs84_pos#\n  schema: http://schema.org/\n  dct: http://purl.org/dc/terms/\n  rml: http://semweb.mmlab.be/ns/rml#\n  ql: http://semweb.mmlab.be/ns/ql#\n  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#\n\nmappings:\n  agency:\n    sources:\n      - [AGENCY.csv~csv]\n    s: http://transport.linkeddata.es/madrid/agency/$(agency_id)\n    po:\n      - [a, gtfs:Agency]\n      - [foaf:page, $(agency_url)~iri]\n      - [foaf:name,$(agency_name)]\n      - [gtfs:timeZone,$(agency_timezone)]\n      - [dct:language,$(agency_lang)]\n      - [foaf:phone,$(agency_phone)]\n      - [gtfs:fareUrl,$(agency_fare_url)~iri]\n  routes:\n    sources:\n      - [ROUTES.csv~csv]\n    s: http://transport.linkeddata.es/madrid/metro/routes/$(route_id)\n    po:\n      - [a, gtfs:Route]\n      - [gtfs:shortName, $(route_short_name)]\n      - [gtfs:longName, $(route_long_name)]\n      - [dct:description, $(route_desc)]\n      - [gtfs:routeType, http://transport.linkeddata.es/resource/RouteType/$(route_type)~iri]\n      - [gtfs:routeUrl, $(route_url)~iri]\n      - [gtfs:color, $(route_color)]\n      - [gtfs:textColor, $(route_text_color)]\n      - p: gtfs:agency\n        o:\n          - mapping: agency\n            condition:\n              function: equal\n              parameters:\n                - [str1, $(agency_id)]\n                - [str2, $(agency_id)]",
     "data":[
@@ -70,7 +70,7 @@
     ]
   },
   {
-    "label":"LDES 1",
+    "label":"Basic LDES of sensor data",
     "icon":"",
     "yarrrml":"# Generate an initial basic LDES and members.\n\nprefixes:\n  ex: http://example.org/\n  dcterms: http://purl.org/dc/terms/\n\nsources:\n  data-source: [readings-1.csv~csv]\n\ntargets:\n  ldes-target:\n    access: out-ldes.nq\n    type: void\n    serialization: nquads\n    ldes:\n      id: https://example.org/ldes\n      timestampPath: ex:ts\n      versionOfPath: dcterms:isVersionOf\n\nmappings:\n  temperature-reading:\n    sources: data-source\n    subjects:\n      - value: ex:$(SensorID)\n        targets: ldes-target\n\n    po:\n      - [a, ex:Thermometer]\n      - [ex:temp, $(Temperature)]\n      - [ex:ts, $(Timestamp), xsd:dateTime]\n      - [dcterms:isVersionOf, ex:$(SensorID)]\n\n    changeDetection:\n      create:\n        explicit: false\n      update:\n        explicit: false\n        watchedProperties: [$(Temperature)]",
     "data":[
@@ -82,7 +82,7 @@
     ]
   },
   {
-    "label":"LDES 2",
+    "label":"LDES generation with change detection",
     "icon":"",
     "yarrrml":"# Only generate members if temperature changes.\n\nprefixes:\n  ex: http://example.org/\n  dcterms: http://purl.org/dc/terms/\n\nsources:\n  data-source: [readings-2.csv~csv]\n\ntargets:\n  ldes-target:\n    access: out-ldes.nq\n    type: void\n    serialization: nquads\n    ldes:\n      id: https://example.org/ldes\n      timestampPath: ex:ts\n      versionOfPath: dcterms:isVersionOf\n\nmappings:\n  temperature-reading:\n    sources: data-source\n    subjects:\n      - value: ex:$(SensorID)\n        targets: ldes-target\n\n    po:\n      - [a, ex:Thermometer]\n      - [ex:temp, $(Temperature)]\n      - [ex:ts, $(Timestamp), xsd:dateTime]\n      - [dcterms:isVersionOf, ex:$(SensorID)]\n\n    changeDetection:\n      create:\n        explicit: false\n      update:\n        explicit: false\n        watchedProperties: [$(Temperature)]",
     "data":[
