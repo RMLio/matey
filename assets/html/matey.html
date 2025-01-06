@@ -3,8 +3,8 @@
        Matey is a YARRRML editor that allows you to <b>try out your YARRRML rules</b>.
        Behind the scenes, the YARRRML rules are converted to RML rules and executed by
        the RMLMapper. Matey is made for people who want to try out YARRRML <b>without 
-       installing anything</b>, in your browser. You can add your input data on the left,
-       write your YARRRML rules on the right and get the generated RDF.
+       installing anything</b>, in your browser. You can add your input data on the left (yellow box),
+       write your YARRRML rules on the right (green box) and get the generated RDF (purple box).
        Some examples are available as well to see how Matey works and get you started quickly.
     </p>
     <p>
@@ -20,15 +20,7 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-	<b>Open example:</b>&nbsp;<div id="examples-matey" class="dropdown"></div>
-
-        <!--<div class="collapse navbar-collapse">
-            <div class="navbar-nav mr-auto">
-                <span class="navbar-text">Examples:&nbsp;</span>
-                <div id="examples-matey" class="btn-group" role="group"></div>
-            </div>
-            <span class="navbar-text">Actions:&nbsp;</span>
-	</div>-->
+	<b>Open example:</b>&nbsp;<select id="examples-matey"></select>
     </div>
 
     <div id="alert-container-matey">
@@ -45,7 +37,7 @@
                title="Generate RDF based upon input data and YARRRML rules.">Generate RDF</button>
     </div>
     <div class="row mb-3">
-        <div class="col-md-6" id="div-input-data-matey">
+        <div class="col-md-6" id="div-input-data-matey" style="background-color: rgba(255, 193, 7, 0.33); padding: 15px;">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle rounded-0" id="input-button-matey"
                         style="background-color: #2F3129; border-width: 0" type="button"
@@ -67,7 +59,7 @@
             </div>
             <div id="data-matey" class="tab-content"></div>
         </div>
-        <div class="col-md-6" id="div-yarrrml-matey">
+        <div class="col-md-6" id="div-yarrrml-matey" style="background-color: rgba(32, 201, 151, 0.33); padding: 15px;">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle rounded-0"
                         style="background-color: #2F3129; border-width: 0" type="button"
@@ -82,7 +74,7 @@
             </div>
             <div id="editor-matey" class="ace-editor"></div>
         </div>
-        <div class="col-md-12" id="div-output-data-matey">
+        <div class="col-md-12" id="div-output-data-matey" style="background-color: rgba(111, 66, 193, 0.33); padding: 15px;">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle rounded-0" id="output-button-matey"
                         style="background-color: #2F3129; border-width: 0" type="button"
