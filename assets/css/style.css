@@ -130,7 +130,11 @@ a.anchor {
 }
 
 .bd-title {
-    margin-top: 1rem;
-    margin-bottom: .5rem;
-    font-weight: 300;
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+  font-weight: 300;
+}
+
+#ld-btn-matey {
+  float: right;
 }

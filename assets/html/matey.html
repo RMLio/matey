@@ -20,20 +20,15 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+	<b>Open example:</b>&nbsp;<div id="examples-matey" class="dropdown"></div>
 
-        <div class="collapse navbar-collapse">
+        <!--<div class="collapse navbar-collapse">
             <div class="navbar-nav mr-auto">
                 <span class="navbar-text">Examples:&nbsp;</span>
                 <div id="examples-matey" class="btn-group" role="group"></div>
             </div>
             <span class="navbar-text">Actions:&nbsp;</span>
-            <div id="buttons-matey" class="btn-group" role="group">
-                <button id="ld-btn-matey" type="button" class="btn btn-success"
-                        title="Generate RDF based upon input data and YARRRML rules.">Generate RDF</button>
-                <button id="clear-btn-matey" type="button" class="btn btn-secondary"
-                        title="Clear all input and state.">Clear ALL</button>
-            </div>
-        </div>
+	</div>-->
     </div>
 
     <div id="alert-container-matey">
@@ -43,6 +38,12 @@
     </div>
 </div>
 <div style="margin: 15px">
+    <div style="padding-bottom: 15px;">
+        <button id="clear-btn-matey" type="button" class="btn btn-danger"
+                title="Clear all input and state.">Clear ALL</button>
+        <button id="ld-btn-matey" type="button" class="btn btn-success"
+               title="Generate RDF based upon input data and YARRRML rules.">Generate RDF</button>
+    </div>
     <div class="row mb-3">
         <div class="col-md-6" id="div-input-data-matey">
             <div class="dropdown">
@@ -88,7 +89,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Output: Turtle/TriG
                 </button>
-                <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu rounded-0" style="background-color: #4f4e4e;" aria-labelledby="dropdownMenuButton">
                     <div class="nav" id="dropdown-out-chooser-matey">
                     </div>
                     <a class="dropdown-item rounded-0" href="#" id="turtle-dl-matey">Download</a>
