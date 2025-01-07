@@ -109,8 +109,9 @@ want these examples to run, make sure you have such an endpoint set up.
 
 ## Developing
 
-1. Build with `npm run build`
-2. Copy `matey.min.js` from `dist` to `examples/with_minified_script/matey.min.js`
+0. Install dependencies: `npm i`
+1. Build with `npm run build:browser`
+2. Copy `matey.min.js` from `dist` to `examples/with_minified_script/matey.min.js`: `cp dist/matey.min.js examples/with_minified_script/matey.min.js`
 3. Run a HTTP server inside `examples/with_minified_script`, for example: `python3 -m http.server`
 4. Go to the root of the HTTP server and pick `test.html`, for example: `http://0.0.0.0:8000/test.html`
 
