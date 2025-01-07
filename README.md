@@ -107,6 +107,13 @@ Both examples illustrate the use of Matey through a single web page which only c
 In these examples, Matey is configured to use an RMLMapper endpoint with URL "http://localhost:4000/execute", so if you
 want these examples to run, make sure you have such an endpoint set up.
 
+## Developing
+
+1. Build with `npm run build`
+2. Copy `matey.min.js` from `dist` to `examples/with_minified_script/matey.min.js`
+3. Run a HTTP server inside `examples/with_minified_script`, for example: `python3 -m http.server`
+4. Go to the root of the HTTP server and pick `test.html`, for example: `http://0.0.0.0:8000/test.html`
+
 ## Run tests
 The tests also assume that an RMLMapper endpoint with URL <http://localhost:4000/execute> is up and running. 
 Once you have it set up, 
