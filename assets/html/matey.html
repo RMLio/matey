@@ -5,7 +5,13 @@
        the RMLMapper. Matey is made for people who want to try out YARRRML <b>without 
        installing anything</b>, in your browser. You can add your input data on the left (yellow box),
        write your YARRRML rules on the right (green box) and get the generated RDF (purple box).
+       YARRRML also supports Targets which allows you to have multiple RDF outputs, you can find all
+       generated RDF outputs in the dropdown menu of the purple box, together with the RML rules.
        Some examples are available as well to see how Matey works and get you started quickly.
+       You can load those below by selecting one in the dropdown and click on the 'Load Example' button.
+       Once loaded, you can edit them as you wish.
+       A <b>tutorial</b> is available at <a href="https://rml.io/yarrrml/tutorial/getting-started/"
+					    target="_blank">https://rml.io/yarrrml/tutorial/getting-started/</a>.
     </p>
     <p>
        We are conducting a <b>user study</b>
@@ -15,12 +21,10 @@
        <a href="https://docs.google.com/forms/d/e/1FAIpQLScoWl8ssl_2cDJ3W1WSGL4vQthQsyVRaAnMx3_8XHCRUJuGjQ/viewform?usp=sf_link" target="_blank">here</a></b>.
     </p>
     <a class="anchor" id="edit-matey"></a>
-    <div class="navbar navbar-expand-sm navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-	<b>Open example:</b>&nbsp;<select id="examples-matey"></select>
+    <div>
+        <b>Select example to load:</b>&nbsp;<select id="examples-matey" class="custom-select"></select>&nbsp;
+        <button id="example-btn-matey" type="button" class="btn btn-warning"
+               title="Load the example into Matey, all changes will be lost!">Load Example</button>
     </div>
 
     <div id="alert-container-matey">
@@ -81,7 +85,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Output: generated RDF
                 </button>
-                <div class="dropdown-menu rounded-0" style="background-color: #4f4e4e;" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
                     <div class="nav" id="dropdown-out-chooser-matey">
                     </div>
                     <a class="dropdown-item rounded-0" href="#" id="turtle-dl-matey">Download</a>

@@ -138,3 +138,7 @@ a.anchor {
 #ld-btn-matey {
   float: right;
 }
+
+#examples-matey {
+  width: max-content;
+}

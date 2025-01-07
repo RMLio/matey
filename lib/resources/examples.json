@@ -82,7 +82,7 @@
     ]
   },
   {
-    "label":"LDES generation with change detection",
+    "label":"Updated LDES of sensor data",
     "icon":"",
     "yarrrml":"# Only generate members if temperature changes.\n\nprefixes:\n  ex: http://example.org/\n  dcterms: http://purl.org/dc/terms/\n\nsources:\n  data-source: [readings-2.csv~csv]\n\ntargets:\n  ldes-target:\n    access: out-ldes.nq\n    type: void\n    serialization: nquads\n    ldes:\n      id: https://example.org/ldes\n      timestampPath: ex:ts\n      versionOfPath: dcterms:isVersionOf\n\nmappings:\n  temperature-reading:\n    sources: data-source\n    subjects:\n      - value: ex:$(SensorID)\n        targets: ldes-target\n\n    po:\n      - [a, ex:Thermometer]\n      - [ex:temp, $(Temperature)]\n      - [ex:ts, $(Timestamp), xsd:dateTime]\n      - [dcterms:isVersionOf, ex:$(SensorID)]\n\n    changeDetection:\n      create:\n        explicit: false\n      update:\n        explicit: false\n        watchedProperties: [$(Temperature)]",
     "data":[
