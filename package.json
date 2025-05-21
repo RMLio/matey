@@ -7,7 +7,9 @@
     "build:browser": "npm run prepare-dist; browserify lib/index.js --standalone Matey -t urify/transform -t brfs -t browserify-css --minify=true | terser > dist/matey.min.js",
     "build:example_with_bundler": "browserify examples/with_bundler/init.js -t urify/transform -t brfs -t browserify-css --minify=true | terser > examples/with_bundler/bundle.js",
     "test": "jest --silent --verbose",
-    "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\""
+    "watch:dev": "nodemon -w ./editor -x \"npm run build:dev\"",
+    "lint:markdown": "markdownlint-cli2",
+    "lint:markdown:fix": "markdownlint-cli2 --fix"
   },
   "repository": {
     "type": "git",
@@ -55,6 +57,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jsdom-worker-fix": "^0.1.8",
+    "markdownlint-cli2": "^0.18.1",
     "node-fetch": "^2.6.7",
     "nodemon": "^2.0.12",
     "terser": "^5.7.1",
