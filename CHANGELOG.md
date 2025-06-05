@@ -7,6 +7,12 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Changed
+
+- Added ERA examples
+- Made build instructions cross-platform
+- Updated package-lock
+
 ## [1.3.2] - 2025-05-22
 
 ### Changed

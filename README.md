@@ -115,6 +115,11 @@ let config = {
 matey.init("matey-id", config);
 ```
 
+### YARRRML examples
+
+The YARRRML examples come from a single configuration file located at `lib/resources/examples.json`.
+If you want to add a new example to the editor, that's where you want to add stuff.
+
 ## Examples
 
 Examples of usage can be found in the `examples` directory of the project.
