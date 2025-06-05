@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Added
+
+- Added Changefrog to dev dependencies
+
 ### Changed
 
 - Added ERA examples
