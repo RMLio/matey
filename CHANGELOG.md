@@ -7,6 +7,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+## [1.3.4] - 2025-09-22
+
 ### Changed
 
 - Upgrade YARRRML parser
@@ -162,6 +164,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Initial public release
 
+[1.3.4]: https://github.com/RMLio/matey/compare/v1.3.3...v1.3.4
 [1.3.3]: https://github.com/RMLio/matey/compare/v1.3.2...v1.3.3
 [1.3.2]: https://github.com/RMLio/matey/compare/v1.3.1...v1.3.2
 [1.3.1]: https://github.com/RMLio/matey/compare/v1.3.0...v1.3.1
