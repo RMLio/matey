@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Changed
+
+- Upgrade YARRRML parser
+
 ## [1.3.3] - 2025-06-05
 
 ### Added
