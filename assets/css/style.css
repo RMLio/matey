@@ -1,5 +1,5 @@
-@import "node_modules/bootstrap/dist/css/bootstrap.css";
-@import url("../fonts/icomoon.css");
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../fonts/icomoon.css";
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
@@ -137,6 +137,10 @@ a.anchor {
 
 #ld-btn-matey {
   float: right;
+}
+
+#modes-matey {
+  width: max-content;
 }
 
 #examples-matey {

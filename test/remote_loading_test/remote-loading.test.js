@@ -1,17 +1,15 @@
 'use strict';
 
 // import YAML for parsing YARRRML outpuit
-const YAML = require("yamljs");
+import { parse } from "yamljs";
 
 // import mocked XMLHttpRequest
-const xhrMock = require('xhr-mock').default;
+import xhrMock from 'xhr-mock';
 
-// import readFileSync from File System
-const readFileSync = require('fs').readFileSync;
-
-// read expected JSON and YAML responses from files
-const expectedJsonResponse = readFileSync(__dirname + '/correct_responses/json-response.json', 'utf8');
-const expectedYarrrmlResponse = readFileSync(__dirname + '/correct_responses/yarrrml-response.yaml', 'utf8');
+// read expected JSON and YAML responses from files using Vite raw imports
+const responseFiles = import.meta.glob('./correct_responses/*', { query: '?raw', import: 'default' });
+const expectedJsonResponse = await responseFiles['./correct_responses/json-response.json']();
+const expectedYarrrmlResponse = await responseFiles['./correct_responses/yarrrml-response.yaml']();
 
 // replace the real XHR object with the mock XHR object, and clear all alert boxes before each test
 beforeEach(() => {
@@ -94,11 +92,11 @@ describe('loadRemoteYarrrml()', function() {
     await matey.loadRemoteYarrrml(correctUrl);
 
     // retrieve value from YARRRML editor
-    const yarrrmlEditorValue = matey.getYarrrml();
+    const yarrrmlEditorValue = matey.getYARRRML();
 
     // check if parsed value equals parsed expected value
-    const parsedReceivedValue = YAML.parse(yarrrmlEditorValue);
-    const parsedExpectedValue = YAML.parse(expectedYarrrmlResponse);
+    const parsedReceivedValue = parse(yarrrmlEditorValue);
+    const parsedExpectedValue = parse(expectedYarrrmlResponse);
     expect(parsedReceivedValue).toEqual(parsedExpectedValue);
   });
 

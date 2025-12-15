@@ -7,6 +7,12 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Added
+
+- A mode selection allows to select the language of the rules editor "YARRRML" (default), "RMLIO" (aka old RML) or "RMLKGC" (aka new RML).
+- Mode "RMLKGC" calls the BURP mapping engine.
+- The rules editors for modes "RMLIO" and "RMLKGC" are now monaco-editors. The project was converted from browserify to vite for this reason.
+
 ## [1.3.4] - 2025-09-22
 
 ### Changed
