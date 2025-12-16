@@ -1,19 +1,21 @@
 'use strict';
 
-import { describe, it, expect } from 'vitest';
+// import File System
+const fs = require('fs');
 
 // import Matey examples for example output tests
-import examples from '../../lib/resources/examples.json';
+const examples = JSON.parse(fs.readFileSync(__dirname + '/../../lib/resources/examples.json', 'utf8'));
 
 // import sorting function for RDF quads
-import quadsSorter from '../../lib/sorters/quadssorter';
+const quadsSorter = require('../../lib/sorters/quadssorter');
 
 // import RDF parser
-import { Parser } from 'n3';
-const parser = new Parser({ format: 'Turtle' });
+const N3 = require('n3');
+const parser = new N3.Parser({ format: 'Turtle' });
 
-// read correct example outputs from files using Vite raw imports
-const correctExampleOutputs = import.meta.glob('./correct_example_outputs/*', { query: '?raw', import: 'default' });
+// This is a hack to get jsdom execute the (new) function `structuredClone`
+// https://github.com/jsdom/jsdom/issues/3363#issuecomment-1221060809
+global.structuredClone = (val) => JSON.parse(JSON.stringify(val))
 
 // runMappingRemote() tests
 describe('runMappingRemote()', function() {
@@ -100,9 +102,9 @@ async function testOutput(filename, checkLD, index=0) {
     // retrieve generated output from editor
     const generatedOutput = checkLD ? matey.getLD()[index+1] : matey.getLD()[0]
 
-    // read the correct output from the file using the preloaded raw glob
-    const importer = correctExampleOutputs[`./correct_example_outputs/${filename}`];
-    const expectedOutput = await importer();
+    // read the correct output from the file
+    const path = __dirname + "/correct_example_outputs/" + filename;
+    const expectedOutput = fs.readFileSync(path, 'utf8');
 
     // convert the outputs to RDF quads
     const generatedQuads = parser.parse(generatedOutput);

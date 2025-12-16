@@ -1,8 +1,6 @@
 .idea/
-.vscode/
 node_modules/
 logs/*
 website/assets/video
 .DS_Store
-dist/
-/config.json
+dist
