@@ -7,6 +7,14 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Changed
+
+- The project uses vite in stead of browserify.
+- The syntax was changed from CommonJS to ESM.
+- The test framework was changed from jest to vitest, to make tests work together with vite.
+- Several code preparations were done in order to support extra modes, to be merged in later.
+  However, currently only the default YARRRML mode is available and the user experience stays identical to previous versions.
+
 ## [1.3.4] - 2025-09-22
 
 ### Changed

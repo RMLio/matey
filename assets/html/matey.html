@@ -2,7 +2,7 @@
     <p>
        Matey is a YARRRML editor that allows you to <b>try out your YARRRML rules</b>.
        Behind the scenes, the YARRRML rules are converted to RML rules and executed by
-       the RMLMapper. Matey is made for people who want to try out YARRRML <b>without 
+       the RMLMapper. Matey is made for people who want to try out YARRRML <b>without
        installing anything</b>, in your browser. You can add your input data on the left (yellow box),
        write your YARRRML rules on the right (green box) and get the generated RDF (purple box).
        YARRRML also supports Targets which allows you to have multiple RDF outputs, you can find all
@@ -11,20 +11,49 @@
        You can load those below by selecting one in the dropdown and click on the 'Load Example' button.
        Once loaded, you can edit them as you wish.
        A <b>tutorial</b> is available at <a href="https://rml.io/yarrrml/tutorial/getting-started/"
-					    target="_blank">https://rml.io/yarrrml/tutorial/getting-started/</a>.
+                                            target="_blank">https://rml.io/yarrrml/tutorial/getting-started/</a>.
     </p>
     <p>
        We are conducting a <b>user study</b>
        to evaluate and improve Matey in the future regarding
        its user experience and usability, if you have a few minutes,
-       <b>please leave your feedback 
+       <b>please leave your feedback
        <a href="https://docs.google.com/forms/d/e/1FAIpQLScoWl8ssl_2cDJ3W1WSGL4vQthQsyVRaAnMx3_8XHCRUJuGjQ/viewform?usp=sf_link" target="_blank">here</a></b>.
     </p>
     <a class="anchor" id="edit-matey"></a>
+    <!-- TODO: remove display:none (this is a hack for an early merge to master) -->
+    <div id="intro-matey" style="display: none;">
+        <p>
+            This is a modified version of Matey that in addition to YARRRML input rules also supports RMLIO and RMLKGC input rules.
+        </p>
+    </div>
     <div>
-        <b>Select example to load:</b>&nbsp;<select id="examples-matey" class="custom-select"></select>&nbsp;
-        <button id="example-btn-matey" type="button" class="btn btn-warning"
-               title="Load the example into Matey, all changes will be lost!">Load Example</button>
+        <table>
+            <!-- TODO: remove display:none (this is a hack for an early merge to master) -->
+            <tr style="display: none;">
+                <td>
+                    <a class="anchor" id="mode-matey"></a>
+                    <b>Select input rules format:</b>
+                </td>
+                <td>
+                    
+                    <select id="modes-matey" class="custom-select"
+                        title="Change Matey's mode, all changes will be lost!"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a class="anchor" id="edit-matey"></a>
+                    <b>Select example to load:</b>
+                </td>
+                <td>
+                    <select id="examples-matey" class="custom-select"></select>
+                <td>
+                    <button id="example-btn-matey" type="button" class="btn btn-warning"
+                        title="Load the example into Matey, all changes will be lost!">Load Example</button>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <div id="alert-container-matey">
@@ -63,7 +92,8 @@
             </div>
             <div id="data-matey" class="tab-content"></div>
         </div>
-        <div class="col-md-6" id="div-yarrrml-matey" style="background-color: rgba(32, 201, 151, 0.33); padding: 15px;">
+        <!-- display:none undone in the code when appropriate -->
+        <div class="col-md-6" id="div-yarrrml-matey" style="background-color: rgba(32, 201, 151, 0.33); padding: 15px; display: none;">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle rounded-0"
                         style="background-color: #2F3129; border-width: 0" type="button"
@@ -76,7 +106,38 @@
                     <a class="dropdown-item rounded-0" href="#" id="yarrrml-dl-matey">Download</a>
                 </div>
             </div>
-            <div id="editor-matey" class="ace-editor"></div>
+            <div id="editor-yarrrml-matey" class="ace-editor"></div>
+        </div>
+        <!-- display:none undone in the code when appropriate -->
+        <div class="col-md-6" id="div-rmlio-matey" style="background-color: rgba(32, 201, 151, 0.33); padding: 15px; display: none;">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle rounded-0" style="background-color: #2F3129; border-width: 0"
+                    type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Input: RMLIO rules
+                </button>
+                <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item rounded-0" href="#" id="rmlio-load-matey">Load remote rules (HTTP GET)</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item rounded-0" href="#" id="rmlio-dl-matey">Download</a>
+                </div>
+            </div>
+            <div id="editor-rmlio-matey" class="ace-editor"></div>
+        </div>
+        <!-- display:none undone in the code when appropriate -->
+        <div class="col-md-6" id="div-rmlkgc-matey"
+            style="background-color: rgba(32, 201, 151, 0.33); padding: 15px; display: none;">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle rounded-0" style="background-color: #2F3129; border-width: 0"
+                    type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Input: RMLKGC rules
+                </button>
+                <div class="dropdown-menu rounded-0" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item rounded-0" href="#" id="rmlkgc-load-matey">Load remote rules (HTTP GET)</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item rounded-0" href="#" id="rmlkgc-dl-matey">Download</a>
+                </div>
+            </div>
+            <div id="editor-rmlkgc-matey" class="ace-editor"></div>
         </div>
         <div class="col-md-12" id="div-output-data-matey" style="background-color: rgba(111, 66, 193, 0.33); padding: 15px;">
             <div class="dropdown">
